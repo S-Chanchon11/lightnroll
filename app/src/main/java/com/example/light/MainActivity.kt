@@ -153,70 +153,7 @@ class MainActivity : AppCompatActivity() {
         socket.connect()
     }
 
-    fun bt2() {
-        switchLight.setOnClickListener(new View . OnClickListener () {
-            @Override
-            public void onClick(View v) {
-                Log.i("[BLUETOOTH]", "Attempting to send data");
-                if (mmSocket.isConnected() && btt != null) {
-                    if (!lightflag) {
-                        String sendtxt = "LY";
-                        btt.write(sendtxt.getBytes());
-                        lightflag = true;
-                    } else {
-                        String sendtxt = "LN";
-                        btt.write(sendtxt.getBytes());
-                        lightflag = false;
-                    }
-                } else {
-                    Toast.makeText(Ardcon.this, "Something went wrong", Toast.LENGTH_LONG).show();
-                }
-            }
-        });
-        switchRelay.setOnClickListener(new View . OnClickListener () {
-            @Override
-            public void onClick(View v) {
-                Log.i("[BLUETOOTH]", "Attempting to send data");
-                if (mmSocket.isConnected() && btt != null) {
-                    if (relayFlag) {
-                        String sendtxt = "RY";
-                        btt.write(sendtxt.getBytes());
-                        relayFlag = false;
-                    } else {
-                        String sendtxt = "RN";
-                        btt.write(sendtxt.getBytes());
-                        relayFlag = true;
-                    }
-                    //disable the button and wait for 4 seconds to enable it again                switchRelay.setEnabled(false);
-                    new Thread (new Runnable () {
-                        @Override
-                        public void run() {
-                            try {
-                                Thread.sleep(4000);
-                            } catch (InterruptedException e) {
-                                return;
-                            }
-                            runOnUiThread(new Runnable () {
-                                @Override
-                                public void run() {
-                                    switchRelay.setEnabled(true);
-                                }
-                            });
-                        }
-                    }).start();
-                } else {
-                    Toast.makeText(Ardcon.this, "Something went wrong", Toast.LENGTH_LONG).show();
-                }
-            }
-        });
-        bta = BluetoothAdapter.getDefaultAdapter();
-        //if bluetooth is not enabled then create Intent for user to turn it onif(!bta.isEnabled()){
-        Intent enableBTIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
-        startActivityForResult(enableBTIntent, REQUEST_ENABLE_BT);
-    }else
-    {
-        initiateBluetoothProcess();
-    }
+
 }
 
 
