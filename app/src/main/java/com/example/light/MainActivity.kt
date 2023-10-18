@@ -1,8 +1,6 @@
 package com.example.light
 
 import android.Manifest
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
 import android.bluetooth.BluetoothAdapter
 import android.bluetooth.BluetoothDevice
 import android.bluetooth.BluetoothManager
@@ -12,9 +10,16 @@ import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.content.pm.PackageManager
-import androidx.core.app.ActivityCompat
+import android.os.Bundle
 import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
 import java.util.UUID
+import android.app.Activity
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.Toast
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -26,14 +31,73 @@ class MainActivity : AppCompatActivity() {
     lateinit var btDevice: BluetoothDevice
 
     private val STATUS: Int = 1 //Bluetooth connection status
-    private val REQUEST_ENABLE_BT = 200
+    private val REQUEST_ENABLE_BT = 1
+    var m_bluetoothAdapter: BluetoothAdapter? = null
+    lateinit var m_pairedDevices: Set<BluetoothDevice>
+    val REQUEST_ENABLE_BLUETOOTH = 1
+
+    companion object{
+        val EXTRA_ADDRESS: String = "Device_address"
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        BluetoothConn()
+        m_bluetoothAdapter = BluetoothAdapter.getDefaultAdapter()
+        if(m_bluetoothAdapter == null){
+            toast("this device doesn't support bluetooth")
+            return
+        }
+        if(!m_bluetoothAdapter!!.isEnabled){
+            val enableBluetoothIntent = Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE)
+            startActivityForResult(enableBluetoothIntent, REQUEST_ENABLE_BLUETOOTH)
+        }
+
+        select_device_refresh.setOnClickListener{ pairedDeviceList() }
 
     }
+
+    private fun pairedDeviceList(){
+        m_pairedDevices = m_bluetoothAdapter!!.bondedDevices
+        val list:ArrayList<BluetoothDevice> = ArrayList()
+
+        if(!m_pairedDevices.isEmpty()){
+            for(device: BluetoothDevice in m_pairedDevices){
+                list.add(device)
+                Log.i("device", ""+device)
+            }
+        }else{
+            toast("no paired bluetooth devices found")
+        }
+        val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, list)
+        select_device_list.adapter = adapter
+        select_device_list.onItemClickListener = AdapterView.OnItemClickListener { _, _, position, _ ->
+            val device: BluetoothDevice = list[position]
+            val address: String = device.address
+
+            val intent = Intent(this, Control::class.java)
+            intent.putExtra(EXTRA_ADDRESS, address)
+            startActivity(intent)
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if(requestCode == REQUEST_ENABLE_BLUETOOTH){
+            if(resultCode == Activity.RESULT_OK){
+                if(m_bluetoothAdapter!!.isEnabled){
+                    Toast.makeText(baseContext,"Bluetooth has been enabled.",Toast.LENGTH_SHORT).show()
+                }else{
+                    Toast.makeText(baseContext,"Bluetooth has been disabled.",Toast.LENGTH_SHORT).show()
+                }
+            }else if(resultCode == Activity.RESULT_CANCELED){
+                Toast.makeText(baseContext,"Bluetooth enabling has been canceled.",Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+
     override fun onDestroy() {
         super.onDestroy()
         //unregisterReceiver(receiver)
@@ -88,5 +152,73 @@ class MainActivity : AppCompatActivity() {
 
         socket.connect()
     }
+
+    fun bt2() {
+        switchLight.setOnClickListener(new View . OnClickListener () {
+            @Override
+            public void onClick(View v) {
+                Log.i("[BLUETOOTH]", "Attempting to send data");
+                if (mmSocket.isConnected() && btt != null) {
+                    if (!lightflag) {
+                        String sendtxt = "LY";
+                        btt.write(sendtxt.getBytes());
+                        lightflag = true;
+                    } else {
+                        String sendtxt = "LN";
+                        btt.write(sendtxt.getBytes());
+                        lightflag = false;
+                    }
+                } else {
+                    Toast.makeText(Ardcon.this, "Something went wrong", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+        switchRelay.setOnClickListener(new View . OnClickListener () {
+            @Override
+            public void onClick(View v) {
+                Log.i("[BLUETOOTH]", "Attempting to send data");
+                if (mmSocket.isConnected() && btt != null) {
+                    if (relayFlag) {
+                        String sendtxt = "RY";
+                        btt.write(sendtxt.getBytes());
+                        relayFlag = false;
+                    } else {
+                        String sendtxt = "RN";
+                        btt.write(sendtxt.getBytes());
+                        relayFlag = true;
+                    }
+                    //disable the button and wait for 4 seconds to enable it again                switchRelay.setEnabled(false);
+                    new Thread (new Runnable () {
+                        @Override
+                        public void run() {
+                            try {
+                                Thread.sleep(4000);
+                            } catch (InterruptedException e) {
+                                return;
+                            }
+                            runOnUiThread(new Runnable () {
+                                @Override
+                                public void run() {
+                                    switchRelay.setEnabled(true);
+                                }
+                            });
+                        }
+                    }).start();
+                } else {
+                    Toast.makeText(Ardcon.this, "Something went wrong", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+        bta = BluetoothAdapter.getDefaultAdapter();
+        //if bluetooth is not enabled then create Intent for user to turn it onif(!bta.isEnabled()){
+        Intent enableBTIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+        startActivityForResult(enableBTIntent, REQUEST_ENABLE_BT);
+    }else
+    {
+        initiateBluetoothProcess();
+    }
 }
+
+
+
 
