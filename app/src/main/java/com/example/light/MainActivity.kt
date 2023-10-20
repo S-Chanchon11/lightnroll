@@ -1,6 +1,7 @@
 package com.example.light
 
 import android.Manifest
+import android.app.Activity
 import android.bluetooth.BluetoothAdapter
 import android.bluetooth.BluetoothDevice
 import android.bluetooth.BluetoothManager
@@ -12,16 +13,16 @@ import android.content.IntentFilter
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.util.Log
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
-import java.util.UUID
-import android.app.Activity
 import android.view.Menu
-import android.view.MenuItem
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
-import androidx.core.content.ContextCompat
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
+import java.util.UUID
+
 
 //import kotlinx.android.synthetic.main.activity_main.*
 
@@ -67,7 +68,11 @@ class MainActivity : AppCompatActivity() {
         }
 
         //select_device_refresh.setOnClickListener{ pairedDeviceList() }
-
+        if (savedInstanceState == null) {
+            supportFragmentManager.beginTransaction()
+                .add(R.id.contentContainer, FirstFragment())
+                .commit()
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -131,6 +136,8 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+
+
 
 
     override fun onDestroy() {
