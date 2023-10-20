@@ -16,10 +16,15 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import java.util.UUID
 import android.app.Activity
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
-import kotlinx.android.synthetic.main.activity_main.*
+import androidx.core.content.ContextCompat
+
+//import kotlinx.android.synthetic.main.activity_main.*
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -46,19 +51,49 @@ class MainActivity : AppCompatActivity() {
 
         m_bluetoothAdapter = BluetoothAdapter.getDefaultAdapter()
         if(m_bluetoothAdapter == null){
-            toast("this device doesn't support bluetooth")
+            Toast.makeText(baseContext,"this device doesn't support bluetooth",Toast.LENGTH_SHORT).show()
             return
         }
         if(!m_bluetoothAdapter!!.isEnabled){
             val enableBluetoothIntent = Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE)
+            if (ActivityCompat.checkSelfPermission(
+                    this,
+                    Manifest.permission.BLUETOOTH_CONNECT
+                ) != PackageManager.PERMISSION_GRANTED
+            ) {
+                return
+            }
             startActivityForResult(enableBluetoothIntent, REQUEST_ENABLE_BLUETOOTH)
         }
 
-        select_device_refresh.setOnClickListener{ pairedDeviceList() }
+        //select_device_refresh.setOnClickListener{ pairedDeviceList() }
 
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        val menuInflater = menuInflater
+        //menuInflater.inflate(android.R.menu.settings_menu, menu)
+        return true
+    }
+
+
+
+
     private fun pairedDeviceList(){
+        if (ActivityCompat.checkSelfPermission(
+                this,
+                Manifest.permission.BLUETOOTH_CONNECT
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return
+        }
         m_pairedDevices = m_bluetoothAdapter!!.bondedDevices
         val list:ArrayList<BluetoothDevice> = ArrayList()
 
@@ -68,10 +103,10 @@ class MainActivity : AppCompatActivity() {
                 Log.i("device", ""+device)
             }
         }else{
-            toast("no paired bluetooth devices found")
+            Toast.makeText(baseContext,"no paired bluetooth devices found",Toast.LENGTH_SHORT).show()
         }
         val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, list)
-        select_device_list.adapter = adapter
+        //select_device_list.adapter = adapter
         select_device_list.onItemClickListener = AdapterView.OnItemClickListener { _, _, position, _ ->
             val device: BluetoothDevice = list[position]
             val address: String = device.address
@@ -134,8 +169,22 @@ class MainActivity : AppCompatActivity() {
                         // object and its info from the Intent.
                         val device: BluetoothDevice? =
                             intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE)
-                        deviceName = device.name
-                        deviceAddress = device?.address // MAC address
+                        if (ActivityCompat.checkSelfPermission(
+                                this,
+                                Manifest.permission.BLUETOOTH_CONNECT
+                            ) != PackageManager.PERMISSION_GRANTED
+                        ) {
+                            // TODO: Consider calling
+                            //    ActivityCompat#requestPermissions
+                            // here to request the missing permissions, and then overriding
+                            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                            //                                          int[] grantResults)
+                            // to handle the case where the user grants the permission. See the documentation
+                            // for ActivityCompat#requestPermissions for more details.
+                            return
+                        }
+                        deviceName = device?.name.toString()
+                        deviceAddress = device?.address.toString() // MAC address
                     }
                 }
             }
