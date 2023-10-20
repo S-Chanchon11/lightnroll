@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">Light</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="mode_practice">Practice</string>
+    <string name="mode_record">Record</string>
+    <string name="mode_challenge">Challenge</string>
+    <string name="mode_setting">Setting</string>
 </resources>
