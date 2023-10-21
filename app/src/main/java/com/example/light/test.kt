@@ -17,15 +17,15 @@ class test : Fragment() {
     private lateinit var myTextView: TextView
 
     // Override function when the view is being created
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-
-        // Inflates the custom fragment layout
-        val view: View = inflater.inflate(R.layout.fragment_test, container, false)
-
-        // Finds the TextView in the custom fragment
-        myTextView = view.findViewById<View>(R.id.fragmentTextView) as TextView
-
-
-        return view
-    }
+//    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+//
+//        // Inflates the custom fragment layout
+////        val view: View = inflater.inflate(R.layout.fragment_test, container, false)
+////
+////        // Finds the TextView in the custom fragment
+////        myTextView = view.findViewById<View>(R.id.fragmentTextView) as TextView
+//
+//
+//        return
+//    }
 }
