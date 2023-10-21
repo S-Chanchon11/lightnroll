@@ -1,36 +1,54 @@
 package com.example.light.practice
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import com.example.light.Chord
 import com.example.light.R
 
-class PracticeAdapter(var emplist: Array<String>) : RecyclerView.Adapter<PracticeAdapter.MyViewHolder>() {
+class PracticeAdapter(data: ArrayList<Chord>) :
+    RecyclerView.Adapter<PracticeAdapter.ViewHolder>() {
+    private val dataList: ArrayList<Chord>
 
-    // This method creates a new ViewHolder object for each item in the RecyclerView
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        // Inflate the layout for each item and return a new ViewHolder object
-        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.chord_list, parent, false)
-        return MyViewHolder(itemView)
+    init {
+        dataList = data
     }
 
-    // This method returns the total
-    // number of items in the data set
+    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        var textViewText: TextView
+
+
+        init {
+            textViewText = itemView.findViewById<View>(R.id.chordName) as TextView
+
+        }
+    }
+
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): ViewHolder {
+        val view: View = LayoutInflater.from(parent.context)
+            .inflate(R.layout.chord_list, parent, false)
+        return ViewHolder(view)
+    }
+
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        holder.textViewText.text = dataList[position].chord
+        Log.d(javaClass.toString(), dataList[position].chord)
+        holder.itemView.setOnClickListener {
+//            Toast.makeText(holder,
+//                "Item $position is clicked.",
+//                Toast.LENGTH_SHORT
+//            ).show()
+        }
+    }
+
     override fun getItemCount(): Int {
-        return emplist.size
-    }
-
-    // This method binds the data to the ViewHolder object
-    // for each item in the RecyclerView
-    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        val currentEmp = emplist[position]
-        holder.name.text = currentEmp[position].toString()
-    }
-
-    // This class defines the ViewHolder object for each item in the RecyclerView
-    class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var name: TextView = itemView.findViewById(R.id.chordName)
+        return dataList.size
     }
 }
