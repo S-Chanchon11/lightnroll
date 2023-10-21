@@ -1,42 +1,42 @@
 package com.example.light
 
+import PracticeFragment
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var toFrag : Button
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-//        val ft: FragmentTransaction = supportFragmentManager.beginTransaction()
-//        ft.replace(R.id.fooFragment, test())
-//        ft.commit()
-        val mFragmentManager = supportFragmentManager
-        val mFragmentTransaction = mFragmentManager.beginTransaction()
-        val mFragment = PracticeView()
-        toFrag = findViewById(R.id.button)
+        // Get a reference to the "btn_frag" button from the layout
+        val btn: Button = findViewById(R.id.btn_frag)
 
-        toFrag.setOnClickListener {
-            val mBundle = Bundle()
-            mFragment.arguments = mBundle
-            mFragmentTransaction.add(R.id.frameLayout, mFragment).commit()
-            toFrag.visibility = View.GONE
+        // Set an OnClickListener on the button
+        btn.setOnClickListener {
+            replaceFragment(PracticeFragment())
+            btn.visibility = View.GONE
         }
+    }
 
-        // Declaring and initializing the EditText and Button from the layout
+    // This method replaces the current fragment
+    // with a new fragment
+    fun replaceFragment(fragment: Fragment) {
+        // Get a reference to the FragmentManager
+        val fragmentManager = supportFragmentManager
 
-        // Declaring fragment manager from making data
-        // transactions using the custom fragment
+        // Start a new FragmentTransaction
+        val fragmentTransaction = fragmentManager.beginTransaction()
 
+        // Replace the current fragment with the new fragment
+        fragmentTransaction.replace(R.id.frame_layout, fragment)
 
-        // On button click, a bundle is initialized and the
-        // text from the EditText is passed in the custom
-        // fragment using this bundle
-
+        // Commit the FragmentTransaction
+        fragmentTransaction.commit()
     }
 
 }
