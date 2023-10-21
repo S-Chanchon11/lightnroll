@@ -5,22 +5,24 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
-import androidx.databinding.ViewDataBinding
+import androidx.recyclerview.widget.RecyclerView
 import com.example.light.R
 
 
-class PracticeView : Fragment() {
-    private lateinit var pracModelBinding: ViewDataBinding
+class PracticeFragment : Fragment() {
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        arguments?.let {
+
+        }
+    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
+    ): View? {
         // Inflate the layout for this fragment
-        pracModelBinding =
-            DataBindingUtil.inflate(inflater, R.layout.practice_view_fragment, container, false)
-        return pracModelBinding.root
-
+        return inflater.inflate(R.layout.fragment_practice, container, false)
     }
+
 }
