@@ -1,4 +1,5 @@
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.light.Chord
 import com.example.light.R
+import com.example.light.practice.ChordInfo
 
 
 class PracticeFragment : Fragment() {
@@ -29,7 +31,10 @@ class PracticeFragment : Fragment() {
         val layoutManager = LinearLayoutManager(activity)
         layoutManager.orientation = LinearLayoutManager.VERTICAL
         mRecyclerView!!.layoutManager = layoutManager
+        val chordC = Chord("C")
         val data: ArrayList<Chord> = ArrayList()
+        data.add(chordC)
+
         mListadapter = ListAdapter(data)
         mRecyclerView!!.adapter = mListadapter
         return view
@@ -63,7 +68,8 @@ class PracticeFragment : Fragment() {
         }
 
         override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-            holder.textViewText.text = dataList[position].getChord()
+            holder.textViewText.text = dataList[position].chord
+            Log.d(javaClass.toString(), dataList[position].chord)
             holder.itemView.setOnClickListener {
                 Toast.makeText(
                     activity,
