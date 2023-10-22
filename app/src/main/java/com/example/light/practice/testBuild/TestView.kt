@@ -1,7 +1,4 @@
-package com.example.light.practice.test_build
-
-import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.LinearLayoutManager
+package com.example.light.practice.testBuild
 
 class TestView() {
 //    private lateinit var adapter: TestRecyclerAdapter

@@ -1,7 +1,6 @@
-package com.example.light.practice.test_build
+package com.example.light.practice.testBuild
 
 import androidx.appcompat.app.AppCompatActivity
-
 
 class TestMain : AppCompatActivity() {
 //    private lateinit var adapter: TestRecyclerAdapter

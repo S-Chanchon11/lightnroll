@@ -1,10 +1,4 @@
-package com.example.light.practice.test_build
-
-import android.app.DownloadManager
-import android.telecom.Call
-import java.io.IOException
-import javax.security.auth.callback.Callback
-import kotlin.concurrent.thread
+package com.example.light.practice.testBuild
 
 class TestModel {
 

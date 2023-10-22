@@ -1,4 +1,4 @@
-package com.example.light.practice.test_build
+package com.example.light.practice.testBuild
 
 data class TestChord(
     val data: List<Data>,

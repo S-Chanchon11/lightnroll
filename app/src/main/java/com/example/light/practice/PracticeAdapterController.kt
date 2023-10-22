@@ -25,7 +25,6 @@ class PracticeAdapterController(data: ArrayList<ChordModel>) :
 
         init {
             textViewText = itemView.findViewById<View>(R.id.chordName) as TextView
-
         }
     }
 
