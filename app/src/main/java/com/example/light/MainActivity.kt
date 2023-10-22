@@ -1,6 +1,6 @@
 package com.example.light
 
-import PracticeFragment
+import com.example.light.practice.PracticeFragment
 import android.os.Bundle
 import android.view.View
 import android.widget.Button

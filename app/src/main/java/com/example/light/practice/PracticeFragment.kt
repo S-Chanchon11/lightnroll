@@ -10,17 +10,20 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.light.Chord
+import com.example.light.ChordModel
 import com.example.light.R
-import com.example.light.practice.PracticeController.loadData
 
 
 class PracticeFragment : Fragment() {
     private var mTextViewEmpty: TextView? = null
     private var mProgressBarLoading: ProgressBar? = null
     private var mRecyclerView: RecyclerView? = null
-    private var mListadapter: PracticeAdapter? = null
-    private var pController : PracticeController? = null
+    private var mListadapter: PracticeAdapterController? = null
+
+    /*
+    In MVC arch, Fragment will act as VIEW
+     */
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -33,59 +36,14 @@ class PracticeFragment : Fragment() {
         val layoutManager = LinearLayoutManager(activity)
         layoutManager.orientation = LinearLayoutManager.VERTICAL
         mRecyclerView!!.layoutManager = layoutManager
-        val chordC = Chord("C")
-        val data: ArrayList<Chord> = ArrayList()
-        data.add(chordC)
-
-        mListadapter = PracticeAdapter(data)
+        val data: ArrayList<ChordModel> = ArrayList()
+        data.add(ChordModel("C"))
+        data.add(ChordModel("D"))
+        data.add(ChordModel("E"))
+        mListadapter = PracticeAdapterController(data)
         mRecyclerView!!.adapter = mListadapter
-        loadData()
-
 
         return view
     }
 
-//    inner class ListAdapter(data: ArrayList<Chord>) :
-//        RecyclerView.Adapter<ListAdapter.ViewHolder>() {
-//        private val dataList: ArrayList<Chord>
-//
-//        init {
-//            dataList = data
-//        }
-//
-//        inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-//            var textViewText: TextView
-//
-//
-//            init {
-//                textViewText = itemView.findViewById<View>(R.id.chordName) as TextView
-//
-//            }
-//        }
-//
-//        override fun onCreateViewHolder(
-//            parent: ViewGroup,
-//            viewType: Int
-//        ): ViewHolder {
-//            val view: View = LayoutInflater.from(parent.context)
-//                .inflate(R.layout.chord_list, parent, false)
-//            return ViewHolder(view)
-//        }
-//
-//        override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-//            holder.textViewText.text = dataList[position].chord
-//            Log.d(javaClass.toString(), dataList[position].chord)
-//            holder.itemView.setOnClickListener {
-//                Toast.makeText(
-//                    activity,
-//                    "Item $position is clicked.",
-//                    Toast.LENGTH_SHORT
-//                ).show()
-//            }
-//        }
-//
-//        override fun getItemCount(): Int {
-//            return dataList.size
-//        }
-//    }
 }

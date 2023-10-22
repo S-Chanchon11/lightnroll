@@ -5,14 +5,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
-import com.example.light.Chord
+import com.example.light.ChordModel
 import com.example.light.R
 
-class PracticeAdapter(data: ArrayList<Chord>) :
-    RecyclerView.Adapter<PracticeAdapter.ViewHolder>() {
-    private val dataList: ArrayList<Chord>
+    /*
+    In MVC arch, Adapter will act as CONTROLLER
+     */
+class PracticeAdapterController(data: ArrayList<ChordModel>) :
+    RecyclerView.Adapter<PracticeAdapterController.ViewHolder>() {
+    private val dataList: ArrayList<ChordModel>
 
     init {
         dataList = data
@@ -20,7 +22,6 @@ class PracticeAdapter(data: ArrayList<Chord>) :
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var textViewText: TextView
-
 
         init {
             textViewText = itemView.findViewById<View>(R.id.chordName) as TextView

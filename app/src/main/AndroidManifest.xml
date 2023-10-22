@@ -20,18 +20,6 @@
         android:theme="@style/Theme.Light"
         tools:targetApi="31">
         <activity
-            android:name=".practice.test_build.TestMain"
-            android:exported="false" />
-        <activity
-            android:name=".practiceBinding.PracticeMain"
-            android:exported="false" />
-        <activity
-            android:name=".practice.PracticeView"
-            android:exported="false" />
-        <activity
-            android:name=".Control"
-            android:exported="false" />
-        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
