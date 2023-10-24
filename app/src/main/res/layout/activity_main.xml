@@ -5,7 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:orientation="vertical">
 
     <!-- Text will be displayed in a
           TextView in this Fragment -->
@@ -15,16 +16,16 @@
         android:layout_height="match_parent"
         android:id="@+id/frame_layout">
 
-        <!--Button-->
-        <Button
-            android:id="@+id/btn_frag"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:foreground="?attr/selectableItemBackground"
-            android:text="@string/mode_practice"/>
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottomNavigationView"
+            android:layout_width="match_parent"
+            android:layout_height="75dp"
+            android:layout_gravity="bottom"
+            app:menu="@menu/bottom_nav_menu" />
 
     </FrameLayout>
+
 
 
 </LinearLayout>
