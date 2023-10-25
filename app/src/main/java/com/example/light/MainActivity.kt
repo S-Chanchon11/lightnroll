@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.light.practice.PracticeFragment
 import com.example.light.record.RecordFragment
+import com.example.light.record.SettingFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
@@ -16,21 +17,15 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-//        val btn: Button = findViewById(R.id.btn_frag)
-//        btn.setOnClickListener {
-//            replaceFragment(PracticeFragment())
-//            btn.visibility = View.GONE
-//        }
         val practiceFragment = PracticeFragment()
-        // val homeFragment=HomeFragment()
+        val settingFragment = SettingFragment()
         val recordFragment = RecordFragment()
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
-        // replaceFragment(practiceFragment)
 
         bottomNavigationView.setOnItemSelectedListener {
             when (it.itemId) {
-                R.id.home -> replaceFragment(practiceFragment)
-                // R.id.person->setCurrentFragment(secondFragment)
+                R.id.practice -> replaceFragment(practiceFragment)
+                R.id.home -> replaceFragment(settingFragment)
                 R.id.record -> replaceFragment(recordFragment)
             }
             true
