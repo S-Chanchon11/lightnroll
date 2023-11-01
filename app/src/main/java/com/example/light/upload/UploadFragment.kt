@@ -3,12 +3,14 @@ package com.example.light.upload
 import android.app.Activity
 import android.content.Intent
 import android.database.Cursor
+import android.graphics.Typeface
 import android.net.Uri
 import android.os.Bundle
 import android.provider.OpenableColumns
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.example.light.R
@@ -25,7 +27,7 @@ class UploadFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view: View = inflater.inflate(R.layout.fragment_upload, container, false)
-        pdfSelector = view.findViewById(R.id.pdfTxt) as TextView
+        pdfSelector = view.findViewById(R.id.pdfTxt)
         pdfSelector.text = "Select a pdf file"
         pdfviwer = view.findViewById(R.id.pdfSect)
         pdfSelector.setOnClickListener {
@@ -51,6 +53,7 @@ class UploadFragment : Fragment() {
                         myCursor = requireContext().contentResolver.query(uri, null, null, null, null)
                         if (myCursor != null && myCursor.moveToFirst()) {
                             pdfName = myCursor.getString(myCursor.getColumnIndex(OpenableColumns.DISPLAY_NAME))
+                            pdfSelector.setTypeface(null, Typeface.ITALIC)
                             pdfSelector.text = pdfName
                             pdfviwer.fromAsset(pdfName).load()
                         }
