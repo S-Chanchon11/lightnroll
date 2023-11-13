@@ -1,7 +1,9 @@
 package com.example.light
 
+import android.content.pm.PackageManager
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.example.light.practice.PracticeFragment
 import com.example.light.record.RecordFragment
