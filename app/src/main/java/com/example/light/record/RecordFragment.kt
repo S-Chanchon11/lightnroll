@@ -51,8 +51,8 @@ class RecordFragment : Fragment(){
         mFileName += "/AudioRecording.3gp"
 
 
-        requestPermission()
-
+        requestPermission1()
+        requestPermission2()
 
         startbtn!!.setOnClickListener {
                 stopbtn.setEnabled(true)
@@ -64,6 +64,7 @@ class RecordFragment : Fragment(){
                 mRecorder!!.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP)
                 mRecorder!!.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB)
                 mRecorder!!.setOutputFile(mFileName)
+                Log.e(LOG_TAG, mRecorder.toString())
                 try {
                     mRecorder!!.prepare()
                 } catch (e: IOException) {
@@ -75,6 +76,7 @@ class RecordFragment : Fragment(){
 
         }
         stopbtn.setOnClickListener(View.OnClickListener {
+            //requestPermission2()
             stopbtn.setEnabled(false)
             startbtn!!.isEnabled = true
             playbtn.setEnabled(true)
@@ -115,17 +117,20 @@ class RecordFragment : Fragment(){
         })
         return view
     }
-    private val cameraPermissionResultReceiver = registerForActivityResult(ActivityResultContracts.RequestPermission()) {
+    private val PermissionResultReceiver = registerForActivityResult(ActivityResultContracts.RequestPermission()) {
         if (it) {
             startbtn.isEnabled = true
+
         } else {
             startbtn.isEnabled = false
         }
     }
-    private fun requestPermission() {
-        cameraPermissionResultReceiver.launch(RECORD_AUDIO)
+    private fun requestPermission1() {
+        PermissionResultReceiver.launch(RECORD_AUDIO)
     }
-
+    private fun requestPermission2() {
+        PermissionResultReceiver.launch(WRITE_EXTERNAL_STORAGE)
+    }
 //    override fun onRequestPermissionsResult(
 //        requestCode: Int,
 //        permissions: Array<out String>,
