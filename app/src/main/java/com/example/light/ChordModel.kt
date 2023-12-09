@@ -1,3 +1,5 @@
 package com.example.light
 
-data class ChordModel(var chord: String)
+class ChordModel(var chord: String) {
+    constructor(): this("")
+}

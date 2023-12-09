@@ -8,7 +8,6 @@ import androidx.fragment.app.Fragment
 import com.example.light.practice.PracticeFragment
 import com.example.light.record.RecordFragment
 import com.example.light.record.SettingFragment
-import com.example.light.upload.UploadFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
@@ -20,7 +19,6 @@ class MainActivity : AppCompatActivity() {
         val practiceFragment = PracticeFragment()
         val settingFragment = SettingFragment()
         val recordFragment = RecordFragment()
-        val uploadFragment = UploadFragment()
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
 
         bottomNavigationView.setOnItemSelectedListener {
@@ -28,7 +26,6 @@ class MainActivity : AppCompatActivity() {
                 R.id.practice -> replaceFragment(practiceFragment)
                 R.id.record -> replaceFragment(recordFragment)
                 R.id.setting -> replaceFragment(settingFragment)
-                R.id.upload -> replaceFragment(uploadFragment)
             }
             true
         }

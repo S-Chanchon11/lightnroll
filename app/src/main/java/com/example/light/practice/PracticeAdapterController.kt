@@ -12,9 +12,9 @@ import com.example.light.R
     /*
     In MVC arch, Adapter will act as CONTROLLER
      */
-class PracticeAdapterController(data: ArrayList<ChordModel>) :
+class PracticeAdapterController(data: MutableList<ChordModel>) :
     RecyclerView.Adapter<PracticeAdapterController.ViewHolder>() {
-    private val dataList: ArrayList<ChordModel>
+    private val dataList: MutableList<ChordModel>
 
     init {
         dataList = data
