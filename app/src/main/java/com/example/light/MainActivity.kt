@@ -1,11 +1,10 @@
 package com.example.light
 
-import android.content.pm.PackageManager
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import com.example.light.practice.PracticeFragment
+import com.example.light.practice.ui.PracticeFragment
 import com.example.light.record.RecordFragment
 import com.example.light.record.SettingFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -20,7 +19,7 @@ class MainActivity : AppCompatActivity() {
         val settingFragment = SettingFragment()
         val recordFragment = RecordFragment()
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
-
+        Log.d("Activity", "Main")
         bottomNavigationView.setOnItemSelectedListener {
             when (it.itemId) {
                 R.id.practice -> replaceFragment(practiceFragment)

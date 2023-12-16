@@ -1,26 +1,26 @@
 package com.example.light.viewmodel
 //
-//import androidx.lifecycle.LiveData
-//import androidx.lifecycle.MutableLiveData
-//import androidx.lifecycle.ViewModel
-//import androidx.lifecycle.viewModelScope
-//import com.example.light.R
-//import com.example.light.app.ChordUseCase
-//import com.example.light.app.SearchUseCase
-//import com.example.light.di.repository.ResponseCallback
-//import com.example.light.model.ChordInfo
-//import com.example.light.model.FetchDataModel
-//import com.example.light.utils.DefaultResourceManager
-//import com.example.light.utils.ResourceManager
-//import kotlinx.coroutines.flow.collect
-//import kotlinx.coroutines.launch
-////import org.apache.commons.lang.StringUtils
+// import androidx.lifecycle.LiveData
+// import androidx.lifecycle.MutableLiveData
+// import androidx.lifecycle.ViewModel
+// import androidx.lifecycle.viewModelScope
+// import com.example.light.R
+// import com.example.light.app.ChordUseCase
+// import com.example.light.app.SearchUseCase
+// import com.example.light.di.repository.ResponseCallback
+// import com.example.light.model.ChordInfo
+// import com.example.light.model.FetchDataModel
+// import com.example.light.utils.DefaultResourceManager
+// import com.example.light.utils.ResourceManager
+// import kotlinx.coroutines.flow.collect
+// import kotlinx.coroutines.launch
+// //import org.apache.commons.lang.StringUtils
 //
-//class ChordViewModel constructor(
+// class ChordViewModel constructor(
 //    private val chordUseCase: ChordUseCase,
 //    private val chordSearchUseCase: SearchUseCase,
 //    private val resourceManager: DefaultResourceManager
-//) : ViewModel(){
+// ) : ViewModel(){
 //    private val _chordList = MutableLiveData<ResponseCallback<FetchDataModel>>()
 //    val chordResponse: LiveData<ResponseCallback<FetchDataModel>>
 //        get() = _chordList
@@ -177,4 +177,4 @@ package com.example.light.viewmodel
 //            }
 //        }
 //    }
-//}
+// }

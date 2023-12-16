@@ -1,0 +1,153 @@
+package com.example.light.practice.ui
+
+import android.os.Bundle
+import android.util.Log
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.ExpandableListView
+import android.widget.TextView
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import com.example.light.R
+import com.example.light.practice.PracticeAdapterController
+import com.example.light.practice.model.PracticeModel
+import com.example.light.practice.viewmodel.PracticeViewModel
+import com.google.firebase.firestore.FirebaseFirestore
+import java.lang.Exception
+
+class PracticeFragment : Fragment() {
+
+    private lateinit var practiceViewModel: PracticeViewModel
+
+    // private var mRecyclerView: RecyclerView? = null
+    private var expandableListView: ExpandableListView? = null
+    private var mListadapter: PracticeAdapterController? = null
+    lateinit var dataReference: FirebaseFirestore
+    lateinit var dataList: MutableList<PracticeModel>
+    lateinit var chordList: HashMap<String, String>
+    lateinit var chord: String
+    lateinit var textChord: TextView
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        val view: View = inflater.inflate(R.layout.fragment_practice, container, false)
+        // expandableListView = view.findViewById(R.id.expandable_chord_variant)
+
+        //textChord = view.findViewById(R.id.chord)
+
+        return view
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        practiceViewModel = ViewModelProvider(this).get(PracticeViewModel::class.java)
+        Log.d("Fragment", "Practice")
+        practiceViewModel.loadPractice()
+        observeData()
+    }
+
+    private fun observeData() {
+        try {
+            practiceViewModel.practiceDetail.observe(
+                viewLifecycleOwner,
+                Observer { it ->
+                    // Log.d("views",it.chord)
+                    // Log.d("views",it.position["s6"]!!)
+                    textChord.setText(it.chord)
+                }
+            )
+        } catch (e: Exception) {
+            print(e)
+        }
+    }
+
+    private fun showPractice(data: PracticeModel) {
+        try {
+            practiceViewModel.getPractice(
+                chord = data.chord,
+                s6 = data.position["s6"]!!,
+                s5 = data.position["s5"]!!,
+                s4 = data.position["s4"]!!,
+                s3 = data.position["s3"]!!,
+                s2 = data.position["s2"]!!,
+                s1 = data.position["s1"]!!,
+                f6 = data.fingerings["f6"]!!,
+                f5 = data.fingerings["f5"]!!,
+                f4 = data.fingerings["f4"]!!,
+                f3 = data.fingerings["f3"]!!,
+                f2 = data.fingerings["f2"]!!,
+                f1 = data.fingerings["f1"]!!
+            )
+            practiceViewModel.practiceDetail.observe(
+                this,
+                Observer { practiceDetail ->
+                    textChord?.text = practiceDetail.chord
+                }
+            )
+        } catch (e: Exception) {
+            print(e)
+        }
+    }
+//    private fun observeChordData() {
+//            practiceViewModel.chord.observe(this, Observer { chord ->
+//            // Update the UI with the user data
+//            textViewId.text = chord.chord
+//            textViewName.text = chord.position
+//            textViewEmail.text = chord.finger
+//        })
+//    }
+//    private fun requestPractice(){
+//        try {
+//            practiceViewModel.loadChord()
+//        } catch (e : Exception){
+//            print(e.message)
+//        }
+//    }
+
+//    override fun onCreateView(
+//        inflater: LayoutInflater,
+//        container: ViewGroup?,
+//        savedInstanceState: Bundle?
+//    ): View {
+//        val view: View = inflater.inflate(R.layout.fragment_practice, container, false)
+//        mRecyclerView = view.findViewById<View>(R.id.recyclerView) as RecyclerView
+//        val layoutManager = GridLayoutManager(activity, 2)
+//        mRecyclerView!!.layoutManager = layoutManager
+//        dataReference = FirebaseFirestore.getInstance()
+//        readFirestore(dataList)
+// //        data.add(ChordModel("C"))
+// //        data.add(ChordModel("D"))
+// //        data.add(ChordModel("E"))
+// //        data.add(ChordModel("F"))
+// //        data.add(ChordModel("G"))
+// //        data.add(ChordModel("A"))
+// //        data.add(ChordModel("B"))
+//        mListadapter = PracticeAdapterController(dataList)
+//        mRecyclerView!!.adapter = mListadapter
+//
+//        return view
+//    }
+//    private fun readFirestore(data: MutableList<ChordModel>){
+//
+//        var db = dataReference.collection("Chord")
+//        db.orderBy("Variant").get()
+//            .addOnSuccessListener { snapshot ->
+//                if(snapshot!=null){
+//                    dataList.clear()
+//                    val userObj = snapshot.toObjects(ChordModel::class.java)
+//                    for(dataObj in userObj){
+//                        dataList.add(dataObj)
+//                        }
+//                    }
+//                }
+//            .addOnFailureListener {
+//                Toast.makeText(context,"Failed", Toast.LENGTH_SHORT).show()
+//            }
+//
+//    }
+}

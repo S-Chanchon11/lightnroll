@@ -1,22 +1,59 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <variable
+            name="practiceModel"
+            type="com.example.light.practice.model.PracticeModel" />
+    </data>
 
-<!--    <android.support.v7.widget.RecyclerView-->
-<!--        android:id="@+id/recyclerView"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"-->
-<!--        android:layout_centerHorizontal="true"-->
-<!--        android:layout_centerVertical="true" />-->
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-    </androidx.recyclerview.widget.RecyclerView>
+<!--        <TextView-->
+<!--            android:id="@+id/chordText"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="@{practiceModel.chord}" />-->
+
+        <ExpandableListView
+            android:id="@+id/expanded_menu"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:indicatorLeft="?android:attr/expandableListPreferredItemIndicatorLeft"
+            android:divider="@android:color/darker_gray"
+            android:dividerHeight="0.5dp" />
+
+    </RelativeLayout>
+</layout>
+<!--<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="match_parent">-->
 
 
-</RelativeLayout>
+
+<!--&lt;!&ndash;    <androidx.recyclerview.widget.RecyclerView&ndash;&gt;-->
+<!--&lt;!&ndash;        android:id="@+id/recyclerView"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:layout_width="match_parent"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:layout_height="match_parent" >&ndash;&gt;-->
+<!--&lt;!&ndash;    </androidx.recyclerview.widget.RecyclerView>&ndash;&gt;-->
+
+
+
+
+<!--    <TextView-->
+<!--        android:id="@+id/textChord"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="37dp"-->
+<!--        android:layout_alignParentStart="true"-->
+<!--        android:layout_alignParentTop="true"-->
+<!--        android:layout_alignParentEnd="true"-->
+<!--        android:layout_alignParentBottom="true"-->
+<!--        android:layout_marginStart="198dp"-->
+<!--        android:layout_marginTop="55dp"-->
+<!--        android:layout_marginEnd="140dp"-->
+<!--        android:layout_marginBottom="639dp"-->
+<!--        android:text="@{viewmode."-->
+<!--        android:textAlignment="center"-->
+<!--        android:textSize="20sp" />-->
+<!--</RelativeLayout>-->
