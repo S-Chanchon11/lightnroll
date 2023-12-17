@@ -2,6 +2,8 @@ package com.example.light.record
 
 import android.Manifest.permission.RECORD_AUDIO
 import android.Manifest.permission.WRITE_EXTERNAL_STORAGE
+import android.content.Context
+import android.content.pm.PackageManager
 import android.media.MediaPlayer
 import android.media.MediaRecorder
 import android.os.Bundle
@@ -12,6 +14,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import com.example.light.R
@@ -28,6 +31,7 @@ class RecordFragment : Fragment() {
     private val LOG_TAG = "AudioRecording"
     private var mFileName: String? = null
     var REQUEST_AUDIO_PERMISSION_CODE = 1
+    var REQUEST_FILE_PERMISSION_CODE = 2
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -45,8 +49,8 @@ class RecordFragment : Fragment() {
         mFileName = Environment.getExternalStorageDirectory().absolutePath
         mFileName += "/AudioRecording.3gp"
 
-        requestPermission1()
-        requestPermission2()
+//        requestPermission1()
+//        requestPermission2()
 
         startbtn!!.setOnClickListener {
             stopbtn.setEnabled(true)
@@ -122,13 +126,54 @@ class RecordFragment : Fragment() {
         } else {
             startbtn.isEnabled = false
         }
+        //super.onRequestPermissionsResult(requestCode, permissions, grantResults)
     }
-    private fun requestPermission1() {
-        PermissionResultReceiver.launch(RECORD_AUDIO)
+
+    private fun checkPermissionsRecord(): Boolean {
+        // this method is used to check permission
+        val result =
+            ContextCompat.checkSelfPermission(requireActivity(), RECORD_AUDIO)
+        return result == PackageManager.PERMISSION_GRANTED
     }
-    private fun requestPermission2() {
-        PermissionResultReceiver.launch(WRITE_EXTERNAL_STORAGE)
+    private fun checkPermissionsWrite(): Boolean {
+        val result1 =
+            ContextCompat.checkSelfPermission(requireActivity(), WRITE_EXTERNAL_STORAGE)
+        return result1 == PackageManager.PERMISSION_GRANTED
     }
+
+
+    private fun requestPermissionsRecord() {
+        // this method is used to request the
+        // permission for audio recording and storage.
+        requestPermissions(
+            arrayOf(RECORD_AUDIO),
+            REQUEST_AUDIO_PERMISSION_CODE
+        )
+    }
+    private fun requestPermissionsWrite() {
+        // this method is used to request the
+        // permission for audio recording and storage.
+        requestPermissions(
+            arrayOf(WRITE_EXTERNAL_STORAGE),
+            REQUEST_FILE_PERMISSION_CODE
+        )
+    }
+
+
+//    private val PermissionResultReceiver = registerForActivityResult(ActivityResultContracts.RequestPermission()) {
+//        if (it) {
+//            startbtn.isEnabled = true
+//
+//        } else {
+//            startbtn.isEnabled = false
+//        }
+//    }
+//    private fun requestPermission1() {
+//        PermissionResultReceiver.launch(RECORD_AUDIO)
+//    }
+//    private fun requestPermission2() {
+//        PermissionResultReceiver.launch(WRITE_EXTERNAL_STORAGE)
+//    }
 //    override fun onRequestPermissionsResult(
 //        requestCode: Int,
 //        permissions: Array<out String>,

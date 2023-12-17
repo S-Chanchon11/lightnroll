@@ -11,7 +11,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.light.R
-import com.example.light.practice.PracticeAdapterController
 import com.example.light.practice.model.PracticeModel
 import com.example.light.practice.viewmodel.PracticeViewModel
 import com.google.firebase.firestore.FirebaseFirestore
@@ -23,12 +22,11 @@ class PracticeFragment : Fragment() {
 
     // private var mRecyclerView: RecyclerView? = null
     private var expandableListView: ExpandableListView? = null
-    private var mListadapter: PracticeAdapterController? = null
     lateinit var dataReference: FirebaseFirestore
     lateinit var dataList: MutableList<PracticeModel>
     lateinit var chordList: HashMap<String, String>
     lateinit var chord: String
-    lateinit var textChord: TextView
+    private lateinit var textChord: TextView
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -38,7 +36,7 @@ class PracticeFragment : Fragment() {
         val view: View = inflater.inflate(R.layout.fragment_practice, container, false)
         // expandableListView = view.findViewById(R.id.expandable_chord_variant)
 
-        //textChord = view.findViewById(R.id.chord)
+        //textChord = view.findViewById(R.id)
 
         return view
     }
