@@ -7,26 +7,24 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ExpandableListView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.light.R
+import com.example.light.practice.PracticeAdapterController
 import com.example.light.practice.model.PracticeModel
 import com.example.light.practice.viewmodel.PracticeViewModel
-import com.google.firebase.firestore.FirebaseFirestore
-import java.lang.Exception
+
 
 class PracticeFragment : Fragment() {
 
     private lateinit var practiceViewModel: PracticeViewModel
-
-    // private var mRecyclerView: RecyclerView? = null
     private var expandableListView: ExpandableListView? = null
-    lateinit var dataReference: FirebaseFirestore
-    lateinit var dataList: MutableList<PracticeModel>
-    lateinit var chordList: HashMap<String, String>
-    lateinit var chord: String
     private lateinit var textChord: TextView
+    private lateinit var expandableListDetail : HashMap<String,List<String>>
+    private lateinit var expandableListTitle : List<String>
+    private lateinit var expandableListAdapter : PracticeAdapterController
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -34,19 +32,40 @@ class PracticeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view: View = inflater.inflate(R.layout.fragment_practice, container, false)
-        // expandableListView = view.findViewById(R.id.expandable_chord_variant)
 
-        //textChord = view.findViewById(R.id)
+        expandableListView = view.findViewById(R.id.expanded_menu)
+        practiceViewModel = ViewModelProvider(this).get(PracticeViewModel::class.java)
+        observeData()
+        Log.d("Fragment", "Practice")
 
         return view
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        practiceViewModel = ViewModelProvider(this).get(PracticeViewModel::class.java)
-        Log.d("Fragment", "Practice")
-        practiceViewModel.loadPractice()
-        observeData()
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        expandableListDetail = practiceViewModel.loadPractice()
+        Log.d("ui",expandableListDetail.toString())
+        expandableListTitle = ArrayList(expandableListDetail.keys)
+        expandableListAdapter = PracticeAdapterController(view.context,expandableListTitle,expandableListDetail)
+        expandableListView?.setAdapter(expandableListAdapter)
+
+        expandableListView?.setOnGroupExpandListener { groupPosition ->
+            Toast.makeText(
+                context,
+                expandableListTitle[groupPosition] + " List Expanded.",
+                Toast.LENGTH_SHORT
+            ).show()
+        }
+        expandableListView?.setOnGroupCollapseListener { groupPosition ->
+            Toast.makeText(
+                context,
+                expandableListTitle[groupPosition] + " List Collapsed.",
+                Toast.LENGTH_SHORT
+            ).show()
+        }
+        expandableListView?.setOnChildClickListener { parent, v, groupPosition, childPosition, id ->
+            false
+        }
     }
 
     private fun observeData() {
@@ -54,9 +73,7 @@ class PracticeFragment : Fragment() {
             practiceViewModel.practiceDetail.observe(
                 viewLifecycleOwner,
                 Observer { it ->
-                    // Log.d("views",it.chord)
-                    // Log.d("views",it.position["s6"]!!)
-                    textChord.setText(it.chord)
+
                 }
             )
         } catch (e: Exception) {
@@ -84,7 +101,7 @@ class PracticeFragment : Fragment() {
             practiceViewModel.practiceDetail.observe(
                 this,
                 Observer { practiceDetail ->
-                    textChord?.text = practiceDetail.chord
+//                    textChord?.text = practiceDetail
                 }
             )
         } catch (e: Exception) {

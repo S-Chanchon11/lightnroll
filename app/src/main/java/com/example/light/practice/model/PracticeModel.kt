@@ -2,9 +2,10 @@ package com.example.light.practice.model
 
 data class PracticeModel(
     val chord: String,
-    val position: Map<String, String>,
-    val fingerings: Map<String, String>
+    val position: HashMap<String, String>,
+    val fingerings: HashMap<String, String>
 )
+
 
 // data class PracticeDetailModel(
 //
