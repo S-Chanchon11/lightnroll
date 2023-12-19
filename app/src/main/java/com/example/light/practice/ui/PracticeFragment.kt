@@ -81,33 +81,33 @@ class PracticeFragment : Fragment() {
         }
     }
 
-    private fun showPractice(data: PracticeModel) {
-        try {
-            practiceViewModel.getPractice(
-                chord = data.chord,
-                s6 = data.position["s6"]!!,
-                s5 = data.position["s5"]!!,
-                s4 = data.position["s4"]!!,
-                s3 = data.position["s3"]!!,
-                s2 = data.position["s2"]!!,
-                s1 = data.position["s1"]!!,
-                f6 = data.fingerings["f6"]!!,
-                f5 = data.fingerings["f5"]!!,
-                f4 = data.fingerings["f4"]!!,
-                f3 = data.fingerings["f3"]!!,
-                f2 = data.fingerings["f2"]!!,
-                f1 = data.fingerings["f1"]!!
-            )
-            practiceViewModel.practiceDetail.observe(
-                this,
-                Observer { practiceDetail ->
-//                    textChord?.text = practiceDetail
-                }
-            )
-        } catch (e: Exception) {
-            print(e)
-        }
-    }
+//    private fun showPractice(data: PracticeModel) {
+//        try {
+//            practiceViewModel.getPractice(
+//                chord = data.chord,
+//                s6 = data.position["s6"]!!,
+//                s5 = data.position["s5"]!!,
+//                s4 = data.position["s4"]!!,
+//                s3 = data.position["s3"]!!,
+//                s2 = data.position["s2"]!!,
+//                s1 = data.position["s1"]!!,
+//                f6 = data.fingerings["f6"]!!,
+//                f5 = data.fingerings["f5"]!!,
+//                f4 = data.fingerings["f4"]!!,
+//                f3 = data.fingerings["f3"]!!,
+//                f2 = data.fingerings["f2"]!!,
+//                f1 = data.fingerings["f1"]!!
+//            )
+//            practiceViewModel.practiceDetail.observe(
+//                this,
+//                Observer { practiceDetail ->
+////                    textChord?.text = practiceDetail
+//                }
+//            )
+//        } catch (e: Exception) {
+//            print(e)
+//        }
+//    }
 //    private fun observeChordData() {
 //            practiceViewModel.chord.observe(this, Observer { chord ->
 //            // Update the UI with the user data

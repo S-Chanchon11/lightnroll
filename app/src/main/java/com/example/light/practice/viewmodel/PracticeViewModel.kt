@@ -12,28 +12,25 @@ import kotlinx.coroutines.launch
 
 class PracticeViewModel : ViewModel() {
     private val practiceRepository = PracticeRepository()
-    private val _chord = MutableLiveData<ArrayList<PracticeModel>>()
-    val practiceDetail: LiveData<ArrayList<PracticeModel>> get() = _chord
+    private val _chord = MutableLiveData<MutableMap<String,PracticeModel>>()
+    val practiceDetail: LiveData<MutableMap<String,PracticeModel>> get() = _chord
     //val chord: LiveData<PracticeModel> = _chord
 
     fun loadPractice() : HashMap<String, List<String>> {
         val expandableListDetail = HashMap<String, List<String>>()
-        var c_list = ArrayList<String>()
+
         //val chord_mock_up = practiceRepository.getChord().chord
         _chord.value = practiceRepository.getChord()
         Log.d("ViewModel", _chord.value.toString())
-//        Log.d("ViewModel", _chord.value!![0].chord)
-//        Log.d("ViewModel", _chord.value!![0].position["s6"].toString())
-//        Log.d("ViewModel", _chord.value!![0].fingerings["f6"].toString())
-        //c_list.add(_chord.value!![0].chord)
-        _chord.value!!.forEach {
-            c_list.add(it.position["s6"].toString())
-            Log.d("ViewModel",it.position.toString())
-            c_list.add(it.fingerings["f6"].toString())
-            Log.d("ViewModel",it.fingerings.toString())
-            expandableListDetail[it.chord] = c_list
 
+        for (data in practiceRepository.getChord().values){
+            var c_list = ArrayList<String>()
+            c_list.add(data.positions.toString())
+            c_list.add(data.fingerings.toString())
+            expandableListDetail[data.chord] = c_list
         }
+
+
         Log.d("ViewModel", expandableListDetail.toString())
         return expandableListDetail
     }
