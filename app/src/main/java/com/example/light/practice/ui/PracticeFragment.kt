@@ -7,12 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ExpandableListView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.light.R
-import com.example.light.practice.PracticeAdapterController
+import com.example.light.practice.ui.adapter.PracticeExpandableListAdapter
 import com.example.light.practice.viewmodel.PracticeViewModel
 
 class PracticeFragment : Fragment() {
@@ -22,7 +21,7 @@ class PracticeFragment : Fragment() {
     private lateinit var textChord: TextView
     private lateinit var expandableListDetail: HashMap<String, List<String>>
     private lateinit var expandableListTitle: List<String>
-    private lateinit var expandableListAdapter: PracticeAdapterController
+    private lateinit var expandableListAdapter: PracticeExpandableListAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -41,29 +40,11 @@ class PracticeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        expandableListDetail = practiceViewModel.loadPractice()
-        Log.d("ui", expandableListDetail.toString())
-        expandableListTitle = ArrayList(expandableListDetail.keys)
-        expandableListAdapter = PracticeAdapterController(view.context, expandableListTitle, expandableListDetail)
-        expandableListView?.setAdapter(expandableListAdapter)
 
-        expandableListView?.setOnGroupExpandListener { groupPosition ->
-            Toast.makeText(
-                context,
-                expandableListTitle[groupPosition] + " List Expanded.",
-                Toast.LENGTH_SHORT
-            ).show()
-        }
-        expandableListView?.setOnGroupCollapseListener { groupPosition ->
-            Toast.makeText(
-                context,
-                expandableListTitle[groupPosition] + " List Collapsed.",
-                Toast.LENGTH_SHORT
-            ).show()
-        }
-        expandableListView?.setOnChildClickListener { parent, v, groupPosition, childPosition, id ->
-            false
-        }
+        expandableListDetail = practiceViewModel.loadPractice()
+        expandableListTitle = ArrayList(expandableListDetail.keys)
+        expandableListAdapter = PracticeExpandableListAdapter(view.context, expandableListTitle, expandableListDetail)
+        expandableListView?.setAdapter(expandableListAdapter)
     }
 
     private fun observeData() {

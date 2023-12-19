@@ -6,16 +6,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:id="@+id/mainactivity">
 
-    <!-- Text will be displayed in a
-          TextView in this Fragment -->
-    <!--Frame layout-->
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/frame_layout">
-
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottomNavigationView"
@@ -24,21 +21,9 @@
             android:layout_gravity="bottom"
             app:menu="@menu/bottom_nav_menu" />
 
+
     </FrameLayout>
 
 
 
 </LinearLayout>
-
-<!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
-<!--    android:layout_width="match_parent"-->
-<!--    android:layout_height="match_parent"-->
-<!--    android:orientation="vertical" >-->
-
-<!--    <fragment-->
-<!--        android:name="com.example.light.test"-->
-<!--        android:id="@+id/fooFragment"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent" />-->
-
-<!--</LinearLayout>-->

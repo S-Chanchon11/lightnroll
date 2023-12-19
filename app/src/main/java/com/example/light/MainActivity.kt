@@ -11,6 +11,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
 
+    private lateinit var bottomNavigationView: BottomNavigationView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -18,7 +20,7 @@ class MainActivity : AppCompatActivity() {
         val practiceFragment = PracticeFragment()
         val settingFragment = SettingFragment()
         val recordFragment = RecordFragment()
-        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
+        bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
         Log.d("Activity", "Main")
         bottomNavigationView.setOnItemSelectedListener {
             when (it.itemId) {

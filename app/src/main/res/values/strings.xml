@@ -1,10 +1,14 @@
 <resources>
     <string name="app_name">Light</string>
+
+    <!--welcome page-->
+    <string name="welcome_message">Get started</string>
+
     <string name="mode_practice">Practice</string>
     <string name="mode_record">Record</string>
     <string name="mode_challenge">Challenge</string>
     <string name="mode_setting">Setting</string>
     <string name="mode_upload">Select your music sheet file</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>

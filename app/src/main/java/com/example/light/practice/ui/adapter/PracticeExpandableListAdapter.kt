@@ -1,4 +1,4 @@
-package com.example.light.practice
+package com.example.light.practice.ui.adapter
 
 import android.content.Context
 import android.graphics.Typeface
@@ -13,7 +13,7 @@ import com.example.light.R
 In MVC arch, Adapter will act as CONTROLLER
  */
 
-class PracticeAdapterController(
+class PracticeExpandableListAdapter(
     context: Context,
     expandableListTitle: List<String>,
     expandableListDetail: HashMap<String, List<String>>
@@ -41,6 +41,7 @@ class PracticeAdapterController(
         return false
     }
 
+    // items to show after expand
     override fun getChildView(
         listPosition: Int,
         expandedListPosition: Int,
@@ -53,11 +54,13 @@ class PracticeAdapterController(
         if (convertView == null) {
             val layoutInflater = context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-            convertView = layoutInflater.inflate(R.layout.expand_chord_list, null)
+            convertView = layoutInflater.inflate(R.layout.chord_diagram, null)
         }
-        val expandedListTextView = convertView
-            ?.findViewById<View>(R.id.chordDetail) as TextView
-        expandedListTextView.text = expandedListText
+        val expandableText1 = convertView?.findViewById<View>(R.id.s6) as TextView
+        expandableText1.text = expandedListText
+//        val expandedListTextView = convertView
+//            ?.findViewById<View>(R.id.chordDetail) as TextView
+//        expandedListTextView.text = expandedListText
         return convertView
     }
 
@@ -81,6 +84,7 @@ class PracticeAdapterController(
         return listPosition.toLong()
     }
 
+    // items to before expand
     override fun getGroupView(
         listPosition: Int,
         isExpanded: Boolean,
