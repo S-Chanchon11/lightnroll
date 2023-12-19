@@ -13,18 +13,16 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.light.R
 import com.example.light.practice.PracticeAdapterController
-import com.example.light.practice.model.PracticeModel
 import com.example.light.practice.viewmodel.PracticeViewModel
-
 
 class PracticeFragment : Fragment() {
 
     private lateinit var practiceViewModel: PracticeViewModel
     private var expandableListView: ExpandableListView? = null
     private lateinit var textChord: TextView
-    private lateinit var expandableListDetail : HashMap<String,List<String>>
-    private lateinit var expandableListTitle : List<String>
-    private lateinit var expandableListAdapter : PracticeAdapterController
+    private lateinit var expandableListDetail: HashMap<String, List<String>>
+    private lateinit var expandableListTitle: List<String>
+    private lateinit var expandableListAdapter: PracticeAdapterController
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -44,9 +42,9 @@ class PracticeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         expandableListDetail = practiceViewModel.loadPractice()
-        Log.d("ui",expandableListDetail.toString())
+        Log.d("ui", expandableListDetail.toString())
         expandableListTitle = ArrayList(expandableListDetail.keys)
-        expandableListAdapter = PracticeAdapterController(view.context,expandableListTitle,expandableListDetail)
+        expandableListAdapter = PracticeAdapterController(view.context, expandableListTitle, expandableListDetail)
         expandableListView?.setAdapter(expandableListAdapter)
 
         expandableListView?.setOnGroupExpandListener { groupPosition ->
@@ -73,7 +71,6 @@ class PracticeFragment : Fragment() {
             practiceViewModel.practiceDetail.observe(
                 viewLifecycleOwner,
                 Observer { it ->
-
                 }
             )
         } catch (e: Exception) {
@@ -101,7 +98,7 @@ class PracticeFragment : Fragment() {
 //            practiceViewModel.practiceDetail.observe(
 //                this,
 //                Observer { practiceDetail ->
-////                    textChord?.text = practiceDetail
+// //                    textChord?.text = practiceDetail
 //                }
 //            )
 //        } catch (e: Exception) {

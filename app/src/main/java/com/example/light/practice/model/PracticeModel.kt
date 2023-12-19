@@ -1,6 +1,5 @@
 package com.example.light.practice.model
 
-
 data class PracticeModel(
     val chord: String,
     val positions: Positions,

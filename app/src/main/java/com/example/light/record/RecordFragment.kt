@@ -2,7 +2,6 @@ package com.example.light.record
 
 import android.Manifest.permission.RECORD_AUDIO
 import android.Manifest.permission.WRITE_EXTERNAL_STORAGE
-import android.content.Context
 import android.content.pm.PackageManager
 import android.media.MediaPlayer
 import android.media.MediaRecorder
@@ -14,8 +13,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.Toast
-import androidx.core.content.ContextCompat
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.example.light.R
 import java.io.IOException
@@ -126,7 +125,7 @@ class RecordFragment : Fragment() {
         } else {
             startbtn.isEnabled = false
         }
-        //super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        // super.onRequestPermissionsResult(requestCode, permissions, grantResults)
     }
 
     private fun checkPermissionsRecord(): Boolean {
@@ -140,7 +139,6 @@ class RecordFragment : Fragment() {
             ContextCompat.checkSelfPermission(requireActivity(), WRITE_EXTERNAL_STORAGE)
         return result1 == PackageManager.PERMISSION_GRANTED
     }
-
 
     private fun requestPermissionsRecord() {
         // this method is used to request the
@@ -158,7 +156,6 @@ class RecordFragment : Fragment() {
             REQUEST_FILE_PERMISSION_CODE
         )
     }
-
 
 //    private val PermissionResultReceiver = registerForActivityResult(ActivityResultContracts.RequestPermission()) {
 //        if (it) {

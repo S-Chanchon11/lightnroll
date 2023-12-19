@@ -5,31 +5,29 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.light.practice.PracticeAdapterController
 import com.example.light.practice.model.PracticeModel
 import com.example.light.practice.repository.PracticeRepository
 import kotlinx.coroutines.launch
 
 class PracticeViewModel : ViewModel() {
     private val practiceRepository = PracticeRepository()
-    private val _chord = MutableLiveData<MutableMap<String,PracticeModel>>()
-    val practiceDetail: LiveData<MutableMap<String,PracticeModel>> get() = _chord
-    //val chord: LiveData<PracticeModel> = _chord
+    private val _chord = MutableLiveData<MutableMap<String, PracticeModel>>()
+    val practiceDetail: LiveData<MutableMap<String, PracticeModel>> get() = _chord
+    // val chord: LiveData<PracticeModel> = _chord
 
-    fun loadPractice() : HashMap<String, List<String>> {
+    fun loadPractice(): HashMap<String, List<String>> {
         val expandableListDetail = HashMap<String, List<String>>()
 
-        //val chord_mock_up = practiceRepository.getChord().chord
+        // val chord_mock_up = practiceRepository.getChord().chord
         _chord.value = practiceRepository.getChord()
         Log.d("ViewModel", _chord.value.toString())
 
-        for (data in practiceRepository.getChord().values){
+        for (data in practiceRepository.getChord().values) {
             var c_list = ArrayList<String>()
             c_list.add(data.positions.toString())
             c_list.add(data.fingerings.toString())
             expandableListDetail[data.chord] = c_list
         }
-
 
         Log.d("ViewModel", expandableListDetail.toString())
         return expandableListDetail

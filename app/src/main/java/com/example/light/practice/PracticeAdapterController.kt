@@ -9,13 +9,13 @@ import android.widget.BaseExpandableListAdapter
 import android.widget.TextView
 import com.example.light.R
 
-
 /*
 In MVC arch, Adapter will act as CONTROLLER
  */
 
 class PracticeAdapterController(
-    context: Context, expandableListTitle: List<String>,
+    context: Context,
+    expandableListTitle: List<String>,
     expandableListDetail: HashMap<String, List<String>>
 ) : BaseExpandableListAdapter() {
     private val context: Context
@@ -42,8 +42,11 @@ class PracticeAdapterController(
     }
 
     override fun getChildView(
-        listPosition: Int, expandedListPosition: Int,
-        isLastChild: Boolean, convertView: View?, parent: ViewGroup?
+        listPosition: Int,
+        expandedListPosition: Int,
+        isLastChild: Boolean,
+        convertView: View?,
+        parent: ViewGroup?
     ): View? {
         var convertView = convertView
         val expandedListText = getChild(listPosition, expandedListPosition) as String?
@@ -79,8 +82,10 @@ class PracticeAdapterController(
     }
 
     override fun getGroupView(
-        listPosition: Int, isExpanded: Boolean,
-        convertView: View?, parent: ViewGroup?
+        listPosition: Int,
+        isExpanded: Boolean,
+        convertView: View?,
+        parent: ViewGroup?
     ): View? {
         var convertView = convertView
         val listTitle = getGroup(listPosition) as String?
