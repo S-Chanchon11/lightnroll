@@ -4,6 +4,15 @@
     <!--welcome page-->
     <string name="welcome_message">Get started</string>
 
+    <!--login page-->
+    <string name="login_email_and_username">Email Address or Username</string>
+    <string name="login_password">Password</string>
+    <string name="login_forget_password">Forget Password</string>
+    <string name="login_signin_btn">Sign in</string>
+    <string name="login_divider">OR</string>
+    <string name="login_no_account">don’t have an account ?</string>
+    <string name="login_signup"><u>sign up</u></string>
+
     <string name="mode_practice">Practice</string>
     <string name="mode_record">Record</string>
     <string name="mode_challenge">Challenge</string>

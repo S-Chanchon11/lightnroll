@@ -30,7 +30,7 @@ class SplashScreen : AppCompatActivity() {
         }
     }
 
-    private fun navigateToHome(){
+    private fun navigateToHome() {
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
         finish()
