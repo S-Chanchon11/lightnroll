@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import com.example.light.login.ui.SplashScreenFragment
 import com.example.light.practice.ui.PracticeFragment
 import com.example.light.record.RecordFragment
 import com.example.light.record.SettingFragment
@@ -20,8 +21,8 @@ class MainActivity : AppCompatActivity() {
         val practiceFragment = PracticeFragment()
         val settingFragment = SettingFragment()
         val recordFragment = RecordFragment()
-        bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
-        Log.d("Activity", "Main")
+        bottomNavigationView = findViewById(R.id.bottomNavigationView)
+
         bottomNavigationView.setOnItemSelectedListener {
             when (it.itemId) {
                 R.id.practice -> replaceFragment(practiceFragment)

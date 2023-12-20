@@ -1,17 +1,15 @@
-package com.example.light
+package com.example.light.login.ui
 
 import android.content.Intent
 import android.os.Bundle
 import android.view.Window
 import android.view.WindowManager
-import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.fragment.app.Fragment
+import com.example.light.MainActivity
+import com.example.light.R
 
-class SplashScreen : AppCompatActivity() {
-
-    private lateinit var layout: ConstraintLayout // click anywhere
-    private lateinit var nextBtn: ImageView // click image
+class LoginActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,17 +20,21 @@ class SplashScreen : AppCompatActivity() {
             WindowManager.LayoutParams.FLAG_FULLSCREEN
         )
 
-        setContentView(R.layout.activity_splash_screen)
-        nextBtn = findViewById(R.id.next_button)
+        setContentView(R.layout.activity_login)
 
-        nextBtn.setOnClickListener {
-            navigateToHome()
-        }
+        val splashScreenFragment = SplashScreenFragment()
+        replaceFragment(splashScreenFragment)
     }
 
     private fun navigateToHome() {
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
         finish()
+    }
+    private fun replaceFragment(fragment: Fragment) {
+        val fragmentManager = supportFragmentManager
+        val fragmentTransaction = fragmentManager.beginTransaction()
+        fragmentTransaction.replace(R.id.login_frame_layout, fragment)
+        fragmentTransaction.commit()
     }
 }
