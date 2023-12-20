@@ -1,4 +1,4 @@
-package com.example.light.practice.repository
+package com.example.light.expandable_list.repository
 
 interface PracticeApiService {
 

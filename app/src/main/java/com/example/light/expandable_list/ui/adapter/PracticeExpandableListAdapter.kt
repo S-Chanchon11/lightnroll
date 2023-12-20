@@ -1,4 +1,4 @@
-package com.example.light.practice.ui.adapter
+package com.example.light.expandable_list.ui.adapter
 
 import android.content.Context
 import android.graphics.Typeface

@@ -1,11 +1,11 @@
-package com.example.light.practice.viewmodel
+package com.example.light.expandable_list.viewmodel
 
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.light.practice.model.PracticeModel
-import com.example.light.practice.repository.PracticeRepository
+import com.example.light.expandable_list.model.PracticeModel
+import com.example.light.expandable_list.repository.PracticeRepository
 
 class PracticeViewModel : ViewModel() {
     private val practiceRepository = PracticeRepository()

@@ -1,8 +1,8 @@
-package com.example.light.practice.repository
+package com.example.light.expandable_list.repository
 
-import com.example.light.practice.model.Fingerings
-import com.example.light.practice.model.Positions
-import com.example.light.practice.model.PracticeModel
+import com.example.light.expandable_list.model.Fingerings
+import com.example.light.expandable_list.model.Positions
+import com.example.light.expandable_list.model.PracticeModel
 
 class PracticeRepository {
 

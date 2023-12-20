@@ -1,4 +1,4 @@
-package com.example.light.practice.ui
+package com.example.light.expandable_list.ui
 
 import android.os.Bundle
 import android.util.Log
@@ -11,8 +11,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.light.R
-import com.example.light.practice.ui.adapter.PracticeExpandableListAdapter
-import com.example.light.practice.viewmodel.PracticeViewModel
+import com.example.light.expandable_list.ui.adapter.PracticeExpandableListAdapter
+import com.example.light.expandable_list.viewmodel.PracticeViewModel
 
 class PracticeFragment : Fragment() {
 

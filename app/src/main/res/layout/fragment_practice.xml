@@ -2,7 +2,7 @@
     <data>
         <variable
             name="practiceModel"
-            type="com.example.light.practice.model.PracticeModel" />
+            type="com.example.light.expandable_list.model.PracticeModel" />
     </data>
 
     <RelativeLayout
