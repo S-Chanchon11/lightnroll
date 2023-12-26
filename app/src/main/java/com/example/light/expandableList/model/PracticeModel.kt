@@ -1,4 +1,4 @@
-package com.example.light.expandable_list.model
+package com.example.light.expandableList.model
 
 data class PracticeModel(
     val chord: String,

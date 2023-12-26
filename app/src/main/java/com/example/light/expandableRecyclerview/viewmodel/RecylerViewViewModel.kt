@@ -1,4 +1,4 @@
-package com.example.light.expandable_recyclerview.viewmodel
+package com.example.light.expandableRecyclerview.viewmodel
 
 import androidx.lifecycle.ViewModel
 

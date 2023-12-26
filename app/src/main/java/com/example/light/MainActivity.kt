@@ -3,9 +3,8 @@ package com.example.light
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import com.example.light.expandable_list.ui.PracticeFragment
-import com.example.light.expandable_recyclerview.ui.RecyclerViewFragment
-import com.example.light.record.RecordFragment
+import com.example.light.expandableList.ui.PracticeFragment
+import com.example.light.expandableRecyclerview.ui.RecyclerViewFragment
 import com.example.light.record.SettingFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 

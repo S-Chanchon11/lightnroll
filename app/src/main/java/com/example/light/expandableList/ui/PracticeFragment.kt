@@ -1,4 +1,4 @@
-package com.example.light.expandable_list.ui
+package com.example.light.expandableList.ui
 
 import android.os.Bundle
 import android.util.Log
@@ -11,8 +11,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.light.R
-import com.example.light.expandable_list.ui.adapter.PracticeExpandableListAdapter
-import com.example.light.expandable_list.viewmodel.PracticeViewModel
+import com.example.light.expandableList.ui.adapter.PracticeExpandableListAdapter
+import com.example.light.expandableList.viewmodel.PracticeViewModel
 
 class PracticeFragment : Fragment() {
 
@@ -20,6 +20,7 @@ class PracticeFragment : Fragment() {
     private var expandableListView: ExpandableListView? = null
     private lateinit var textChord: TextView
     private lateinit var expandableListDetail: HashMap<String, List<String>>
+    private lateinit var expandableListDetail2: HashMap<String, List<String>>
     private lateinit var expandableListTitle: List<String>
     private lateinit var expandableListAdapter: PracticeExpandableListAdapter
 
@@ -32,7 +33,7 @@ class PracticeFragment : Fragment() {
 
         expandableListView = view.findViewById(R.id.expanded_menu)
         practiceViewModel = ViewModelProvider(this).get(PracticeViewModel::class.java)
-        observeData()
+        // observeData()
         Log.d("Fragment", "Practice")
 
         return view
@@ -41,10 +42,18 @@ class PracticeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        expandableListDetail = practiceViewModel.loadPractice()
+        expandableListDetail = practiceViewModel.loadPracticePos()
+        expandableListDetail2 = practiceViewModel.loadPracticeFin()
         expandableListTitle = ArrayList(expandableListDetail.keys)
-        expandableListAdapter = PracticeExpandableListAdapter(view.context, expandableListTitle, expandableListDetail)
+        // Log.d("Fragment",expandableListDetail[expandableListTitle[0]].toString())
+        expandableListAdapter = PracticeExpandableListAdapter(view.context, expandableListTitle, expandableListDetail, expandableListDetail2)
         expandableListView?.setAdapter(expandableListAdapter)
+
+//        expandableListDetail = practiceViewModel.loadPracticeFin()
+//        expandableListTitle = ArrayList(expandableListDetail.keys)
+//        //Log.d("Fragment",expandableListDetail[expandableListTitle[0]].toString())
+//        expandableListAdapter = PracticeExpandableListAdapter(view.context, expandableListTitle, expandableListDetail)
+//        expandableListView?.setAdapter(expandableListAdapter)
     }
 
     private fun observeData() {

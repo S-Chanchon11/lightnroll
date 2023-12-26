@@ -1,8 +1,8 @@
-package com.example.light.expandable_list.repository
+package com.example.light.expandableList.repository
 
-import com.example.light.expandable_list.model.Fingerings
-import com.example.light.expandable_list.model.Positions
-import com.example.light.expandable_list.model.PracticeModel
+import com.example.light.expandableList.model.Fingerings
+import com.example.light.expandableList.model.Positions
+import com.example.light.expandableList.model.PracticeModel
 
 class PracticeRepository {
 
@@ -44,15 +44,15 @@ class PracticeRepository {
         var chord = "C"
         var pos = Positions("x", "3", "2", "0", "1", "0")
         var fin = Fingerings("0", "3", "2", "0", "1", "0")
-        lst[chord] = (PracticeModel(chord, pos, fin))
+        lst[chord] = PracticeModel(chord, pos, fin)
         chord = "D"
         pos = Positions("x", "3", "2", "0", "1", "0")
         fin = Fingerings("0", "3", "2", "0", "1", "0")
-        lst[chord] = (PracticeModel(chord, pos, fin))
+        lst[chord] = PracticeModel(chord, pos, fin)
         chord = "E"
         pos = Positions("x", "3", "2", "0", "1", "0")
         fin = Fingerings("0", "3", "2", "0", "1", "0")
-        lst[chord] = (PracticeModel(chord, pos, fin))
+        lst[chord] = PracticeModel(chord, pos, fin)
         return lst
     }
 
