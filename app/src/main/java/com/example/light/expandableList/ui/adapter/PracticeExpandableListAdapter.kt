@@ -53,7 +53,7 @@ class PracticeExpandableListAdapter(
         if (convertView == null) {
             val layoutInflater = context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-            convertView = layoutInflater.inflate(R.layout.chord_diagram, null)
+            convertView = layoutInflater.inflate(R.layout.expand_chord_list, null)
         }
 //        val expandableText6 = convertView?.findViewById<View>(R.id.s6) as TextView
 //        val expandableText5 = convertView?.findViewById<View>(R.id.s5) as TextView

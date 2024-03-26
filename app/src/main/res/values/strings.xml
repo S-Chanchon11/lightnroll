@@ -20,4 +20,6 @@
     <string name="mode_upload">Select your music sheet file</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
+    <string name="tuner_guitar_type"><u>Guitar,&#xA;6 strings</u></string>
+    <string name="tuner_guitar_name"><u>Acoustic guitar</u></string>
 </resources>
