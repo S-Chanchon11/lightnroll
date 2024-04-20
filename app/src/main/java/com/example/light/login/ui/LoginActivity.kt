@@ -2,6 +2,7 @@ package com.example.light.login.ui
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.Window
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
@@ -21,6 +22,8 @@ class LoginActivity : AppCompatActivity() {
         )
 
         setContentView(R.layout.activity_login)
+
+        Log.d("Login Activity","onCreate")
 
         val splashScreenFragment = SplashScreenFragment()
         replaceFragment(splashScreenFragment)
