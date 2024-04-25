@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/menu_bar"
+    android:clipToPadding="true"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="16dp">
+    <RelativeLayout
+        android:id="@+id/navigation"
+        android:layout_width="376dp"
+        android:layout_height="66dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:background="@color/white">
+
+        <RelativeLayout
+            android:id="@+id/profile_btn"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="308dp"
+            android:layout_marginTop="11dp"
+            android:layout_marginBottom="11dp"
+            android:layout_marginRight="376dp"
+            android:padding="8dp"
+            android:background="@color/purpleL1">
+            <View
+                android:id="@+id/profile_cta"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentBottom="true"
+                android:icon="@drawable/profile_icon" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/tuning_btn"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="237dp"
+            android:layout_marginTop="11dp"
+            android:layout_marginBottom="11dp"
+            android:padding="8dp"
+            android:background="@color/purpleL1">
+            <View
+                android:id="@+id/tuning_cta"
+                android:layout_width="18dp"
+                android:layout_height="24dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentBottom="true"
+                android:icon="@drawable/tuning_icon"
+                />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/evaluate_btn"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="166dp"
+            android:layout_marginTop="11dp"
+            android:layout_marginBottom="11dp"
+            android:padding="8dp"
+            android:background="@color/purpleL1">
+            <View
+                android:id="@+id/evaluate_cta"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentBottom="true"
+                android:icon="@drawable/evaluate_icon" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/lesson_btn"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="95dp"
+            android:layout_marginTop="11dp"
+            android:layout_marginBottom="11dp"
+            android:padding="8dp"
+            android:background="@color/purpleL1">
+            <View
+                android:id="@+id/lesson_cta"
+                android:layout_width="18dp"
+                android:layout_height="24dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentBottom="true"
+                android:icon="@drawable/lesson_icon" />
+            </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/home_btn"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="11dp"
+            android:layout_marginBottom="11dp"
+            android:padding="8dp"
+            android:background="@color/purpleL1">
+            <View
+                android:id="@+id/home_cta"
+                android:layout_width="22dp"
+                android:layout_height="24dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentBottom="true"
+                android:icon="@drawable/home_icon" />
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
