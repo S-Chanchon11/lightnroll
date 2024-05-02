@@ -6,7 +6,7 @@
     android:clipToPadding="true"
     android:orientation="vertical"
     android:layout_height="match_parent"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:padding="16dp">
 
     <ImageView
@@ -27,7 +27,6 @@
         android:layout_marginTop="52dp"
         android:padding="16dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/logo">
 
@@ -44,9 +43,9 @@
             android:layout_width="335dp"
             android:layout_height="48dp"
             android:layout_marginTop="32dp"
-            android:padding="12dp"
             android:background="@drawable/input_box"
             android:fontFamily="@font/poppins_medium"
+            android:padding="12dp"
             android:text="@string/login_email_and_username"
             android:textColor="@color/grey3"
             android:textSize="14sp"
@@ -72,9 +71,9 @@
             android:layout_width="335dp"
             android:layout_height="48dp"
             android:layout_marginTop="128dp"
-            android:padding="12dp"
             android:background="@drawable/input_box"
             android:fontFamily="@font/poppins_medium"
+            android:padding="12dp"
             android:text="@string/login_password"
             android:textColor="@color/grey3"
             android:textSize="14sp"
@@ -101,6 +100,39 @@
             android:text="------------ OR ------------"
             android:textAlignment="center" />
     </RelativeLayout>
+
+
+
+
+
+
+    <Button
+        android:id="@+id/signin_button"
+        android:layout_width="335dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/button"
+        android:fontFamily="@font/poppins_semibold"
+        android:text="@string/login_signin_btn"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/forget_password_button" />
+
+    <TextView
+        android:id="@+id/forget_password_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins"
+        android:text="@string/login_forget_password"
+        android:textColor="@color/purpleL4"
+        android:textSize="10sp"
+        android:textAlignment="textEnd"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.996"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/box_constraintLayout" />
 
     <RelativeLayout
         android:id="@+id/relativeLayout"
@@ -139,57 +171,21 @@
             app:layout_constraintVertical_bias="0.0" />
     </RelativeLayout>
 
-    <RelativeLayout
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/guestmode_button"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="8dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/poppins_medium"
+        android:text="Guest Mode"
+        android:textAlignment="center"
+        android:textColor="@color/purpleN1"
+        android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/relativeLayout"
-        app:layout_constraintVertical_bias="0.333">
-
-        <TextView
-            android:id="@+id/guestmode_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/poppins_medium"
-            android:text="Guest Mode"
-            android:textAlignment="center"
-            android:textColor="@color/purpleN1"
-            android:textSize="12sp" />
-    </RelativeLayout>
-
-    <Button
-        android:id="@+id/signin_button"
-        android:layout_width="335dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/button"
-        android:fontFamily="@font/poppins_semibold"
-        android:text="@string/login_signin_btn"
-        android:textAlignment="center"
-        android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.512"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/forget_password_button" />
-
-    <TextView
-        android:id="@+id/forget_password_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/poppins"
-        android:text="@string/login_forget_password"
-        android:textColor="@color/purpleL4"
-        android:textSize="10sp"
-        android:textAlignment="textEnd"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.996"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/box_constraintLayout" />
-
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
