@@ -28,7 +28,7 @@
             android:layout_marginStart="124dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="124dp"
-            android:fontFamily="@font/poppins_medium"
+            android:fontFamily="@font/poppins_semibold"
             android:textColor="@color/black"
             android:gravity="center"
             android:padding="12dp"
@@ -36,7 +36,7 @@
             android:textAlignment="center"
             android:textSize="20dp" />
 
-        <ImageView
+        <RelativeLayout
             android:id="@+id/bd_icon"
             android:layout_width="wrap_content"
             android:layout_height="28dp"
@@ -49,7 +49,17 @@
             android:background="@drawable/bd_icon"
             android:padding="24dp"
             android:scaleType="fitXY"
-            app:layout_constraintTop_toBottomOf="@+id/username" />
+            app:layout_constraintTop_toBottomOf="@+id/username" >
+
+            <ImageView
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="4dp"
+                android:layout_marginBottom="4dp"
+                tools:src="@drawable/lesson_icon" />
+        </RelativeLayout>
 
         <TextView
             android:id="@+id/dob"
@@ -211,7 +221,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/history_lesson"
-        app:layout_constraintVertical_bias="0.886">
+        app:layout_constraintVertical_bias="0.083">
 
         <TextView
             android:id="@+id/play_hd"
@@ -327,7 +337,7 @@
         android:id="@+id/profile_pic"
         android:layout_width="120dp"
         android:layout_height="120dp"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="48dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
