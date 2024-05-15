@@ -24,10 +24,10 @@ class MainActivity : AppCompatActivity() {
         bottomNavigationView = findViewById(R.id.bottomNavigationView)
         bottomNavigationView.setOnItemSelectedListener {
             when (it.itemId) {
-                R.id.practice -> replaceFragment(practiceFragment)
-                R.id.record -> replaceFragment(recyclerFragment)
-                R.id.setting -> replaceFragment(settingFragment)
-                R.id.upload -> replaceFragment(tunerFragment)
+                R.id.home -> replaceFragment(practiceFragment)
+                R.id.lesson -> replaceFragment(recyclerFragment)
+                R.id.evaluate -> replaceFragment(settingFragment)
+                R.id.tuning -> replaceFragment(tunerFragment)
             }
             true
         }
