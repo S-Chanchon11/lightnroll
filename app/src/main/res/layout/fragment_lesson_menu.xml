@@ -1,269 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="812dp"
+    android:layout_height="match_parent"
     android:background="@color/white">
 
-    <RelativeLayout
+
+    <TextView
         android:id="@+id/lessonTxt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
-        android:padding="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <TextView
-            android:id="@+id/lesson"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/poppins_semibold"
-            android:text="Lessons"
-            android:textAlignment="center"
-            android:textSize="20dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/basic_box"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="20dp"
+        android:fontFamily="@font/poppins_medium"
+        android:text="Lessons"
+        android:textAlignment="center"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/lessonmenu_recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
         android:layout_marginTop="24dp"
         android:layout_marginRight="20dp"
-        android:background="@drawable/lesson_button"
+        android:layout_marginLeft="20dp"
+        android:padding="8dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lessonTxt">
-
-        <ImageView
-            android:id="@+id/basic_logo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginBottom="20dp"
-            tools:src="@tools:sample/avatars" />
-
-        <TextView
-            android:id="@+id/basic"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginRight="8dp"
-            android:layout_toEndOf="@+id/basic_logo"
-            android:fontFamily="@font/poppins_medium"
-            android:text="Basic"
-            android:textColor="@color/black"
-            android:textSize="18sp"
-            app:layout_constraintStart_toEndOf="@id/basic_logo" />
-
-        <TextView
-            android:id="@+id/basic_desc"
-            android:layout_width="158dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/basic"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginBottom="20dp"
-            android:layout_toEndOf="@+id/basic_logo"
-            android:fontFamily="@font/poppins"
-            android:text="let's start to learn about guitar with basic lesson."
-            android:textColor="@color/grey6"
-            android:textSize="12sp" />
-
-        <TextView
-            android:id="@+id/arrow_basic"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/basic_desc"
-            android:layout_alignParentEnd="true"
-            android:layout_marginStart="170dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginBottom="20dp"
-            android:layout_toEndOf="@+id/basic_logo"
-            android:fontFamily="@font/poppins"
-            android:text=">"
-            android:textColor="@color/black"
-            android:textSize="24sp" />
-
-
-    </RelativeLayout>
+        app:layout_constraintTop_toBottomOf="@+id/lessonTxt" />
 
     <RelativeLayout
-        android:id="@+id/intermediate_box"
+        android:id="@+id/chordlib_box"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="61dp"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="8dp"
         android:layout_marginRight="20dp"
         android:background="@drawable/lesson_button"
+        android:padding="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/basic_box">
-
-        <ImageView
-            android:id="@+id/intermediate_logo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginBottom="20dp"
-            tools:src="@tools:sample/avatars" />
+        app:layout_constraintTop_toBottomOf="@+id/lessonmenu_recyclerView"
+        app:layout_constraintVertical_bias="0.034">
 
         <TextView
-            android:id="@+id/intermediate"
-            android:layout_width="wrap_content"
+            android:id="@+id/chordlib"
+            android:layout_width="161dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginRight="8dp"
-            android:layout_toEndOf="@+id/intermediate_logo"
-            android:fontFamily="@font/poppins_medium"
-            android:text="Intermediate"
-            android:textColor="@color/black"
-            android:textSize="18sp"
-            app:layout_constraintStart_toEndOf="@id/intermediate_logo" />
-
-        <TextView
-            android:id="@+id/intermediate_desc"
-            android:layout_width="158dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/intermediate"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginBottom="20dp"
-            android:layout_toEndOf="@+id/intermediate_logo"
-            android:fontFamily="@font/poppins"
-            android:text="let's start to learn about guitar with basic lesson."
-            android:textColor="@color/grey6"
-            android:textSize="12sp" />
-        <TextView
-            android:id="@+id/arrow_int"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/intermediate_desc"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginStart="170dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginBottom="20dp"
-            android:layout_toEndOf="@+id/intermediate_logo"
-            android:fontFamily="@font/poppins"
-            android:text=">"
-            android:textColor="@color/black"
-            android:textSize="24sp" />
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/advance_box"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginRight="20dp"
-        android:background="@drawable/lesson_button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/intermediate_box">
-
-        <ImageView
-            android:id="@+id/advance_logo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginBottom="20dp"
-            tools:src="@tools:sample/avatars" />
-
-        <TextView
-            android:id="@+id/advance"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="8dp"
             android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginRight="8dp"
-            android:layout_toEndOf="@+id/advance_logo"
-            android:fontFamily="@font/poppins_medium"
-            android:text="Advance"
-            android:textColor="@color/black"
-            android:textSize="18sp"
-            app:layout_constraintStart_toEndOf="@id/advance_logo" />
-
-        <TextView
-            android:id="@+id/advance_desc"
-            android:layout_width="158dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/advance"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginBottom="20dp"
-            android:layout_toEndOf="@+id/advance_logo"
-            android:fontFamily="@font/poppins"
-            android:text="let's start to learn about guitar with basic lesson."
-            android:textColor="@color/grey6"
-            android:textSize="12sp" />
-        <TextView
-            android:id="@+id/arrow_adv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/advance_desc"
-            android:layout_alignParentEnd="true"
-            android:layout_marginStart="170dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginBottom="20dp"
-            android:layout_toEndOf="@+id/advance_logo"
-            android:fontFamily="@font/poppins"
-            android:text=">"
-            android:textColor="@color/black"
-            android:textSize="24sp" />
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/chord_lib_btn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginRight="20dp"
-        android:background="@drawable/lesson_button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/advance_box">
-
-        <Button
-            android:id="@+id/signup_button"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
+            android:layout_marginBottom="16dp"
             android:fontFamily="@font/poppins_medium"
-            android:text="Chord Library >"
+            android:text="Chord library >"
             android:textAlignment="center"
-            android:textColor="@color/white"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            android:textSize="18dp" />
     </RelativeLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

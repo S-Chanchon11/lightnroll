@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="160dp"
+    android:layout_height="100dp"
     android:layout_margin="8dp"
     app:cardBackgroundColor="@color/white"
     app:cardCornerRadius="8dp"
@@ -15,9 +15,15 @@
     <TextView
         android:id="@+id/chordDetail"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="64dp"
         android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
-        android:gravity="center"/>
+        android:padding="8dp"
+        android:fontFamily="@font/poppins_medium"
+        android:textSize="16dp"
+        android:gravity="center"
+        android:text="chords"
+        android:background="@drawable/lesson_button"
+        />
 
 </androidx.cardview.widget.CardView>

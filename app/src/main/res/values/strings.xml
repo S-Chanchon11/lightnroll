@@ -22,4 +22,18 @@
 
     <string name="tuner_guitar_type"><u>Guitar,&#xA;6 strings</u></string>
     <string name="tuner_guitar_name"><u>Acoustic guitar</u></string>
+
+    <!--lesson page-->
+    <string name="level_class1">Basic level</string>
+    <string name="level_class2">Intermediate level</string>
+    <string name="level_class3">Advance level</string>
+
+    <!--Page name -->
+    <string name="page_name1">Home</string>
+    <string name="page_name2">Lesson</string>
+    <string name="page_name3">Evaluate</string>
+    <string name="page_name4">Tuning</string>
+    <string name="page_name5">Profile</string>
+    <string name="page_name6">Setting</string>
+
 </resources>

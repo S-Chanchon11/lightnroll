@@ -33,7 +33,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
-            android:fontFamily="@font/poppins_semibold"
+            android:fontFamily="@font/poppins_medium"
             android:text="Song name"
             android:textColor="@color/black"
             android:textSize="16dp" />
@@ -48,7 +48,7 @@
             android:layout_marginTop="-29dp"
             android:layout_marginEnd="8dp"
             android:layout_toEndOf="@+id/song_name2"
-            android:fontFamily="@font/poppins"
+            android:fontFamily="@font/poppins_regular"
             android:text="Date: 22 Jan 2024"
             android:textAlignment="textEnd"
             android:textSize="8dp" />
@@ -61,7 +61,7 @@
             android:layout_alignParentStart="true"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:fontFamily="@font/poppins"
+            android:fontFamily="@font/poppins_regular"
             android:text="Score:" />
 
         <RelativeLayout
@@ -87,7 +87,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="8dp"
-                android:fontFamily="@font/poppins_semibold"
+                android:fontFamily="@font/poppins_medium"
                 android:gravity="center"
                 android:text="100"
                 android:textAlignment="center"
@@ -106,7 +106,7 @@
             android:layout_marginTop="23dp"
             android:layout_marginEnd="8dp"
             android:layout_toEndOf="@+id/score_txt2"
-            android:fontFamily="@font/poppins"
+            android:fontFamily="@font/poppins_regular"
             android:text="Level:" />
 
         <RelativeLayout

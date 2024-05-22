@@ -106,7 +106,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentBottom="true"
-                android:icon="@drawable/lesson_icon" />
+                android:icon="@drawable/lesson_icon1" />
         </RelativeLayout>
 
         <RelativeLayout
