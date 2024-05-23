@@ -1,6 +1,5 @@
 package com.example.light.tuner.ui
 
-import android.Manifest
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -8,13 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
-//import be.tarsos.dsp.AudioProcessor
-//import be.tarsos.dsp.io.android.AudioDispatcherFactory
-//import be.tarsos.dsp.pitch.PitchDetectionHandler
-//import be.tarsos.dsp.pitch.PitchProcessor
-//import be.tarsos.dsp.pitch.PitchProcessor.PitchEstimationAlgorithm
 import com.example.light.R
 
 class TunerFragment : Fragment() {

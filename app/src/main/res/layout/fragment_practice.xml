@@ -1,9 +1,9 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
-    <data>
-        <variable
-            name="practiceModel"
-            type="com.example.light.expandableList.model.PracticeModel" />
-    </data>
+<!--    <data>-->
+<!--        <variable-->
+<!--            name="practiceModel"-->
+<!--            type="com.example.light.expandableList.model.PracticeModel" />-->
+<!--    </data>-->
 
     <RelativeLayout
         android:layout_width="match_parent"

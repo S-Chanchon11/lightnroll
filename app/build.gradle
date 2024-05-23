@@ -6,6 +6,11 @@ plugins {
 }
 
 android {
+
+    ndkPath "/Users/snow/Library/Android/sdk/ndk/25.1.8937393"
+//    ndkVersion "25.1.8937393"
+//    ndkDirectory '/Users/snow/Library/Android/sdk/ndk-bundle'
+
     namespace 'com.example.light'
     compileSdk 34
 
@@ -16,6 +21,9 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        ndk{
+            abiFilters 'armeabi-v7a','x86',"arm64-v8a"
+        }
     }
     buildTypes {
         release {
@@ -30,7 +38,7 @@ android {
     kotlinOptions {
         jvmTarget = '17'
     }
-//    buildFeatures{
+    //    buildFeatures{
 //        dataBinding true
 //    }
 //    dataBinding {
@@ -61,6 +69,9 @@ dependencies {
     implementation "com.dmitryborodin:pdfview-android:1.1.0"
     implementation 'com.github.barteksc:android-pdf-viewer:2.8.2'
     implementation "io.insert-koin:koin-android:3.3.2"
+
+    implementation project(':unityLibrary')
+    implementation fileTree(dir: project(':unityLibrary').getProjectDir().toString() + ('\\libs'), include: ['*.jar'])
 
 }
 

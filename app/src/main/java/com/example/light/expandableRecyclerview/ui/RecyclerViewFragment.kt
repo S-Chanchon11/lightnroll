@@ -12,6 +12,7 @@ import com.example.light.R
 import com.example.light.expandableRecyclerview.model.RecyclerModel
 import com.example.light.expandableRecyclerview.ui.adapter.RecyclerViewAdapter
 import com.example.light.expandableRecyclerview.viewmodel.RecylerViewViewModel
+import com.example.light.utilities.SpaceItemDecoration
 
 class RecyclerViewFragment : Fragment() {
 
@@ -26,6 +27,8 @@ class RecyclerViewFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_recyler_view, container, false)
         recyclerView = view.findViewById(R.id.recyclerview)
+
+        recyclerView.addItemDecoration(SpaceItemDecoration(32))
         heroList = ArrayList()
         return view
     }

@@ -23,7 +23,7 @@ class LoginActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_login)
 
-        Log.d("Login Activity","onCreate")
+        Log.d("Login Activity", "onCreate")
 
         val splashScreenFragment = SplashScreenFragment()
         replaceFragment(splashScreenFragment)
