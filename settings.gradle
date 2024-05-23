@@ -16,5 +16,5 @@ dependencyResolutionManagement {
 rootProject.name = "Light"
 include ':app'
 
-include ':unityLibrary'
-project(':unityLibrary').projectDir=new File('/Users/snow/pitch_recognition_libs_osx_noplugin/unityLibrary')
+//include ':unityLibrary'
+//project(':unityLibrary').projectDir=new File('/Users/snow/pitch_recognition_libs_osx_noplugin/unityLibrary')

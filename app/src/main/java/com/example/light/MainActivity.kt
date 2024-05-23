@@ -15,7 +15,7 @@ import com.example.light.expandableRecyclerview.ui.RecyclerViewFragment
 import com.example.light.record.SettingFragment
 import com.example.light.utilities.OnCardClickListener
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.unity3d.player.UnityPlayerActivity
+//import com.unity3d.player.UnityPlayerActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -73,7 +73,7 @@ class MainActivity : AppCompatActivity() {
                     actionBar!!.title = "Evaluate"
                     replaceFragment(settingFragment)
                 }
-                R.id.tuning -> gotoTuner()
+//                R.id.tuning -> gotoTuner()
             }
             true
         }
@@ -113,9 +113,9 @@ class MainActivity : AppCompatActivity() {
         super.onDestroy()
         Log.d(localClassName, "onDestroy")
     }
-    private fun gotoTuner() {
-        val intent = Intent(this, UnityPlayerActivity::class.java)
-        startActivity(intent)
-    }
+//    private fun gotoTuner() {
+//        val intent = Intent(this, UnityPlayerActivity::class.java)
+//        startActivity(intent)
+//    }
 
 }
