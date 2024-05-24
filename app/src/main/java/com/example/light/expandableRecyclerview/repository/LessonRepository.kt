@@ -1,5 +1,10 @@
 package com.example.light.expandableRecyclerview.repository
 
+import android.content.Context
+import android.content.res.Resources
+import android.graphics.drawable.Drawable
+import androidx.core.content.res.ResourcesCompat
+import com.example.light.R
 import com.example.light.expandableRecyclerview.model.LessonModel
 
 class LessonRepository() {
@@ -15,4 +20,17 @@ class LessonRepository() {
 
         return lst
     }
+
+    fun getBasicLessonInfo(): List<LessonModel> {
+        val lst: List<LessonModel>
+        lst = ArrayList()
+
+        lst.add(LessonModel("Title_A", "Desc_A"))
+        lst.add(LessonModel("Title_B", "Desc_B"))
+        lst.add(LessonModel("Title_C", "Desc_C"))
+        lst.add(LessonModel("Title_D", "Desc_D"))
+
+        return lst
+    }
+
 }

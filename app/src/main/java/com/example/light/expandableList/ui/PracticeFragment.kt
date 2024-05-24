@@ -13,7 +13,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.light.R
 import com.example.light.expandableList.ui.adapter.PracticeExpandableListAdapter
 import com.example.light.expandableList.viewmodel.PracticeViewModel
-
+import com.github.barteksc.pdfviewer.PDFView as PDFViewer
 class PracticeFragment : Fragment() {
 
     private lateinit var practiceViewModel: PracticeViewModel
@@ -23,7 +23,7 @@ class PracticeFragment : Fragment() {
     private lateinit var expandableListDetail2: HashMap<String, List<String>>
     private lateinit var expandableListTitle: List<String>
     private lateinit var expandableListAdapter: PracticeExpandableListAdapter
-
+    private lateinit var pdfView :  PDFViewer
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -31,10 +31,12 @@ class PracticeFragment : Fragment() {
     ): View? {
         val view: View = inflater.inflate(R.layout.fragment_practice, container, false)
 
-        expandableListView = view.findViewById(R.id.expanded_menu)
-        practiceViewModel = ViewModelProvider(this).get(PracticeViewModel::class.java)
-        // observeData()
-        Log.d("Fragment", "Practice")
+        pdfView  = view.findViewById(R.id.pdfView)
+
+//        expandableListView = view.findViewById(R.id.expanded_menu)
+//        practiceViewModel = ViewModelProvider(this).get(PracticeViewModel::class.java)
+//        // observeData()
+//        Log.d("Fragment", "Practice")
 
         return view
     }
@@ -42,18 +44,22 @@ class PracticeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        expandableListDetail = practiceViewModel.loadPracticePos()
-        expandableListDetail2 = practiceViewModel.loadPracticeFin()
-        expandableListTitle = ArrayList(expandableListDetail.keys)
-        // Log.d("Fragment",expandableListDetail[expandableListTitle[0]].toString())
-        expandableListAdapter = PracticeExpandableListAdapter(view.context, expandableListTitle, expandableListDetail, expandableListDetail2)
-        expandableListView?.setAdapter(expandableListAdapter)
+        pdfView.fromAsset("basic_1.pdf").pages(0).load()
+        Log.d("PracticeFragment", pdfView.tableOfContents.toString())
+//        expandableListDetail = practiceViewModel.loadPracticePos()
+//        expandableListDetail2 = practiceViewModel.loadPracticeFin()
+//        expandableListTitle = ArrayList(expandableListDetail.keys)
+//        // Log.d("Fragment",expandableListDetail[expandableListTitle[0]].toString())
+//        expandableListAdapter = PracticeExpandableListAdapter(view.context, expandableListTitle, expandableListDetail, expandableListDetail2)
+//        expandableListView?.setAdapter(expandableListAdapter)
 
 //        expandableListDetail = practiceViewModel.loadPracticeFin()
 //        expandableListTitle = ArrayList(expandableListDetail.keys)
 //        //Log.d("Fragment",expandableListDetail[expandableListTitle[0]].toString())
 //        expandableListAdapter = PracticeExpandableListAdapter(view.context, expandableListTitle, expandableListDetail)
 //        expandableListView?.setAdapter(expandableListAdapter)
+//        val pdfView = pdf
+
     }
 
     private fun observeData() {

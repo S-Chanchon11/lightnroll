@@ -39,6 +39,7 @@ class RecyclerViewAdapter(heroList: List<RecyclerModel>, context: Context) :
         return HeroViewHolder(v)
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun onBindViewHolder(holder: HeroViewHolder, @SuppressLint("RecyclerView") position: Int) {
         val hero: RecyclerModel = heroList[position]
 

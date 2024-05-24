@@ -4,7 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.setFragmentResultListener
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -20,6 +22,7 @@ class RecyclerViewFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: RecyclerViewAdapter
     private lateinit var heroList: List<RecyclerModel>
+    private var resultFromFragment: String? = null
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -27,9 +30,8 @@ class RecyclerViewFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_recyler_view, container, false)
         recyclerView = view.findViewById(R.id.recyclerview)
-
-        recyclerView.addItemDecoration(SpaceItemDecoration(32))
         heroList = ArrayList()
+
         return view
     }
 
@@ -38,8 +40,18 @@ class RecyclerViewFragment : Fragment() {
         viewModel = ViewModelProvider(this)[RecylerViewViewModel::class.java]
         recyclerView.setHasFixedSize(true)
         recyclerView.layoutManager = LinearLayoutManager(view?.context)
-        heroList = viewModel.loadData()
+        heroList = viewModel.loadData() // chord data
         adapter = RecyclerViewAdapter(heroList, view.context)
         recyclerView.adapter = adapter
+        recyclerView.addItemDecoration(SpaceItemDecoration(32))
+
+        setFragmentResultListener("requestKey") { requestKey, bundle ->
+            resultFromFragment = bundle.getString("bundleKey")
+            Toast.makeText(context?.applicationContext, resultFromFragment, Toast.LENGTH_SHORT).show()
+        }
+
+//        when(resultFromFragment){
+//
+//        }
     }
 }

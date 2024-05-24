@@ -1,24 +1,21 @@
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
-<!--    <data>-->
-<!--        <variable-->
-<!--            name="practiceModel"-->
-<!--            type="com.example.light.expandableList.model.PracticeModel" />-->
-<!--    </data>-->
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".expandableList.ui.PracticeFragment">
 
-    <RelativeLayout
+    <!-- TODO: Update blank fragment layout -->
+<!--    <com.pdfview.PDFView-->
+<!--        android:id="@+id/pdfView"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent">-->
+
+<!--    </com.pdfview.PDFView>-->
+    <com.github.barteksc.pdfviewer.PDFView
+        android:id="@+id/pdfView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-
-
-        <ExpandableListView
-            android:id="@+id/expanded_menu"
-            android:layout_height="match_parent"
-            android:layout_width="match_parent"
-            android:indicatorLeft="?android:attr/expandableListPreferredItemIndicatorLeft"
-            android:divider="@android:color/darker_gray"
-            android:dividerHeight="0.5dp" />
-
-    </RelativeLayout>
-</layout>
+    </com.github.barteksc.pdfviewer.PDFView>
+</FrameLayout>

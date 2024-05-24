@@ -9,18 +9,18 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.RecyclerView
-import com.example.light.MainActivity
 import com.example.light.R
 import com.example.light.expandableRecyclerview.model.LessonModel
-import com.example.light.expandableRecyclerview.ui.RecyclerViewFragment
 
-
-class LessonAdapter(lessonList: List<LessonModel>, context: Context) :
+class LessonAdapter(lessonList: List<LessonModel>,
+                    context: Context):
+//                    private val onItemClickedCallback: (LessonModel) -> Unit) :
     RecyclerView.Adapter<LessonAdapter.MyViewHolder>() {
-    private val lessonList: List<LessonModel>
+    private var lessonList: List<LessonModel>
+    private val items = mutableListOf<Any>()
     private val context: Context
     private var drawables: Array<Drawable>
-
+    private var onClickListener: OnClickListener? = null
 
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var imageView: ImageView
@@ -54,28 +54,42 @@ class LessonAdapter(lessonList: List<LessonModel>, context: Context) :
     ): MyViewHolder {
         val view: View = LayoutInflater.from(parent.context)
             .inflate(R.layout.lesson_menu, parent, false)
-//        view.setOnClickListener(this)
-        view.setOnClickListener {
 
-
-        }
         return MyViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val lesson: LessonModel = lessonList[position]
 
-        val lessonImage = holder.imageView
+//        val lessonImage = holder.imageView
         val lessonTitle = holder.titleTxt
         val lessonDesc = holder.descTxt
-        lessonImage.setImageDrawable(drawables[position])
+//        lessonImage.setImageDrawable(drawables[position])
+//        lessonImage.setImageDrawable(lesson.image)
         lessonTitle.setText(lesson.title)
         lessonDesc.setText(lesson.description)
 
-//        holder.itemView.setOnClickListener {
-//            Toast.makeText(context,position.toString(),Toast.LENGTH_SHORT).show()
-//
-//        }
+        holder.itemView.setOnClickListener {
+            if (onClickListener != null) {
+                onClickListener!!.onClick(position, lesson)
+            }
+//            onItemClickedCallback(lesson)
+        }
+    }
+//    fun updateData(newItemList: List<LessonModel>) {
+//        lessonList = newItemList
+//        notifyDataSetChanged()
+//    }
+    fun setItems(newItems: List<Any>) {
+        items.clear()
+        items.addAll(newItems)
+        notifyDataSetChanged()
+    }
+    fun setOnClickListener(onClickListener: OnClickListener) {
+        this.onClickListener = onClickListener
+    }
+    interface OnClickListener {
+        fun onClick(position: Int, model: LessonModel)
     }
 
     override fun getItemCount(): Int {
