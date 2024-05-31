@@ -44,7 +44,8 @@ class PracticeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        pdfView.fromAsset("basic_1.pdf").pages(0).load()
+//        pdfView.fromAsset("basic_1.pdf").pages(0).load()
+        pdfView.fromAsset("basic_1.pdf").load()
         Log.d("PracticeFragment", pdfView.tableOfContents.toString())
 //        expandableListDetail = practiceViewModel.loadPracticePos()
 //        expandableListDetail2 = practiceViewModel.loadPracticeFin()

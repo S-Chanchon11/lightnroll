@@ -7,6 +7,7 @@ import android.view.Menu
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
+import com.example.light.evaluate.EvaluateFragment
 import com.example.light.expandableList.ui.PracticeFragment
 import com.example.light.expandableRecyclerview.ui.LessonFragment
 import com.example.light.expandableRecyclerview.ui.RecyclerViewFragment
@@ -36,6 +37,7 @@ class MainActivity : AppCompatActivity() {
         val recyclerFragment = RecyclerViewFragment()
 //        val tunerFragment = TunerFragment()
         val lessonFragment = LessonFragment()
+        val evaluateFragment = EvaluateFragment()
         toolBar = findViewById(R.id.toolbar)
         setSupportActionBar(toolBar)
         val actionBar = supportActionBar
@@ -68,7 +70,7 @@ class MainActivity : AppCompatActivity() {
                 }
                 R.id.evaluate -> {
                     actionBar!!.title = "Evaluate"
-                    replaceFragment(settingFragment, "")
+                    replaceFragment(evaluateFragment, "")
                 }
                 R.id.tuning -> gotoTuner()
                 R.id.profile -> replaceFragment(practiceFragment,"")
