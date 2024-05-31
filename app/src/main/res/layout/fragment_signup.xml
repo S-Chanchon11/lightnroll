@@ -41,9 +41,8 @@
             android:layout_height="48dp"
             android:layout_marginTop="32dp"
             android:background="@drawable/input_box"
-            android:fontFamily="@font/poppins_medium"
             android:padding="12dp"
-            android:text="Example: abc@123.com"
+            android:hint="Example: abc@123.com"
             android:textColor="@color/grey3"
             android:textSize="14sp"
             app:cornerRadius="8dp"
@@ -60,6 +59,7 @@
         android:layout_marginTop="8dp"
         android:paddingLeft="16dp"
         android:paddingRight="16dp"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/box_email">
@@ -120,7 +120,7 @@
             android:fontFamily="@font/poppins_medium"
             android:paddingLeft="16dp"
             android:paddingRight="16dp"
-            android:text="DD/MM/YYYY"
+            android:hint="DD/MM/YYYY"
             android:textColor="@color/grey3"
             android:textSize="14sp"
             app:cornerRadius="8dp"
@@ -158,7 +158,7 @@
             android:fontFamily="@font/poppins_medium"
             android:paddingLeft="16dp"
             android:paddingRight="16dp"
-            android:text="DD/MM/YYYY"
+            android:hint="**********"
             android:textColor="@color/grey3"
             android:textSize="14sp"
             app:cornerRadius="8dp"
@@ -197,7 +197,7 @@
             android:fontFamily="@font/poppins_medium"
             android:paddingLeft="16dp"
             android:paddingRight="16dp"
-            android:text="re-enter password"
+            android:hint="**********"
             android:textColor="@color/grey3"
             android:textSize="14sp"
             app:cornerRadius="8dp"
@@ -277,26 +277,6 @@
             app:layout_constraintVertical_bias="0.0" />
     </RelativeLayout>
 
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/relativeLayout"
-        app:layout_constraintVertical_bias="0.029">
 
-        <TextView
-            android:id="@+id/guestmode_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/poppins_medium"
-            android:text="Guest Mode"
-            android:textAlignment="center"
-            android:textColor="@color/purpleN1"
-            android:textSize="12sp" />
-    </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

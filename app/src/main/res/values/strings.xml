@@ -6,7 +6,7 @@
 
     <!--login page-->
     <string name="login_email_and_username">Email Address or Username</string>
-    <string name="login_password">Password</string>
+    <string name="login_password">*********</string>
     <string name="login_forget_password">Forget Password</string>
     <string name="login_signin_btn">Sign in</string>
     <string name="login_divider">OR</string>

@@ -7,10 +7,14 @@ import android.view.Menu
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import com.example.light.evaluate.EvaluateFragment
 import com.example.light.expandableList.ui.PracticeFragment
 import com.example.light.expandableRecyclerview.ui.LessonFragment
 import com.example.light.expandableRecyclerview.ui.RecyclerViewFragment
+import com.example.light.home.HomeFragment
+import com.example.light.login.viewmodel.LoginViewModel
 import com.example.light.record.SettingFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.unity3d.player.UnityPlayerActivity
@@ -35,32 +39,29 @@ class MainActivity : AppCompatActivity() {
         val practiceFragment = PracticeFragment()
         val settingFragment = SettingFragment()
         val recyclerFragment = RecyclerViewFragment()
-//        val tunerFragment = TunerFragment()
         val lessonFragment = LessonFragment()
         val evaluateFragment = EvaluateFragment()
+        val homeFragment = HomeFragment()
+
         toolBar = findViewById(R.id.toolbar)
         setSupportActionBar(toolBar)
         val actionBar = supportActionBar
         actionBar!!.title = "Light n roll"
 
         bottomNavigationView = findViewById(R.id.bottomNavigationView)
+        actionBar.hide()
+        replaceFragment(homeFragment, "home")
+
+
 
         bottomNavigationView.setOnItemSelectedListener {
             when (it.itemId) {
                 R.id.home -> {
-                    actionBar!!.title = "Light n roll"
+                    actionBar.title = "Light n roll"
+                    actionBar.hide()
+                    replaceFragment(homeFragment, "home")
 //                    actionBar.setDisplayShowHomeEnabled(false)
 //                    actionBar.setDisplayHomeAsUpEnabled(false)
-                    supportFragmentManager.fragments.let {
-                        if (it.isNotEmpty()) {
-                            supportFragmentManager.beginTransaction().apply {
-                                for (fragment in it) {
-                                    remove(fragment)
-                                }
-                                commit()
-                            }
-                        }
-                    }
                 }
                 R.id.lesson -> {
 //                    actionBar.setDisplayShowHomeEnabled(true)
@@ -73,16 +74,13 @@ class MainActivity : AppCompatActivity() {
                     replaceFragment(evaluateFragment, "")
                 }
                 R.id.tuning -> gotoTuner()
-                R.id.profile -> replaceFragment(practiceFragment,"")
+                R.id.profile -> replaceFragment(practiceFragment, "")
             }
             true
         }
         Log.d(localClassName, "onCreate")
 //        listener.onCardClick(SlideshowFragment())
-
-
     }
-
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         super.onCreateOptionsMenu(menu)
@@ -100,7 +98,7 @@ class MainActivity : AppCompatActivity() {
     fun replaceFragment(fragment: Fragment, tag: String) {
         val fragmentManager = supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
-        fragmentTransaction.replace(R.id.frame_layout, fragment, tag).addToBackStack( tag )
+        fragmentTransaction.replace(R.id.frame_layout, fragment, tag).addToBackStack(tag)
         fragmentTransaction.commit()
     }
     override fun onStart() {
@@ -120,5 +118,17 @@ class MainActivity : AppCompatActivity() {
     private fun gotoTuner() {
         val intent = Intent(this, UnityPlayerActivity::class.java)
         startActivity(intent)
+    }
+    private fun removeFragment() {
+        supportFragmentManager.fragments.let {
+            if (it.isNotEmpty()) {
+                supportFragmentManager.beginTransaction().apply {
+                    for (fragment in it) {
+                        remove(fragment)
+                    }
+                    commit()
+                }
+            }
+        }
     }
 }

@@ -14,8 +14,8 @@ class MainApplication : Application() {
                 viewModelModule
             }
         }
-        if( !Python.isStarted() ) {
-            Python.start( AndroidPlatform( this ) )
+        if (!Python.isStarted()) {
+            Python.start(AndroidPlatform(this))
         }
     }
 }

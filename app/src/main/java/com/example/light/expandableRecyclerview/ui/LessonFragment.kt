@@ -6,11 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.appcompat.widget.Toolbar
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResult
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -24,6 +22,7 @@ class LessonFragment : Fragment() {
     private lateinit var lessonList: List<LessonModel>
     private lateinit var viewModel: LessonViewModel
     private lateinit var adapter: LessonAdapter
+
 //    private lateinit var toolBar: Toolbar
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -47,7 +46,6 @@ class LessonFragment : Fragment() {
 //            viewModel.updateItem(lesson)
 //        }
 
-
 //        viewModel.items.observe(
 //            viewLifecycleOwner,
 //            Observer { lesson ->
@@ -57,7 +55,7 @@ class LessonFragment : Fragment() {
         adapter = LessonAdapter(lessonList, view.context)
         recyclerView.adapter = adapter
 //        viewModel.items.observe(viewLifecycleOwner, Observer { items ->
-////            adapter.setItems(items)
+// //            adapter.setItems(items)
 //
 //
 //        })
@@ -81,7 +79,6 @@ class LessonFragment : Fragment() {
                             lessonList = viewModel.loadBasicLessonData()
                             adapter = LessonAdapter(lessonList, view.context)
                             recyclerView.adapter = adapter
-
                         }
                         3 -> {
                             replaceFragment(recyclerFragment)
@@ -95,7 +92,6 @@ class LessonFragment : Fragment() {
                     }
                 }
             })
-
     }
     fun replaceFragment(fragment: Fragment) {
         val fragmentManager = parentFragmentManager
@@ -113,17 +109,16 @@ class LessonFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
-        Log.d("LessonFragment","onStart")
+        Log.d("LessonFragment", "onStart")
     }
 
     override fun onResume() {
         super.onResume()
-        Log.d("LessonFragment","onResume")
+        Log.d("LessonFragment", "onResume")
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        Log.d("LessonFragment","onDestroy")
-
+        Log.d("LessonFragment", "onDestroy")
     }
 }

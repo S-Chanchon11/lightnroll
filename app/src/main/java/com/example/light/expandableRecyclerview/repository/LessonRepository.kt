@@ -1,10 +1,5 @@
 package com.example.light.expandableRecyclerview.repository
 
-import android.content.Context
-import android.content.res.Resources
-import android.graphics.drawable.Drawable
-import androidx.core.content.res.ResourcesCompat
-import com.example.light.R
 import com.example.light.expandableRecyclerview.model.LessonModel
 
 class LessonRepository() {
@@ -32,5 +27,4 @@ class LessonRepository() {
 
         return lst
     }
-
 }

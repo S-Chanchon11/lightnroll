@@ -1,7 +1,5 @@
 package com.example.light.expandableRecyclerview.model
 
-import android.graphics.drawable.Drawable
-
 data class LessonModel(
 //    val image: Drawable,
     val title: String,

@@ -5,9 +5,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.light.expandableRecyclerview.model.LessonModel
 import com.example.light.expandableRecyclerview.repository.LessonRepository
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 
 class LessonViewModel : ViewModel() {
     private val lessonRepository = LessonRepository()
@@ -18,6 +15,7 @@ class LessonViewModel : ViewModel() {
 
         return data.value!!
     }
+
 //    fun updateItem(clickedItem: LessonModel) {
 //        data.value = data.value?.map {
 //            if (it.title == clickedItem.title) {
