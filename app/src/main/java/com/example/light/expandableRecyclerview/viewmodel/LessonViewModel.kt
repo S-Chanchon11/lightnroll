@@ -1,33 +1,36 @@
 package com.example.light.expandableRecyclerview.viewmodel
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.light.expandableRecyclerview.model.DestinationFragment
 import com.example.light.expandableRecyclerview.model.LessonModel
 import com.example.light.expandableRecyclerview.repository.LessonRepository
 
 class LessonViewModel : ViewModel() {
     private val lessonRepository = LessonRepository()
-    private val data = MutableLiveData<List<LessonModel>>()
-    val items: LiveData<List<LessonModel>> get() = data
+    private val lessonData = MutableLiveData<List<LessonModel>>()
+    private val subLessonData = MutableLiveData<List<DestinationFragment>>()
+
+//    val items: LiveData<List<LessonModel>> get() = lessonData
     fun loadLessonData(): List<LessonModel> {
-        data.value = lessonRepository.getLessonInfo()
+        lessonData.value = lessonRepository.getLessonInfo()
 
-        return data.value!!
+        return lessonData.value!!
     }
+    fun loadLessonData(choice: Int): List<LessonModel> {
+        if (choice == 0) {
+            lessonData.value = lessonRepository.getBasicLessonInfo()
+        } else if (choice == 1) {
+            lessonData.value = lessonRepository.getIntermediateLessonInfo()
+        } else if (choice == 2) {
+            lessonData.value = lessonRepository.getAdvancedLessonInfo()
+        }
 
-//    fun updateItem(clickedItem: LessonModel) {
-//        data.value = data.value?.map {
-//            if (it.title == clickedItem.title) {
-//                LessonModel(it.title, "${it.description} (Updated)")
-//            } else {
-//                it
-//            }
-//        }
-//    }
-    fun loadBasicLessonData(): List<LessonModel> {
-        data.value = lessonRepository.getBasicLessonInfo()
+        return lessonData.value!!
+    }
+    fun loadSubLessonData(level: Int): List<DestinationFragment> {
+        subLessonData.value = lessonRepository.getSubLessonInfo(level)
 
-        return data.value!!
+        return subLessonData.value!!
     }
 }

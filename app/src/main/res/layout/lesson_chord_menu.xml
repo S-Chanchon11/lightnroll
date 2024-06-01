@@ -18,12 +18,11 @@
         android:layout_height="64dp"
         android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
-        android:padding="8dp"
-        android:fontFamily="@font/poppins_medium"
-        android:textSize="16dp"
-        android:gravity="center"
-        android:text="chords"
         android:background="@drawable/lesson_button"
-        />
+        android:fontFamily="@font/poppins_medium"
+        android:gravity="center"
+        android:padding="8dp"
+        android:text="chords"
+        android:textSize="16dp" />
 
 </androidx.cardview.widget.CardView>

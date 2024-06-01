@@ -12,6 +12,7 @@ import com.example.light.login.viewmodel.LoginViewModel
 
 class HomeFragment : Fragment() {
     private lateinit var viewModel: LoginViewModel
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -26,12 +27,6 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-//        viewModel.fetchUserData().observe(viewLifecycleOwner, Observer { userData ->
-//            if (userData != null) {
-//                // Use the user data as needed
-//            } else {
-//                // Handle the case where no user data is found
-//            }
-//        })
+
     }
 }

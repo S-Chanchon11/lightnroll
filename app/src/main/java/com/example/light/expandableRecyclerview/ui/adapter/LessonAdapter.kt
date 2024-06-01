@@ -83,11 +83,11 @@ class LessonAdapter(
 //        lessonList = newItemList
 //        notifyDataSetChanged()
 //    }
-        fun setItems(newItems: List<Any>) {
-            items.clear()
-            items.addAll(newItems)
-            notifyDataSetChanged()
-        }
+//        fun setItems(newItems: List<Any>) {
+//            items.clear()
+//            items.addAll(newItems)
+//            notifyDataSetChanged()
+//        }
         fun setOnClickListener(onClickListener: OnClickListener) {
             this.onClickListener = onClickListener
         }

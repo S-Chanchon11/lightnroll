@@ -44,7 +44,12 @@ class RecyclerViewFragment : Fragment() {
         adapter = RecyclerViewAdapter(heroList, view.context)
         recyclerView.adapter = adapter
         recyclerView.addItemDecoration(SpaceItemDecoration(32))
-
+        activity?.actionBar?.hide()
+        if (activity?.actionBar?.isShowing == true) {
+            Toast.makeText(context?.applicationContext, "showing actionbar", Toast.LENGTH_SHORT).show()
+        } else {
+            Toast.makeText(context?.applicationContext, "hiding actionbar", Toast.LENGTH_SHORT).show()
+        }
         setFragmentResultListener("requestKey") { requestKey, bundle ->
             resultFromFragment = bundle.getString("bundleKey")
             Toast.makeText(context?.applicationContext, resultFromFragment, Toast.LENGTH_SHORT).show()

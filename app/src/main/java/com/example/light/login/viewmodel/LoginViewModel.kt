@@ -10,7 +10,6 @@ import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.auth
-import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.auth.User
 import com.google.firebase.firestore.firestore
 import kotlinx.coroutines.channels.awaitClose
@@ -22,19 +21,22 @@ class LoginViewModel : ViewModel() {
     private var auth: FirebaseAuth
     private val db = Firebase.firestore
     val user: LiveData<FirebaseUser?> get() = _user
+    private val _userData = MutableLiveData<Map<String, Any>?>()
+    val userData: MutableLiveData<Map<String, Any>?> get() = _userData
 
     init {
         auth = Firebase.auth
         _user.value = auth.currentUser
+        fetchUserData()
     }
-    fun signUp(email: String, password: String, userData:HashMap<String,String>) {
+    fun signUp(email: String, password: String, userData: HashMap<String, String>) {
         auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     _user.value = auth.currentUser
-                    Log.d("LoginVM signup",FirebaseAuth.getInstance().currentUser!!.uid)
-                    Log.d("LoginVM signup",auth.currentUser!!.uid)
-                    //DSPlOrYFN6d2e00lOlERTh3riTj1
+//                    Log.d("LoginVM signup", FirebaseAuth.getInstance().currentUser!!.uid)
+//                    Log.d("LoginVM signup", auth.currentUser!!.uid)
+                    // DSPlOrYFN6d2e00lOlERTh3riTj1
                     db.collection("users").document(_user.value!!.uid).set(userData)
                         .addOnSuccessListener {
                             // User data successfully written
@@ -54,7 +56,8 @@ class LoginViewModel : ViewModel() {
                 if (task.isSuccessful) {
                     _user.value = auth.currentUser
 //                    firestore.collection("users").document(currentUserId).get()
-                    fetchUserData()
+//                    fetchUserData()
+//                    getUserData()
                 } else {
                     _user.value = null
                 }
@@ -64,34 +67,33 @@ class LoginViewModel : ViewModel() {
         auth.signOut()
         _user.value = null
     }
-    val currentUserId : Flow<User?>
+    val currentUserId: Flow<User?>
         @SuppressLint("RestrictedApi")
         get() = callbackFlow {
             val listener = FirebaseAuth.AuthStateListener { auth ->
                 this.trySend(auth.currentUser?.let { User(it.uid) })
             }
             Firebase.auth.addAuthStateListener(listener)
-            awaitClose {Firebase.auth.removeAuthStateListener(listener)}
+            awaitClose { Firebase.auth.removeAuthStateListener(listener) }
         }
 
-    fun fetchUserData(): LiveData<Map<String, Any>?> {
-//        val user = FirebaseAuth.getInstance().currentUser
-        val userData = MutableLiveData<Map<String, Any>?>()
-        Log.d("LoginVM",currentUserId)
+    private fun fetchUserData() {
+        val user = auth.currentUser
         user?.let {
-            db.collection("users").document(_user.value!!.uid).get()
+            val uid = it.uid
+            db.collection("users").document(uid).get()
                 .addOnSuccessListener { document ->
                     if (document != null && document.exists()) {
-                        userData.value = document.data
+                        _userData.value = document.data
+
                     } else {
-                        userData.value = null
+                        _userData.value = null
                     }
                 }
                 .addOnFailureListener { e ->
-                    userData.value = null
+                    _userData.value = null
                 }
         }
-        return userData
     }
 
 }

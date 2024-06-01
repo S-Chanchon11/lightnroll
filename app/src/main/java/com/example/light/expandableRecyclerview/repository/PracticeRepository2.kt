@@ -11,6 +11,10 @@ class PracticeRepository2 {
         lst.add(RecyclerModel("C"))
         lst.add(RecyclerModel("D"))
         lst.add(RecyclerModel("E"))
+        lst.add(RecyclerModel("F"))
+        lst.add(RecyclerModel("G"))
+        lst.add(RecyclerModel("A"))
+//        lst.add(RecyclerModel("B"))
 
         return lst
     }

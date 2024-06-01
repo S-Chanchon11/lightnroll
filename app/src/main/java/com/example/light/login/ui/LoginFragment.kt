@@ -9,7 +9,6 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
-import android.widget.Toast
 import androidx.core.view.setPadding
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -58,8 +57,8 @@ class LoginFragment : Fragment() {
 //        }
 
         signinBtn.setOnClickListener {
-            Log.d("Login",emailTxt.text.toString())
-            Log.d("Login",passwordTxt.text.toString())
+            Log.d("Login", emailTxt.text.toString())
+            Log.d("Login", passwordTxt.text.toString())
             if (status == 1) {
                 emailTxt.background = resources.getDrawable(R.drawable.empty_input_box)
                 emailTxt.setPadding(42)

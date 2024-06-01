@@ -27,7 +27,11 @@ class RecyclerViewAdapter(heroList: List<RecyclerModel>, context: Context) :
         this.drawables = arrayOf(
             getDrawable(R.drawable.c_maj),
             getDrawable(R.drawable.d_maj),
-            getDrawable(R.drawable.e_maj)
+            getDrawable(R.drawable.e_maj),
+            getDrawable(R.drawable.f_maj),
+            getDrawable(R.drawable.g_maj),
+            getDrawable(R.drawable.a_maj)
+//            getDrawable(R.drawable.c_maj),
         )
     }
     fun getDrawable(id: Int): Drawable {
