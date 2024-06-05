@@ -18,7 +18,7 @@
         android:fontFamily="@font/poppins_medium"
         android:text="Lessons"
         android:textAlignment="center"
-        android:textSize="20dp"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -64,16 +64,17 @@
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
-            android:layout_margin="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="8dp"
             android:fontFamily="@font/poppins_medium"
             android:text="Chord library >"
             android:textAlignment="center"
-            android:textSize="18dp" />
+            android:textSize="18sp" />
     </RelativeLayout>
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -35,10 +35,11 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:fontFamily="@font/poppins_medium"
+            android:textColor="@color/black"
             android:lineHeight="16dp"
             android:padding="8dp"
             android:text="Chord type >"
-            android:textSize="16dp" />
+            android:textSize="18sp" />
 
         <TextView
             android:layout_width="match_parent"
@@ -52,7 +53,10 @@
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
             android:fontFamily="@font/poppins_regular"
-            android:text="chord desc" />
+            android:padding="8dp"
+            android:text="chord desc"
+            android:textSize="12sp"
+            />
 
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

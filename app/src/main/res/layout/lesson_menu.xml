@@ -41,8 +41,8 @@
             android:layout_marginEnd="60dp"
             android:layout_toEndOf="@+id/lesson_icon"
             android:fontFamily="@font/poppins_medium"
-            android:text="Music Element"
-            android:textSize="16dp"
+            android:text="@string/topics1"
+            android:textSize="16sp"
             android:textColor="@color/black"
             android:padding="2dp"/>
 
@@ -60,8 +60,8 @@
             android:layout_toEndOf="@+id/lesson_icon"
             android:fontFamily="@font/poppins"
             android:text="lesson desc"
-            android:textColor="@color/black"
-            android:textSize="12dp"
+            android:textColor="@color/grey7"
+            android:textSize="12sp"
             android:padding="2dp"/>
 
 

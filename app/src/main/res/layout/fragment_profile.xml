@@ -34,7 +34,7 @@
             android:padding="12dp"
             android:text="Username"
             android:textAlignment="center"
-            android:textSize="20dp" />
+            android:textSize="20sp" />
 
         <RelativeLayout
             android:id="@+id/bd_icon"
@@ -65,7 +65,7 @@
             android:gravity="center"
             android:text="DD/MM/YYYY"
             android:textAlignment="center"
-            android:textSize="12dp"
+            android:textSize="12sp"
             app:layout_constraintTop_toBottomOf="@+id/username" />
 
 
@@ -94,7 +94,7 @@
             android:fontFamily="@font/poppins_medium"
             android:text="Lesson"
             android:textAlignment="center"
-            android:textSize="12dp" />
+            android:textSize="12sp" />
 
         <TextView
             android:id="@+id/subtype"
@@ -110,7 +110,7 @@
             android:text="Guitar Anatomy"
             android:textAlignment="center"
             android:textColor="@color/black"
-            android:textSize="16dp" />
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/subsubtype"
@@ -125,7 +125,7 @@
             android:fontFamily="@font/poppins"
             android:text="Basic level"
             android:textAlignment="center"
-            android:textSize="10dp" />
+            android:textSize="10sp" />
 
         <TextView
             android:id="@+id/subsubsubtype"
@@ -139,7 +139,7 @@
             android:layout_marginEnd="16dp"
             android:fontFamily="@font/poppins"
             android:text="Next level: "
-            android:textSize="10dp" />
+            android:textSize="10sp" />
 
     </RelativeLayout>
 
@@ -168,7 +168,7 @@
             android:fontFamily="@font/poppins_medium"
             android:text="Score"
             android:textAlignment="center"
-            android:textSize="12dp" />
+            android:textSize="12sp" />
 
         <TextView
             android:id="@+id/subtype1"
@@ -184,7 +184,7 @@
             android:text="80/100"
             android:textAlignment="center"
             android:textColor="@color/black"
-            android:textSize="24dp" />
+            android:textSize="24sp" />
 
         <TextView
             android:id="@+id/subsubsubtype1"
@@ -198,7 +198,7 @@
             android:layout_marginEnd="16dp"
             android:fontFamily="@font/poppins"
             android:text="Next level: "
-            android:textSize="10dp" />
+            android:textSize="10sp" />
 
     </RelativeLayout>
 
@@ -227,7 +227,7 @@
             android:fontFamily="@font/poppins_medium"
             android:text="Recent played"
             android:textAlignment="center"
-            android:textSize="12dp" />
+            android:textSize="12sp" />
 
         <TextView
             android:id="@+id/subtype2"
@@ -243,7 +243,7 @@
             android:text="18 Jan 2024"
             android:textAlignment="center"
             android:textColor="@color/black"
-            android:textSize="24dp" />
+            android:textSize="24sp" />
 
         <TextView
             android:id="@+id/subsubtype2"
@@ -258,7 +258,7 @@
             android:fontFamily="@font/poppins"
             android:text="Song name"
             android:textAlignment="center"
-            android:textSize="10dp" />
+            android:textSize="10sp" />
 
     </RelativeLayout>
 
@@ -289,7 +289,7 @@
             android:fontFamily="@font/poppins_medium"
             android:text="Time played"
             android:textAlignment="center"
-            android:textSize="12dp" />
+            android:textSize="12sp" />
 
         <TextView
             android:id="@+id/subtype3"
@@ -305,7 +305,7 @@
             android:text="10"
             android:textAlignment="center"
             android:textColor="@color/black"
-            android:textSize="24dp" />
+            android:textSize="24sp" />
 
         <TextView
             android:id="@+id/subsubtype3"
@@ -320,7 +320,7 @@
             android:fontFamily="@font/poppins"
             android:textColor="@color/grey6"
             android:text="Number of time you play in lesson and evaluate section"
-            android:textSize="8dp" />
+            android:textSize="8sp" />
 
     </RelativeLayout>
 

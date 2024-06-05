@@ -20,6 +20,9 @@
     <color name="purpleN1">#791D74</color>
     <color name="purpleN2">#6D1A68</color>
     <color name="purpleN3">#61175D</color>
+    //Blue
+    <color name="blue_light">#b0dfe1</color>
+    <color name="blue_normal">#00989e</color>
     //Green
     <color name="greenL1">#E7F6EB</color>
     <color name="greenL2">#DBF1E1</color>
@@ -41,5 +44,6 @@
     <color name="orangeN1">#FF8310</color>
     <color name="orangeN2">#E6760E</color>
     <color name="orangeN3">#CC690D</color>
+    
 
 </resources>

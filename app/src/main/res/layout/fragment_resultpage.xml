@@ -16,7 +16,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
+        <ImageView
             android:id="@+id/btn_head"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -26,8 +26,8 @@
             android:layout_marginBottom="8dp"
             android:fontFamily="@font/poppins_medium"
             android:textColor="@color/black"
-            android:text="<"
-            android:textSize="18dp"
+            android:src="@drawable/back_arrow"
+            android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -44,7 +44,7 @@
             android:fontFamily="@font/poppins_semibold"
             android:textColor="@color/black"
             android:text="End lesson test"
-            android:textSize="16dp"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -60,7 +60,7 @@
         android:fontFamily="@font/poppins_semibold"
         android:text="Result"
         android:textColor="@color/purpleN2"
-        android:textSize="20dp"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.012"
         app:layout_constraintStart_toStartOf="parent"
@@ -94,7 +94,7 @@
             android:padding="6dp"
             android:text="Level"
             android:textAlignment="textStart"
-            android:textSize="14dp" />
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/lv_h2"
@@ -111,7 +111,7 @@
             android:fontFamily="@font/poppins_regular"
             android:padding="6dp"
             android:text="Basic"
-            android:textSize="14dp"
+            android:textSize="14sp"
             app:layout_constraintStart_toEndOf="@+id/lv_h1" />
     </RelativeLayout>
     <RelativeLayout
@@ -141,7 +141,7 @@
             android:padding="6dp"
             android:text="No. of chords:"
             android:textAlignment="textStart"
-            android:textSize="14dp" />
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/cn_h2"
@@ -158,7 +158,7 @@
             android:fontFamily="@font/poppins_regular"
             android:padding="6dp"
             android:text="5 chords"
-            android:textSize="14dp"
+            android:textSize="14sp"
             app:layout_constraintStart_toEndOf="@+id/cn_h1" />
     </RelativeLayout>
     <RelativeLayout
@@ -188,7 +188,7 @@
             android:padding="6dp"
             android:text="Keys:"
             android:textAlignment="textStart"
-            android:textSize="14dp" />
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/key_h2"
@@ -205,7 +205,7 @@
             android:fontFamily="@font/poppins_regular"
             android:padding="6dp"
             android:text="G Major"
-            android:textSize="14dp"
+            android:textSize="14sp"
             app:layout_constraintStart_toEndOf="@+id/key_h1" />
     </RelativeLayout>
     <RelativeLayout
@@ -235,7 +235,7 @@
             android:padding="6dp"
             android:text="Tempo:"
             android:textAlignment="textStart"
-            android:textSize="14dp" />
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/tempo_h2"
@@ -252,7 +252,7 @@
             android:fontFamily="@font/poppins_regular"
             android:padding="6dp"
             android:text="120 BPM"
-            android:textSize="14dp"
+            android:textSize="14sp"
             app:layout_constraintStart_toEndOf="@+id/tempo_h1" />
     </RelativeLayout>
     <RelativeLayout
@@ -282,7 +282,7 @@
             android:padding="6dp"
             android:text="Song played:"
             android:textAlignment="textStart"
-            android:textSize="14dp" />
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/song_h2"
@@ -299,7 +299,7 @@
             android:fontFamily="@font/poppins_regular"
             android:padding="6dp"
             android:text="All of me"
-            android:textSize="14dp"
+            android:textSize="14sp"
             app:layout_constraintStart_toEndOf="@+id/song_h1" />
     </RelativeLayout>
     <RelativeLayout
@@ -329,7 +329,7 @@
             android:padding="6dp"
             android:text="Score:"
             android:textAlignment="textStart"
-            android:textSize="14dp" />
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/score_h2"
@@ -346,7 +346,7 @@
             android:fontFamily="@font/poppins_regular"
             android:padding="6dp"
             android:text="80/100"
-            android:textSize="14dp"
+            android:textSize="14sp"
             app:layout_constraintStart_toEndOf="@+id/score_h1" />
     </RelativeLayout>
 
@@ -375,7 +375,7 @@
             android:text="Comment:"
             android:textAlignment="textStart"
             android:textColor="@color/black"
-            android:textSize="14dp" />
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/comment_h2"
@@ -392,7 +392,7 @@
             android:fontFamily="@font/poppins_regular"
             android:padding="6dp"
             android:text="comment"
-            android:textSize="14dp"
+            android:textSize="14sp"
             app:layout_constraintTop_toBottomOf="@+id/comment_h1" />
     </RelativeLayout>
 
@@ -415,7 +415,7 @@
             android:background="@drawable/lesson_button"
             android:fontFamily="@font/poppins_medium"
             android:text="Replay"
-            android:textSize="12dp"
+            android:textSize="12sp"
             tools:layout_editor_absoluteX="214dp"
             tools:layout_editor_absoluteY="660dp" />
 
@@ -427,7 +427,7 @@
             android:background="@drawable/lesson_button"
             android:fontFamily="@font/poppins_medium"
             android:text="Exit"
-            android:textSize="12dp"
+            android:textSize="12sp"
             tools:layout_editor_absoluteX="214dp"
             tools:layout_editor_absoluteY="660dp" />
     </RelativeLayout>
