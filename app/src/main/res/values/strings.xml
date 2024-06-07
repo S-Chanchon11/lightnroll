@@ -42,6 +42,11 @@
     <!--Lesson Topics -->
     <string name="topics1">Music Element</string>
 
+    <!--Task-->
+    <string name="task1">Task1</string>
+    <string name="task2">Task2</string>
+    <string name="task3">Task3</string>
+
     <!--CTA command -->
     <string name="next_page">Next</string>
 

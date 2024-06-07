@@ -94,7 +94,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
-            android:background="@drawable/lesson_button"
+            android:background="@drawable/profile_hist_purple"
             android:padding="8dp">
 
             <ImageView

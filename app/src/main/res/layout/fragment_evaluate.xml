@@ -15,10 +15,12 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_marginTop="36dp"
-        android:fontFamily="@font/poppins_medium"
+        android:fontFamily="@font/poppins_semibold"
+        android:textColor="@color/blue_normal"
         android:text="@string/page_name3"
         android:textAlignment="center"
         android:textSize="20sp"
+        android:textAllCaps="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -29,6 +31,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:padding="8dp"
+        android:dropDownWidth="match_parent"
         app:layout_constraintTop_toBottomOf="@+id/page_name"
         tools:layout_editor_absoluteX="0dp" />
 

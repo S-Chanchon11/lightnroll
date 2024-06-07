@@ -21,6 +21,7 @@
     <color name="purpleN2">#6D1A68</color>
     <color name="purpleN3">#61175D</color>
     //Blue
+    <color name="blue_l1">#E6F5F5</color>
     <color name="blue_light">#b0dfe1</color>
     <color name="blue_normal">#00989e</color>
     //Green

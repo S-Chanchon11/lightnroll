@@ -20,13 +20,12 @@
 
         <TextView
             android:id="@+id/username"
-            android:layout_width="180dp"
-            android:layout_height="51dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
             android:layout_marginStart="124dp"
-            android:layout_marginTop="8dp"
             android:layout_marginEnd="124dp"
             android:fontFamily="@font/poppins_semibold"
             android:textColor="@color/black"
@@ -77,7 +76,7 @@
         android:layout_height="160dp"
         android:layout_marginTop="24dp"
         android:layout_marginStart="32dp"
-        android:background="@drawable/lesson_button"
+        android:background="@drawable/profile_hist_blue"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/profile_box">
 
@@ -91,9 +90,11 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="12dp"
             android:layout_marginEnd="20dp"
-            android:fontFamily="@font/poppins_medium"
+            android:fontFamily="@font/poppins_semibold"
             android:text="Lesson"
+            android:textColor="@color/blue_normal"
             android:textAlignment="center"
+            android:textAllCaps="true"
             android:textSize="12sp" />
 
         <TextView
@@ -149,7 +150,7 @@
         android:layout_height="160dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="32dp"
-        android:background="@drawable/lesson_button"
+        android:background="@drawable/profile_hist_purple"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/history_lesson"
@@ -165,8 +166,10 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="12dp"
             android:layout_marginEnd="20dp"
-            android:fontFamily="@font/poppins_medium"
+            android:fontFamily="@font/poppins_semibold"
             android:text="Score"
+            android:textAllCaps="true"
+            android:textColor="@color/purpleN1"
             android:textAlignment="center"
             android:textSize="12sp" />
 
@@ -177,9 +180,9 @@
             android:layout_below="@+id/score_hd"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginStart="25dp"
+            android:layout_marginStart="20dp"
             android:layout_marginTop="24dp"
-            android:layout_marginEnd="24dp"
+            android:layout_marginEnd="20dp"
             android:fontFamily="@font/poppins_semibold"
             android:text="80/100"
             android:textAlignment="center"
@@ -208,7 +211,7 @@
         android:layout_height="160dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
-        android:background="@drawable/lesson_button"
+        android:background="@drawable/profile_hist_purple"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/history_lesson"
@@ -224,8 +227,10 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="12dp"
             android:layout_marginEnd="20dp"
-            android:fontFamily="@font/poppins_medium"
+            android:fontFamily="@font/poppins_semibold"
             android:text="Recent played"
+            android:textAllCaps="true"
+            android:textColor="@color/purpleN1"
             android:textAlignment="center"
             android:textSize="12sp" />
 
@@ -269,7 +274,7 @@
         android:layout_marginStart="28dp"
         android:layout_marginEnd="32dp"
         android:layout_marginTop="16dp"
-        android:background="@drawable/lesson_button"
+        android:background="@drawable/profile_hist_blue"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/history_play"
@@ -286,8 +291,10 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="12dp"
             android:layout_marginEnd="20dp"
-            android:fontFamily="@font/poppins_medium"
+            android:fontFamily="@font/poppins_semibold"
             android:text="Time played"
+            android:textAllCaps="true"
+            android:textColor="@color/blue_normal"
             android:textAlignment="center"
             android:textSize="12sp" />
 
