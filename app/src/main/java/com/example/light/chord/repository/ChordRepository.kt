@@ -1,10 +1,10 @@
-package com.example.light.expandableList.repository
+package com.example.light.chord.repository
 
-import com.example.light.expandableList.model.Fingerings
-import com.example.light.expandableList.model.Positions
-import com.example.light.expandableList.model.PracticeModel
+import com.example.light.chord.model.Fingerings
+import com.example.light.chord.model.Positions
+import com.example.light.chord.model.PracticeModel
 
-class PracticeRepository {
+class ChordRepository {
 
     fun getChord(): MutableMap<String, PracticeModel> {
         var lst: MutableMap<String, PracticeModel> = mutableMapOf()

@@ -1,4 +1,4 @@
-package com.example.light.expandableList.ui
+package com.example.light.chord.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,13 +11,13 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResultListener
 import androidx.lifecycle.Observer
 import com.example.light.R
-import com.example.light.expandableList.ui.adapter.PracticeExpandableListAdapter
-import com.example.light.expandableList.viewmodel.PracticeViewModel
+import com.example.light.chord.ui.adapter.PracticeExpandableListAdapter
+import com.example.light.chord.viewmodel.ChordViewModel
 import com.github.barteksc.pdfviewer.PDFView as PDFViewer
 
 class PracticeFragment : Fragment() {
 
-    private lateinit var practiceViewModel: PracticeViewModel
+    private lateinit var chordViewModel: ChordViewModel
     private var expandableListView: ExpandableListView? = null
     private lateinit var textChord: TextView
     private lateinit var expandableListDetail: HashMap<String, List<String>>
@@ -69,7 +69,7 @@ class PracticeFragment : Fragment() {
 
     private fun observeData() {
         try {
-            practiceViewModel.practiceDetail.observe(
+            chordViewModel.practiceDetail.observe(
                 viewLifecycleOwner,
                 Observer { it ->
                 }

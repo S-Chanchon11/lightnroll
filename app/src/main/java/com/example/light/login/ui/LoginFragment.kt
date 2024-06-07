@@ -57,8 +57,8 @@ class LoginFragment : Fragment() {
 //        }
 
         signinBtn.setOnClickListener {
-            Log.d("Login", emailTxt.text.toString())
-            Log.d("Login", passwordTxt.text.toString())
+//            Log.d("Login", emailTxt.text.toString())
+//            Log.d("Login", passwordTxt.text.toString())
             if (status == 1) {
                 emailTxt.background = resources.getDrawable(R.drawable.empty_input_box)
                 emailTxt.setPadding(42)

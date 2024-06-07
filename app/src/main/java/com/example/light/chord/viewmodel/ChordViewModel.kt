@@ -1,23 +1,23 @@
-package com.example.light.expandableList.viewmodel
+package com.example.light.chord.viewmodel
 
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.light.expandableList.model.PracticeModel
-import com.example.light.expandableList.repository.PracticeRepository
+import com.example.light.chord.model.PracticeModel
+import com.example.light.chord.repository.ChordRepository
 
-class PracticeViewModel : ViewModel() {
-    private val practiceRepository = PracticeRepository()
+class ChordViewModel : ViewModel() {
+    private val chordRepository = ChordRepository()
     private val _chord = MutableLiveData<MutableMap<String, PracticeModel>>()
     val practiceDetail: LiveData<MutableMap<String, PracticeModel>> get() = _chord
     val expandableListDetail = HashMap<String, List<String>>()
     val expandableListDetail2 = HashMap<String, List<String>>()
     fun loadPracticePos(): HashMap<String, List<String>> {
-        _chord.value = practiceRepository.getChord()
+        _chord.value = chordRepository.getChord()
         Log.d("ViewModel", _chord.value.toString())
 
-        for (data in practiceRepository.getChord().values) {
+        for (data in chordRepository.getChord().values) {
             var c_list = ArrayList<String>()
 //            var posobj = Positions(
 //                data.positions.s6,
@@ -58,10 +58,10 @@ class PracticeViewModel : ViewModel() {
     }
 
     fun loadPracticeFin(): HashMap<String, List<String>> {
-        _chord.value = practiceRepository.getChord()
+        _chord.value = chordRepository.getChord()
         Log.d("ViewModel", _chord.value.toString())
 
-        for (data in practiceRepository.getChord().values) {
+        for (data in chordRepository.getChord().values) {
             var c_list = ArrayList<String>()
 //            var posobj = Positions(
 //                data.positions.s6,

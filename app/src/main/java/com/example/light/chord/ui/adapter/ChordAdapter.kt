@@ -1,4 +1,4 @@
-package com.example.light.expandableList.ui.adapter
+package com.example.light.chord.ui.adapter
 
 import android.content.Context
 import android.graphics.Typeface

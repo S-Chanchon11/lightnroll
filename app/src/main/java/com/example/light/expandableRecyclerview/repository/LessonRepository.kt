@@ -1,6 +1,6 @@
 package com.example.light.expandableRecyclerview.repository
 
-import com.example.light.expandableList.ui.PracticeFragment
+import com.example.light.chord.ui.PracticeFragment
 import com.example.light.expandableRecyclerview.model.DestinationFragment
 import com.example.light.expandableRecyclerview.model.LessonModel
 import com.example.light.expandableRecyclerview.ui.RecyclerViewFragment

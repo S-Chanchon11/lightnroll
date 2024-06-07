@@ -15,6 +15,7 @@ import com.example.light.expandableRecyclerview.ui.LessonFragment
 import com.example.light.home.HomeFragment
 import com.example.light.login.viewmodel.LoginViewModel
 import com.example.light.profile.ProfileFragment
+import com.example.light.record.RecordFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.unity3d.player.UnityPlayerActivity
 
@@ -43,6 +44,7 @@ class MainActivity : AppCompatActivity() {
         val evaluateFragment = EvaluateFragment()
         val homeFragment = HomeFragment()
         val profileFragment = ProfileFragment()
+        val recordFragment = RecordFragment()
 
         toolBar = findViewById(R.id.toolbar)
         setSupportActionBar(toolBar)

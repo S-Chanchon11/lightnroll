@@ -25,7 +25,6 @@ class LessonFragment : Fragment() {
     private lateinit var viewModel: LessonViewModel
     private lateinit var adapter: LessonAdapter
 
-//    private lateinit var toolBar: Toolbar
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
