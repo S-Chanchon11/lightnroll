@@ -39,6 +39,11 @@
     <!--Chord -->
     <string name="chord_major_1">C Major</string>
 
+    <!--Chord Type -->
+    <string name="chordtype1">Major Chord</string>
+    <string name="chordtype2">Minor Chord</string>
+    <string name="chordtype3">Major7 Chord</string>
+
     <!--Lesson Topics -->
     <string name="topics1">Music Element</string>
 
