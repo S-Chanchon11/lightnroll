@@ -22,6 +22,7 @@
                 android:textSize="18sp"
                 android:fontFamily="@font/poppins_medium"
                 android:padding="8dp"
+                android:textColor="@color/black"
                 android:layout_margin="20dp"
                 android:id="@+id/title_text2">
             </TextView>
