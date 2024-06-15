@@ -30,8 +30,8 @@ class ChordAdapter(heroList: List<RecyclerModel>, context: Context) :
             getDrawable(R.drawable.e_maj),
             getDrawable(R.drawable.f_maj),
             getDrawable(R.drawable.g_maj),
-            getDrawable(R.drawable.a_maj)
-//            getDrawable(R.drawable.c_maj),
+            getDrawable(R.drawable.a_maj),
+            getDrawable(R.drawable.b_maj)
         )
     }
     fun getDrawable(id: Int): Drawable {

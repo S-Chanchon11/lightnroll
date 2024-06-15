@@ -1,10 +1,7 @@
-package com.example.light.expandableRecyclerview.viewmodel
+package com.example.light.lesson
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.light.expandableRecyclerview.model.DestinationFragment
-import com.example.light.expandableRecyclerview.model.LessonModel
-import com.example.light.expandableRecyclerview.repository.LessonRepository
 
 class LessonViewModel : ViewModel() {
     private val lessonRepository = LessonRepository()

@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import com.example.light.evaluate.api.EvaluateClient
 import com.example.light.evaluate.model.EvaluateModel
 import com.example.light.evaluate.model.EvaluateResultModel
+import com.example.light.evaluate.model.EvaluateSongModel
 import retrofit2.Call
 import retrofit2.Callback
 
@@ -12,16 +13,8 @@ class EvaluateRepository {
 
     val responseData = MutableLiveData<EvaluateModel>()
     val responseData2 = MutableLiveData<EvaluateResultModel>()
-
+    val responseSongData = MutableLiveData<EvaluateSongModel>()
     fun getServicesApiCall(): MutableLiveData<EvaluateModel> {
-//        val requestBody: RequestBody = RequestBody.create(MediaType.parse(
-//            "application/json; charset=utf-8"), rootObject.toString()
-//        )
-//        val call = EvaluateClient.apiInterface.sendData(requestBody)
-//        val dataModal = EvaluateModel(name, result)
-
-        // calling a method to create a post and passing our modal class.
-//        val call: Call<EvaluateModel> = EvaluateClient.apiInterface.sendData(dataModal)
         val call: Call<EvaluateModel> = EvaluateClient.apiInterface.getData()
 
         call.enqueue(object : Callback<EvaluateModel> {
@@ -68,45 +61,40 @@ class EvaluateRepository {
 
         return responseData2
     }
-}
+    fun getSongData(): List<EvaluateSongModel> {
+        val lst: List<EvaluateSongModel>
+        lst = ArrayList()
 
-// class StudentRepository {
-//
-//    val responseData = MutableLiveData<ResponseBody>()
-//
-//    fun getStudentDetail(con: Context, rootObject: JSONObject): MutableLiveData<ResponseBody> {
-//
-//        val gson = Gson()
-//
-//        val retrofit = RetrofitConfig.getRetrofit()
-//
-//        val requestBody: RequestBody = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), rootObject.toString())
-//
-//        val service = retrofit?.create(ApiInterface::class.java)
-//
-//        val call = service?.getStudentDetail(requestBody)
-//
-//        call?.enqueue(object : Callback<ResponseBody> {
-//            override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
-//
-//                if (response.isSuccessful) {
-//
-//                    responseData.value = response.body()
-//
-//                }else{
-//
-//                    responseData.value = null
-//
-//                }
-//            }
-//
-//            override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
-//
-//                responseData.value = null
-//
-//            }
-//        })
-//        return responseData
-//    }
-//
-// }
+        lst.add(
+            EvaluateSongModel(
+                "All of Me",
+                "John Legend",
+                "Em C G D Am",
+                120,
+                "Fm",
+                "Beginner"
+            )
+        )
+        lst.add(
+            EvaluateSongModel(
+                "Love Story",
+                "John Legend",
+                "Em C G D Am",
+                120,
+                "Fm",
+                "Beginner"
+            )
+        )
+        lst.add(
+            EvaluateSongModel(
+                "11:11",
+                "John Legend",
+                "Em C G D Am",
+                120,
+                "Fm",
+                "Beginner"
+            )
+        )
+        return lst
+    }
+}

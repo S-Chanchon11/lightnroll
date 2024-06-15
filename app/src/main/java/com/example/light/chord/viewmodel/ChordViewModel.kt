@@ -51,5 +51,4 @@ class ChordViewModel : ViewModel() {
 
         return expandableListDetail2
     }
-
 }

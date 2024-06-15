@@ -12,14 +12,17 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.auth
 import com.google.firebase.firestore.auth.User
 import com.google.firebase.firestore.firestore
+import com.google.firebase.storage.FirebaseStorage
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
 
 class LoginViewModel : ViewModel() {
+
     private val _user = MutableLiveData<FirebaseUser?>()
     private var auth: FirebaseAuth
     private val db = Firebase.firestore
+    private val storage = FirebaseStorage.getInstance().reference
     val user: LiveData<FirebaseUser?> get() = _user
     private val _userData = MutableLiveData<Map<String, Any>?>()
     val userData: MutableLiveData<Map<String, Any>?> get() = _userData
@@ -34,16 +37,12 @@ class LoginViewModel : ViewModel() {
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     _user.value = auth.currentUser
-//                    Log.d("LoginVM signup", FirebaseAuth.getInstance().currentUser!!.uid)
-//                    Log.d("LoginVM signup", auth.currentUser!!.uid)
                     // DSPlOrYFN6d2e00lOlERTh3riTj1
                     db.collection("users").document(_user.value!!.uid).set(userData)
                         .addOnSuccessListener {
-                            // User data successfully written
                             Log.d(TAG, "DocumentSnapshot successfully written!")
                         }
                         .addOnFailureListener { e ->
-                            // Handle the error
                         }
                 } else {
                 }
@@ -55,9 +54,6 @@ class LoginViewModel : ViewModel() {
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     _user.value = auth.currentUser
-//                    firestore.collection("users").document(currentUserId).get()
-//                    fetchUserData()
-//                    getUserData()
                 } else {
                     _user.value = null
                 }

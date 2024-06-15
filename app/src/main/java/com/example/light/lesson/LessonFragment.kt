@@ -1,4 +1,4 @@
-package com.example.light.expandableRecyclerview.ui
+package com.example.light.lesson
 
 import android.os.Bundle
 import android.util.Log
@@ -13,10 +13,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.light.R
-import com.example.light.expandableRecyclerview.model.DestinationFragment
-import com.example.light.expandableRecyclerview.model.LessonModel
-import com.example.light.expandableRecyclerview.ui.adapter.LessonAdapter
-import com.example.light.expandableRecyclerview.viewmodel.LessonViewModel
+import com.example.light.expandableRecyclerview.ui.ChordFragment
 
 class LessonFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView

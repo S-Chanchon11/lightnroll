@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResultListener
 import com.example.light.R
-import com.example.light.expandableRecyclerview.ui.LessonFragment
+import com.example.light.lesson.LessonFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.github.barteksc.pdfviewer.PDFView as PDFViewer
 

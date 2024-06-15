@@ -11,10 +11,14 @@ import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.chaquo.python.Python
 import com.example.light.R
 import com.example.light.evaluate.model.EvaluateModel
+import com.example.light.evaluate.model.EvaluateSongModel
 import com.example.light.evaluate.viewmodel.EvaluateViewModel
+import com.example.light.utilities.SpaceItemDecoration
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import java.io.File
@@ -25,16 +29,18 @@ class EvaluateFragment : Fragment() {
     private lateinit var predictBtn: Button
     private var mStorageRef: StorageReference? = null
     private lateinit var viewModel: EvaluateViewModel
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var adapter: EvaluateAdapter
+    private lateinit var songList: List<EvaluateSongModel>
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        val view: View = inflater.inflate(R.layout.fragment_evaluate, container, false)
-        // Inflate the layout for this fragment
-        openBtn = view.findViewById(R.id.openBtn)
-        predictBtn = view.findViewById(R.id.predict)
+    ): View {
+        val view: View = inflater.inflate(R.layout.fragment_recyler_view, container, false)
+        recyclerView = view.findViewById(R.id.recyclerview)
         mStorageRef = FirebaseStorage.getInstance().reference
+        songList = ArrayList()
         viewModel = ViewModelProvider(this)[EvaluateViewModel::class.java]
 
         return view
@@ -43,11 +49,17 @@ class EvaluateFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        openBtn.setOnClickListener {
-        }
-
-        predictBtn.setOnClickListener {
-        }
+        recyclerView.setHasFixedSize(true)
+        recyclerView.layoutManager = LinearLayoutManager(view.context)
+        songList = viewModel.getSongChoice()
+        adapter = EvaluateAdapter(songList)
+        recyclerView.adapter = adapter
+        recyclerView.addItemDecoration(SpaceItemDecoration(16))
+//        openBtn.setOnClickListener {
+//        }
+//
+//        predictBtn.setOnClickListener {
+//        }
     }
     private fun submitAudio() {
         val py = Python.getInstance()

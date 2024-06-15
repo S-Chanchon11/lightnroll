@@ -1,4 +1,4 @@
-package com.example.light.expandableRecyclerview.model
+package com.example.light.lesson
 
 import androidx.fragment.app.Fragment
 

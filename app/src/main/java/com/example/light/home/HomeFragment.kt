@@ -11,6 +11,7 @@ import com.example.light.R
 import com.example.light.login.viewmodel.LoginViewModel
 
 class HomeFragment : Fragment() {
+
     private lateinit var viewModel: LoginViewModel
 
     override fun onCreateView(
@@ -18,10 +19,9 @@ class HomeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view: View = inflater.inflate(R.layout.fragment_home, container, false)
+        val view: View = inflater.inflate(R.layout.fragment_home_0, container, false)
         viewModel = ViewModelProvider(this)[LoginViewModel::class.java]
 
-        // Inflate the layout for this fragment
         return view
     }
 

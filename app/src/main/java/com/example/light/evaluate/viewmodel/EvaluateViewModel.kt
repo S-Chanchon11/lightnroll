@@ -5,12 +5,15 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.light.evaluate.model.EvaluateModel
 import com.example.light.evaluate.model.EvaluateResultModel
+import com.example.light.evaluate.model.EvaluateSongModel
 import com.example.light.evaluate.repository.EvaluateRepository
 
 class EvaluateViewModel : ViewModel() {
     private val evaluateRepository = EvaluateRepository()
-    var evaluateData: MutableLiveData<EvaluateModel>? = null
-    var evaluateData2: MutableLiveData<EvaluateResultModel>? = null
+    private var evaluateData: MutableLiveData<EvaluateModel>? = null
+    private var evaluateResultData: MutableLiveData<EvaluateResultModel>? = null
+    private val evaluateSongData = MutableLiveData<List<EvaluateSongModel>>()
+//    private val evaluateRepository = EvaluateRepository()
 
     fun getData(): LiveData<EvaluateModel>? {
         evaluateData = evaluateRepository.getServicesApiCall()
@@ -18,7 +21,11 @@ class EvaluateViewModel : ViewModel() {
     }
 
     fun sendData(data: EvaluateModel): LiveData<EvaluateResultModel>? {
-        evaluateData2 = evaluateRepository.sendDataToModel(data)
-        return evaluateData2
+        evaluateResultData = evaluateRepository.sendDataToModel(data)
+        return evaluateResultData
+    }
+    fun getSongChoice(): List<EvaluateSongModel> {
+        evaluateSongData.value = evaluateRepository.getSongData()
+        return evaluateSongData.value!!
     }
 }
