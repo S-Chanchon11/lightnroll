@@ -1,9 +1,10 @@
 package com.example.light.expandableRecyclerview.repository
 
-import com.example.light.chord.ui.PracticeFragment
+import com.example.light.R
+import com.example.light.chord.ui.PdfFragment
 import com.example.light.expandableRecyclerview.model.DestinationFragment
 import com.example.light.expandableRecyclerview.model.LessonModel
-import com.example.light.expandableRecyclerview.ui.RecyclerViewFragment
+import com.example.light.expandableRecyclerview.ui.ChordFragment
 
 class LessonRepository() {
 
@@ -11,50 +12,50 @@ class LessonRepository() {
         val lst: List<LessonModel>
         lst = ArrayList()
 
-        lst.add(LessonModel("Basic", "sample"))
-        lst.add(LessonModel("Intermediate", "sample"))
-        lst.add(LessonModel("Advance", "sample"))
-        lst.add(LessonModel("Chord Library", "sample"))
+        lst.add(LessonModel(R.drawable.logo_basic, "Basic", "sample"))
+        lst.add(LessonModel(R.drawable.logo_inter, "Intermediate", "sample"))
+        lst.add(LessonModel(R.drawable.logo_adv, "Advance", "sample"))
+        lst.add(LessonModel(R.drawable.adv_chord, "Chord Library", "sample"))
 
         return lst
     }
 
-    fun getBasicLessonInfo(): List<LessonModel> {
-        val lst: List<LessonModel>
-        lst = ArrayList()
-
-        lst.add(LessonModel("Title_A", "Desc_A"))
-        lst.add(LessonModel("Title_B", "Desc_B"))
-        lst.add(LessonModel("Title_C", "Desc_C"))
-        lst.add(LessonModel("Title_D", "Desc_D"))
-        lst.add(LessonModel("Title_E", "Desc_E"))
-
-        return lst
-    }
     fun getSubLessonInfo(level: Int): List<DestinationFragment> {
         val lst: List<DestinationFragment>
         lst = ArrayList()
 
         when (level) {
             0 -> {
-                lst.add(DestinationFragment(PracticeFragment(), "BASIC_Guitar Anatomy.pdf"))
-                lst.add(DestinationFragment(PracticeFragment(), "BASIC_Chord Reading.pdf"))
-                lst.add(DestinationFragment(PracticeFragment(), "BASIC_Strumming.pdf"))
-                lst.add(DestinationFragment(RecyclerViewFragment(), "Major"))
+                lst.add(DestinationFragment(PdfFragment(), "BASIC_Intro.pdf"))
+                lst.add(DestinationFragment(PdfFragment(), "BASIC_Strumming.pdf"))
+                lst.add(DestinationFragment(PdfFragment(), "BASIC_SCALING.pdf"))
+                lst.add(DestinationFragment(ChordFragment(), "Major"))
             }
             1 -> {
-                lst.add(DestinationFragment(PracticeFragment(), "basic_1.pdf"))
-                lst.add(DestinationFragment(PracticeFragment(), "basic_1.pdf"))
-                lst.add(DestinationFragment(PracticeFragment(), "basic_1.pdf"))
-                lst.add(DestinationFragment(PracticeFragment(), "basic_1.pdf"))
-                lst.add(DestinationFragment(RecyclerViewFragment(), "Minor"))
+                lst.add(DestinationFragment(PdfFragment(), "INT_Strumming.pdf"))
+                lst.add(DestinationFragment(PdfFragment(), "INT_Scaling.pdf"))
+                lst.add(DestinationFragment(PdfFragment(), "INT_Music Sheet.pdf"))
+                lst.add(DestinationFragment(ChordFragment(), "Minor"))
             }
             2 -> {
-                lst.add(DestinationFragment(RecyclerViewFragment(), "Maj7"))
-                lst.add(DestinationFragment(PracticeFragment(), "basic_1.pdf"))
-                lst.add(DestinationFragment(PracticeFragment(), "basic_1.pdf"))
+                lst.add(DestinationFragment(PdfFragment(), "ADV_Scaling.pdf"))
+                lst.add(DestinationFragment(PdfFragment(), "ADV_AdvancedChord.pdf"))
+                lst.add(DestinationFragment(PdfFragment(), "ADV_Capo.pdf"))
+                lst.add(DestinationFragment(PdfFragment(), "ADV_SongPlaying.pdf"))
+                lst.add(DestinationFragment(ChordFragment(), "Maj7"))
             }
         }
+
+        return lst
+    }
+    fun getBasicLessonInfo(): List<LessonModel> {
+        val lst: List<LessonModel>
+        lst = ArrayList()
+
+        lst.add(LessonModel(R.drawable.duotune, "Introduction", "Guitar Anatomy, Chord Diagram"))
+        lst.add(LessonModel(R.drawable.guitar_head, "Strumming", "How to read, Sign Indication"))
+        lst.add(LessonModel(R.drawable.guitar_head, "Guitar Scales", "2 essentials patterns"))
+        lst.add(LessonModel(R.drawable.end_lesson, "End Lesson Test", ""))
 
         return lst
     }
@@ -63,12 +64,10 @@ class LessonRepository() {
         val lst: List<LessonModel>
         lst = ArrayList()
 
-        lst.add(LessonModel("Title_A", "Desc_A"))
-        lst.add(LessonModel("Title_B", "Desc_B"))
-        lst.add(LessonModel("Title_C", "Desc_C"))
-        lst.add(LessonModel("Title_D", "Desc_D"))
-        lst.add(LessonModel("Title_E", "Desc_E"))
-        lst.add(LessonModel("Title_F", "Desc_F"))
+        lst.add(LessonModel(R.drawable.guitar_head, "Strumming", "How to read, Sign Indication"))
+        lst.add(LessonModel(R.drawable.guitar_head, "Guitar Scales", "2 essentials patterns"))
+        lst.add(LessonModel(R.drawable.note, "Music Sheets", "TAB, Notation"))
+        lst.add(LessonModel(R.drawable.end_lesson, "End Lesson Test", ""))
 
         return lst
     }
@@ -76,18 +75,12 @@ class LessonRepository() {
         val lst: List<LessonModel>
         lst = ArrayList()
 
-        lst.add(LessonModel("Title_A", "Desc_A"))
-        lst.add(LessonModel("Title_B", "Desc_B"))
-        lst.add(LessonModel("Title_C", "Desc_C"))
-        lst.add(LessonModel("Title_D", "Desc_D"))
+        lst.add(LessonModel(R.drawable.guitar_head, "Guitar Scales", "Modes"))
+        lst.add(LessonModel(R.drawable.adv_chord, "Advanced Chords", ""))
+        lst.add(LessonModel(R.drawable.guitar, "Capo", "Desc_C"))
+        lst.add(LessonModel(R.drawable.sparkle_note, "Song Playing", "Techniques and Components"))
+        lst.add(LessonModel(R.drawable.end_lesson, "End Lesson Test", ""))
 
         return lst
     }
-
-//    fun replaceFragment(fragment: Fragment, tag: String) {
-//        val fragmentManager = supportFragmentManager
-//        val fragmentTransaction = fragmentManager.beginTransaction()
-//        fragmentTransaction.replace(R.id.frame_layout, fragment, tag).addToBackStack(tag)
-//        fragmentTransaction.commit()
-//    }
 }

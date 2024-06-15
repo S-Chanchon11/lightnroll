@@ -12,15 +12,15 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.light.R
 import com.example.light.expandableRecyclerview.model.RecyclerModel
-import com.example.light.expandableRecyclerview.ui.adapter.RecyclerViewAdapter
+import com.example.light.expandableRecyclerview.ui.adapter.ChordAdapter
 import com.example.light.expandableRecyclerview.viewmodel.RecylerViewViewModel
 import com.example.light.utilities.SpaceItemDecoration
 
-class RecyclerViewFragment : Fragment() {
+class ChordFragment : Fragment() {
 
     private lateinit var viewModel: RecylerViewViewModel
     private lateinit var recyclerView: RecyclerView
-    private lateinit var adapter: RecyclerViewAdapter
+    private lateinit var adapter: ChordAdapter
     private lateinit var heroList: List<RecyclerModel>
     private var resultFromFragment: String? = null
     override fun onCreateView(
@@ -41,7 +41,7 @@ class RecyclerViewFragment : Fragment() {
         recyclerView.setHasFixedSize(true)
         recyclerView.layoutManager = LinearLayoutManager(view?.context)
         heroList = viewModel.loadData() // chord data
-        adapter = RecyclerViewAdapter(heroList, view.context)
+        adapter = ChordAdapter(heroList, view.context)
         recyclerView.adapter = adapter
         recyclerView.addItemDecoration(SpaceItemDecoration(32))
         activity?.actionBar?.hide()

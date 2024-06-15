@@ -5,7 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResult
@@ -38,37 +38,29 @@ class LessonFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this)[LessonViewModel::class.java]
-//        toolBar = view.findViewById(R.id.toolbar)
         recyclerView.setHasFixedSize(true)
         recyclerView.layoutManager = LinearLayoutManager(view?.context)
         lessonList = viewModel.loadLessonData()
         adapter = LessonAdapter(lessonList, view.context)
         recyclerView.adapter = adapter
-        val recyclerFragment = RecyclerViewFragment()
-//        val lessonFragment = LessonFragment()
+        val recyclerFragment = ChordFragment()
+        var actionbar = (requireActivity() as AppCompatActivity).supportActionBar
+        actionbar?.show()
         var choice: Int
         adapter.setOnClickListener(object :
                 LessonAdapter.OnClickListener {
                 override fun onClick(position: Int, model: LessonModel) {
                     when (position) {
                         0 -> {
+                            actionbar?.title = "\tBasic Level"
                             lessonList = viewModel.loadLessonData(position)
-//                            adapter = LessonAdapter(lessonList, view.context)
-//                            recyclerView.adapter = adapter
                         }
                         1 -> {
-//                            Toast.makeText(context, "im in 1", Toast.LENGTH_SHORT)
-//                                .show()
-//                            activity?.actionBar?.title = "Basic Level"
-//                            activity.setSupportActionBar(toolBar)
-//                            val actionBar = supportActionBar
-//                            actionBar!!.title = "Light n roll"
-//                            refreshFragment(lessonFragment)
+                            actionbar?.title = "\tIntermediate Level"
                             lessonList = viewModel.loadLessonData(position)
-//                            adapter = LessonAdapter(lessonList, view.context)
-//                            recyclerView.adapter = adapter
                         }
                         2 -> {
+                            actionbar?.title = "\tAdvanced Level"
                             lessonList = viewModel.loadLessonData(position)
                         }
                         3 -> {
@@ -81,7 +73,6 @@ class LessonFragment : Fragment() {
                     }
                     choice = position
                     adapter = LessonAdapter(lessonList, view.context)
-                    Toast.makeText(context, adapter.itemCount.toString(), Toast.LENGTH_SHORT).show()
                     recyclerView.adapter = adapter
                     subLessonList = viewModel.loadSubLessonData(choice)
                     adapter.setOnClickListener(object :
@@ -89,7 +80,7 @@ class LessonFragment : Fragment() {
                             override fun onClick(position: Int, model: LessonModel) {
                                 replaceFragment(subLessonList[position].fragment)
                                 val result = Bundle().apply {
-                                    putString("bundleKey", subLessonList[position].detail)
+                                    putString("bundleKey", subLessonList[position].filename)
                                 }
                                 setFragmentResult("detailKey", result)
                             }

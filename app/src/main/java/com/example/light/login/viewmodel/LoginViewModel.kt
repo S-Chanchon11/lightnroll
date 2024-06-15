@@ -85,7 +85,7 @@ class LoginViewModel : ViewModel() {
                 .addOnSuccessListener { document ->
                     if (document != null && document.exists()) {
                         _userData.value = document.data
-                        Log.d("Fetching User data",_userData.value.toString())
+                        Log.d("Fetching User data", _userData.value.toString())
                     } else {
                         _userData.value = null
                     }
@@ -95,5 +95,4 @@ class LoginViewModel : ViewModel() {
                 }
         }
     }
-
 }

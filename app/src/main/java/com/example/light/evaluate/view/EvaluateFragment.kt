@@ -8,7 +8,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -37,76 +36,55 @@ class EvaluateFragment : Fragment() {
         predictBtn = view.findViewById(R.id.predict)
         mStorageRef = FirebaseStorage.getInstance().reference
         viewModel = ViewModelProvider(this)[EvaluateViewModel::class.java]
+
         return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        openBtn.setOnClickListener {
+        }
+
+        predictBtn.setOnClickListener {
+        }
+    }
+    private fun submitAudio() {
         val py = Python.getInstance()
         val module = py.getModule("Tuner")
-        val sumFunc = module[ "extract" ]
-
-//        observeData()
+        val pcpFunc = module[ "extract" ]
 
         val externalStorageDirectory = Environment.getExternalStorageDirectory()
         var filename = "/Android/data/com.example.light/files"
-//        var filename = "/chaquopy/AssetFinder/app"
-
-//        val file = File(requireContext().filesDir.path, filename)
         val file = File(externalStorageDirectory, filename)
-
-        openBtn.setOnClickListener {
-            file.walk().forEach {
-//            Log.d("Egdfgasdfgsdfgsdfg", it.toString())
-
+        file.walk().forEach {
 //            '/data/data/com.example.light/files/chaquopy/AssetFinder/app/Recording_0.wav'
-                if (it.extension == "wav") {
-//                it.renameTo(File("/data/data/com.example.light/files/chaquopy/AssetFinder/app/"+it.name))
-                    it.copyTo(File("/data/data/com.example.light/files/chaquopy/AssetFinder/app/" + it.name), true)
-//                Log.d("isWAV", it.name)
+            if (it.extension == "wav") {
+                it.copyTo(File("/data/data/com.example.light/files/chaquopy/AssetFinder/app/" + it.name), true)
 //                        uploadFile(it)`
 //                        Log.d("From python",it.name).
 // save audio file
 // copy to asset path
 // read by python
-                    val sum = sumFunc?.call(it.name.toString())
-                    Log.d("From python", sum.toString())
-//                        Log.d("Evaluate", it.toString())
-                }
+                val pcp = pcpFunc?.call(it.name.toString())
+//                Log.d("From python", pcp.toString())
+                val evaluateModel = EvaluateModel(
+                    "123",
+                    listOf(pcp!!.toDouble()),
+                    22050
+                )
+                viewModel.sendData(evaluateModel)?.observe(
+                    viewLifecycleOwner,
+                    Observer { it ->
+                        if (it != null) {
+                            Log.d("observe", it.prediction)
+                        } else {
+                            Log.d("observe", "is null")
+                        }
+                    }
+                )
             }
         }
-
-        predictBtn.setOnClickListener {
-            if (file.exists()) {
-            } else {
-                Toast.makeText(context, "Unable to upload", Toast.LENGTH_SHORT).show()
-            }
-
-// /storage/emulated/0/Android/data/com.example.light/files/Recording_0.wav
-        }
-        val tmp = EvaluateModel(
-            "123",
-            listOf(
-                0.0463569499694632, 0.011944281013532385,
-                0.020558309753137712, 0.055262921717549957,
-                0.2965828294454288, 0.155674943466443,
-                0.09239806459759001, 0.08979944076993905,
-                0.0245992740016334, 0.00958718664129607,
-                0.015455776869599896, 0.1817800217543866
-            ),
-            22050
-        )
-        viewModel.sendData(tmp)?.observe(
-            viewLifecycleOwner,
-            Observer { it ->
-                if (it != null) {
-                    Log.d("observe", it.prediction)
-                } else {
-                    Log.d("observe", "is null")
-                }
-            }
-        )
     }
     private fun uploadFile(file: File) {
         val fileUri = Uri.fromFile(file)

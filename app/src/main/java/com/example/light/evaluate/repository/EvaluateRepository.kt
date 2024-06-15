@@ -46,7 +46,6 @@ class EvaluateRepository {
         return responseData
     }
     fun sendDataToModel(data: EvaluateModel): MutableLiveData<EvaluateResultModel> {
-
         val call: Call<EvaluateResultModel> = EvaluateClient.apiInterface.sendData(data)
 
         call.enqueue(object : Callback<EvaluateResultModel> {

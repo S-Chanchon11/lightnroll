@@ -14,8 +14,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.light.R
 import com.example.light.expandableRecyclerview.model.RecyclerModel
 
-class RecyclerViewAdapter(heroList: List<RecyclerModel>, context: Context) :
-    RecyclerView.Adapter<RecyclerViewAdapter.HeroViewHolder>() {
+class ChordAdapter(heroList: List<RecyclerModel>, context: Context) :
+    RecyclerView.Adapter<ChordAdapter.HeroViewHolder>() {
     private val heroList: List<RecyclerModel>
     private val context: Context
     private var currentPosition: Int = 0
