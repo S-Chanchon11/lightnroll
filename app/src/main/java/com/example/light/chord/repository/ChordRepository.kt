@@ -1,25 +1,21 @@
 package com.example.light.chord.repository
 
-import com.example.light.chord.model.Fingerings
-import com.example.light.chord.model.Positions
-import com.example.light.chord.model.PracticeModel
+import com.example.light.chord.model.RecyclerModel
 
-class ChordRepository {
+class PracticeRepository2 {
 
-    fun getChord(): MutableMap<String, PracticeModel> {
-        var lst: MutableMap<String, PracticeModel> = mutableMapOf()
-        var chord = "C"
-        var pos = Positions("x", "3", "2", "0", "1", "0")
-        var fin = Fingerings("0", "3", "2", "0", "1", "0")
-        lst[chord] = PracticeModel(chord, pos, fin)
-        chord = "D"
-        pos = Positions("x", "3", "2", "0", "1", "0")
-        fin = Fingerings("0", "3", "2", "0", "1", "0")
-        lst[chord] = PracticeModel(chord, pos, fin)
-        chord = "E"
-        pos = Positions("x", "3", "2", "0", "1", "0")
-        fin = Fingerings("0", "3", "2", "0", "1", "0")
-        lst[chord] = PracticeModel(chord, pos, fin)
+    fun getChord(): List<RecyclerModel> {
+        val lst: List<RecyclerModel>
+        lst = ArrayList()
+
+        lst.add(RecyclerModel("C"))
+        lst.add(RecyclerModel("D"))
+        lst.add(RecyclerModel("E"))
+        lst.add(RecyclerModel("F"))
+        lst.add(RecyclerModel("G"))
+        lst.add(RecyclerModel("A"))
+        lst.add(RecyclerModel("B"))
+
         return lst
     }
 }

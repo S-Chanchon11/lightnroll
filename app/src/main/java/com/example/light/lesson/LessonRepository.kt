@@ -1,8 +1,8 @@
 package com.example.light.lesson
 
 import com.example.light.R
+import com.example.light.chord.ui.ChordFragment
 import com.example.light.chord.ui.PdfFragment
-import com.example.light.expandableRecyclerview.ui.ChordFragment
 
 class LessonRepository() {
 

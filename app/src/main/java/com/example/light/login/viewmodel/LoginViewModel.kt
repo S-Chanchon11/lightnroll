@@ -1,11 +1,14 @@
 package com.example.light.login.viewmodel
 
 import android.annotation.SuppressLint
-import android.content.ContentValues.TAG
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.example.light.UserManager
+import com.example.light.profile.ProfileModel
+import com.example.light.profile.ProfileRepository
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -16,21 +19,32 @@ import com.google.firebase.storage.FirebaseStorage
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
+import kotlinx.coroutines.launch
 
 class LoginViewModel : ViewModel() {
-
+    val TAG = "LoginViewModel"
     private val _user = MutableLiveData<FirebaseUser?>()
     private var auth: FirebaseAuth
     private val db = Firebase.firestore
     private val storage = FirebaseStorage.getInstance().reference
     val user: LiveData<FirebaseUser?> get() = _user
+
     private val _userData = MutableLiveData<Map<String, Any>?>()
     val userData: MutableLiveData<Map<String, Any>?> get() = _userData
 
+    private val profileRepository = ProfileRepository()
+
+    private val _userDetails = MutableLiveData<ProfileModel>()
+    val userDetails: LiveData<ProfileModel> get() = _userDetails
+
+    private var _profileData = MutableLiveData<ProfileModel>()
+    val profiledata: MutableLiveData<ProfileModel> get() = _profileData
     init {
         auth = Firebase.auth
         _user.value = auth.currentUser
         fetchUserData()
+        observeData(auth.currentUser!!.uid)
+
     }
     fun signUp(email: String, password: String, userData: HashMap<String, String>) {
         auth.createUserWithEmailAndPassword(email, password)
@@ -42,7 +56,8 @@ class LoginViewModel : ViewModel() {
                         .addOnSuccessListener {
                             Log.d(TAG, "DocumentSnapshot successfully written!")
                         }
-                        .addOnFailureListener { e ->
+                        .addOnFailureListener {
+
                         }
                 } else {
                 }
@@ -77,6 +92,7 @@ class LoginViewModel : ViewModel() {
         val user = auth.currentUser
         user?.let {
             val uid = it.uid
+            UserManager.setUid(uid)
             db.collection("users").document(uid).get()
                 .addOnSuccessListener { document ->
                     if (document != null && document.exists()) {
@@ -86,9 +102,19 @@ class LoginViewModel : ViewModel() {
                         _userData.value = null
                     }
                 }
-                .addOnFailureListener { e ->
+                .addOnFailureListener {
                     _userData.value = null
                 }
         }
+    }
+    private fun observeData(userId: String): LiveData<ProfileModel>? {
+        _profileData = profileRepository.getServicesApiCall(userId)
+        return _profileData
+    }
+
+    fun fetchUserDetails() {
+//        viewModelScope.launch {
+//            val data = _userDetails.postValue(profileRepository.getUserDetails().value)
+//        }
     }
 }

@@ -13,9 +13,10 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.light.R
-import com.example.light.expandableRecyclerview.ui.ChordFragment
+import com.example.light.chord.ui.ChordFragment
 
 class LessonFragment : Fragment() {
+
     private lateinit var recyclerView: RecyclerView
     private lateinit var lessonList: List<LessonModel>
     private lateinit var subLessonList: List<DestinationFragment>

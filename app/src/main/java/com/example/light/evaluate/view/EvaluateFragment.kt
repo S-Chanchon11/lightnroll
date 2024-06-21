@@ -7,7 +7,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -25,8 +24,6 @@ import java.io.File
 
 class EvaluateFragment : Fragment() {
 
-    private lateinit var openBtn: Button
-    private lateinit var predictBtn: Button
     private var mStorageRef: StorageReference? = null
     private lateinit var viewModel: EvaluateViewModel
     private lateinit var recyclerView: RecyclerView
@@ -37,7 +34,7 @@ class EvaluateFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val view: View = inflater.inflate(R.layout.fragment_recyler_view, container, false)
+        val view: View = inflater.inflate(R.layout.fragment_evaluate, container, false)
         recyclerView = view.findViewById(R.id.recyclerview)
         mStorageRef = FirebaseStorage.getInstance().reference
         songList = ArrayList()
@@ -52,7 +49,7 @@ class EvaluateFragment : Fragment() {
         recyclerView.setHasFixedSize(true)
         recyclerView.layoutManager = LinearLayoutManager(view.context)
         songList = viewModel.getSongChoice()
-        adapter = EvaluateAdapter(songList)
+        adapter = EvaluateAdapter(songList, view.context)
         recyclerView.adapter = adapter
         recyclerView.addItemDecoration(SpaceItemDecoration(16))
 //        openBtn.setOnClickListener {
@@ -89,7 +86,7 @@ class EvaluateFragment : Fragment() {
                     viewLifecycleOwner,
                     Observer { it ->
                         if (it != null) {
-                            Log.d("observe", it.prediction)
+                            Log.d("observe", it.prediction_result.toString())
                         } else {
                             Log.d("observe", "is null")
                         }
@@ -116,21 +113,5 @@ class EvaluateFragment : Fragment() {
                 // Handle unsuccessful uploads
                 Log.d("Evaluate", "why????")
             }
-    }
-    private fun observeData() {
-        try {
-            viewModel.getData()?.observe(
-                viewLifecycleOwner,
-                Observer { it ->
-                    if (it != null) {
-                        Log.d("observe", it.pcp.toString())
-                    } else {
-                        Log.d("observe", "is null")
-                    }
-                }
-            )
-        } catch (e: Exception) {
-            print(e)
-        }
     }
 }

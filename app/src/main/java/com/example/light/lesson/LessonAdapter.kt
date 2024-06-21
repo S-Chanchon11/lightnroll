@@ -60,7 +60,7 @@ class LessonAdapter(
             val lessonIcon = holder.imageView
             val lessonTitle = holder.titleTxt
             val lessonDesc = holder.descTxt
-//        lessonImage.setImageDrawable(drawables[position])
+
             lessonIcon.setImageResource(lesson.image)
             lessonTitle.setText(lesson.title)
             lessonDesc.setText(lesson.description)

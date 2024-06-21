@@ -2,6 +2,7 @@ package com.example.light.login.ui
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,7 +18,7 @@ import com.example.light.R
 import com.example.light.login.viewmodel.LoginViewModel
 
 class LoginFragment : Fragment() {
-
+    val TAG = "LoginFragment"
     private lateinit var signinBtn: Button
     private lateinit var signupBtn: TextView
     private lateinit var guestMode: TextView
@@ -44,7 +45,7 @@ class LoginFragment : Fragment() {
         val signupFragment = SignupFragment()
         viewModel = ViewModelProvider(this)[LoginViewModel::class.java]
         observeData()
-
+        Log.d(TAG, "onViewCreated")
 //        emailTxt.setOnClickListener {
 //            if(!emailTxt.text.isEmpty()){
 //                emailTxt.background = resources.getDrawable(R.drawable.input_box)

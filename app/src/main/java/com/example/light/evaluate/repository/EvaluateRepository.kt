@@ -2,7 +2,7 @@ package com.example.light.evaluate.repository
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
-import com.example.light.evaluate.api.EvaluateClient
+import com.example.light.MainClient
 import com.example.light.evaluate.model.EvaluateModel
 import com.example.light.evaluate.model.EvaluateResultModel
 import com.example.light.evaluate.model.EvaluateSongModel
@@ -13,9 +13,8 @@ class EvaluateRepository {
 
     val responseData = MutableLiveData<EvaluateModel>()
     val responseData2 = MutableLiveData<EvaluateResultModel>()
-    val responseSongData = MutableLiveData<EvaluateSongModel>()
     fun getServicesApiCall(): MutableLiveData<EvaluateModel> {
-        val call: Call<EvaluateModel> = EvaluateClient.apiInterface.getData()
+        val call: Call<EvaluateModel> = MainClient.evaluateApiInterface.getData()
 
         call.enqueue(object : Callback<EvaluateModel> {
 
@@ -23,8 +22,6 @@ class EvaluateRepository {
                 call: Call<EvaluateModel>,
                 response: retrofit2.Response<EvaluateModel>
             ) {
-//                Log.v("DEBUG : ", response.body()?.pcp.toString())
-                Log.v("DEBUG : ", response.body().toString())
                 if (response.isSuccessful) {
                     responseData.value = response.body()
                 } else {
@@ -39,19 +36,19 @@ class EvaluateRepository {
         return responseData
     }
     fun sendDataToModel(data: EvaluateModel): MutableLiveData<EvaluateResultModel> {
-        val call: Call<EvaluateResultModel> = EvaluateClient.apiInterface.sendData(data)
+        val call: Call<EvaluateResultModel> = MainClient.evaluateApiInterface.sendData(data)
 
         call.enqueue(object : Callback<EvaluateResultModel> {
 
             override fun onFailure(call: Call<EvaluateResultModel>, t: Throwable) {
-                Log.v("DEBUG : ", t.message.toString())
+//                Log.v("DEBUG : ", t.message.toString())
             }
 
             override fun onResponse(
                 call: Call<EvaluateResultModel>,
                 response: retrofit2.Response<EvaluateResultModel>
             ) {
-                Log.v("DEBUG : ", response.body().toString())
+//                Log.v("DEBUG : ", response.body().toString())
                 if (response.isSuccessful) {
                     responseData2.value = response.body()
                 } else {
@@ -67,7 +64,7 @@ class EvaluateRepository {
 
         lst.add(
             EvaluateSongModel(
-                "All of Me",
+                "All of me",
                 "John Legend",
                 "Em C G D Am",
                 120,
@@ -87,7 +84,7 @@ class EvaluateRepository {
         )
         lst.add(
             EvaluateSongModel(
-                "11:11",
+                "Photograph",
                 "John Legend",
                 "Em C G D Am",
                 120,

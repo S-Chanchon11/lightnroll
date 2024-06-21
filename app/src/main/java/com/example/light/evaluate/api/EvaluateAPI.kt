@@ -9,7 +9,7 @@ import retrofit2.http.POST
 
 interface EvaluateAPI {
     // on below line we are creating a method to post our data
-    @POST("evaluate")
+    @POST("results")
     fun sendData(@Body dataModal: EvaluateModel): Call<EvaluateResultModel>
 
     @GET("get_pcp")

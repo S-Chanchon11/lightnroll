@@ -3,14 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/white">
 
-    <RelativeLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/Header"
-        android:layout_width="376dp"
-        android:layout_height="115dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="24dp"
         android:layout_marginEnd="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -44,25 +44,23 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
             android:fontFamily="@font/poppins_regular"
             android:text="Practice makes perfect. Make sure you practice everyday."
             android:textColor="@color/grey6"
             android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.4"
             app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteY="84dp" />
-    </RelativeLayout>
+            app:layout_constraintTop_toBottomOf="@+id/Header_h1" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <RelativeLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/continue_top"
-        android:layout_width="371dp"
-        android:layout_height="189dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="16dp"
         android:layout_marginEnd="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -70,98 +68,63 @@
         app:layout_constraintTop_toBottomOf="@+id/Header">
 
         <TextView
-            android:id="@+id/Header_top"
-            android:layout_width="264dp"
-            android:layout_height="24dp"
+            android:id="@+id/firstTitleText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
             android:fontFamily="@font/poppins_medium"
-            android:text="Continue your lesson"
-            android:textColor="@color/black"
-            android:textSize="14sp" />
+            android:text="@string/home_page_first_container_title"
+            android:textColor="@color/purpleN1"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <RelativeLayout
-            android:id="@+id/box1"
+        <TextView
+            android:id="@+id/firstSubText"
             android:layout_width="wrap_content"
-            android:layout_height="137dp"
-            android:layout_below="@+id/Header_top"
+            android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
-            android:background="@drawable/profile_hist_purple"
-            android:padding="8dp">
+            android:fontFamily="@font/poppins"
+            android:text="@string/home_page_first_container_subtitle"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/firstTitleText" />
 
-            <ImageView
-                android:id="@+id/lvl_color"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:src="@drawable/level_basic"
-                android:scaleType="fitXY"/>
+        <Button
+            android:id="@+id/startLessonButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/purpleL3"
+            android:fontFamily="@font/poppins_medium"
+            android:gravity="center"
+            android:text="@string/home_page_first_container_button"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="16dp"
+            app:cornerRadius="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/firstSubText">
 
-            <TextView
-                android:id="@+id/lvl_head"
-                android:layout_width="72dp"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentEnd="true"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_toEndOf="@+id/lvl_color"
-                android:fontFamily="@font/poppins_medium"
-                android:text="Basic"
-                android:textColor="@color/black"
-                android:textSize="18sp" />
+        </Button>
 
-            <TextView
-                android:id="@+id/h1"
-                android:layout_width="266dp"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/lvl_head"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentEnd="true"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:fontFamily="@font/poppins_regular"
-                android:text="Current lesson: Music elements"
-                android:textSize="12sp" />
 
-            <TextView
-                android:id="@+id/h2"
-                android:layout_width="274dp"
-                android:layout_height="20dp"
-                android:layout_below="@+id/h1"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentBottom="true"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginBottom="24dp"
-                android:fontFamily="@font/poppins_regular"
-                android:text="Next lesson: Guitar anatomy"
-                android:textSize="12sp" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-        </RelativeLayout>
-    </RelativeLayout>
-
-    <RelativeLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/recent_box"
-        android:layout_width="377dp"
-        android:layout_height="360dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -169,53 +132,107 @@
         app:layout_constraintTop_toBottomOf="@+id/continue_top">
 
         <TextView
-            android:id="@+id/recent_txt"
-            android:layout_width="264dp"
-            android:layout_height="24dp"
+            android:id="@+id/secondTitleText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
             android:fontFamily="@font/poppins_medium"
-            android:text="Recently played"
-            android:textColor="@color/black"
-            android:textSize="14sp" />
+            android:text="@string/home_page_second_container_title"
+            android:textColor="@color/purpleN1"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recent_recyclerView"
-            android:layout_width="356dp"
-            android:layout_height="250dp"
-            android:layout_below="@+id/recent_txt"
+        <TextView
+            android:id="@+id/secondSubText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
-            android:padding="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginBottom="8dp" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="48dp"
-            android:layout_below="@+id/recent_recyclerView"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="14dp"
-            android:layout_marginBottom="16dp"
-            android:backgroundTint="@color/purpleL1"
-            android:fontFamily="@font/poppins_medium"
-            android:text="See all"
-            android:textAllCaps="true"
+            android:fontFamily="@font/poppins"
+            android:text="@string/home_page_second_container_subtitle"
             android:textColor="@color/black"
             android:textSize="14sp"
-            app:cornerRadius="8dp" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/secondTitleText" />
 
-    </RelativeLayout>
+        <Button
+            android:id="@+id/startEvaluateButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:backgroundTint="@color/purpleL3"
+            android:fontFamily="@font/poppins_medium"
+            android:gravity="center"
+            android:text="@string/home_page_second_container_button"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="16dp"
+            app:cornerRadius="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/secondSubText" />
 
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recent_box">
+
+        <TextView
+            android:id="@+id/thirdTitleText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_bold"
+            android:text="@string/home_page_third_container_title"
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/thirdSubText"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:fontFamily="@font/poppins"
+            android:text="@string/home_page_third_container_subtitle"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="12dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/thirdTitleText" />
+
+        <ImageView
+            android:layout_width="339dp"
+            android:layout_height="237dp"
+            android:src="@drawable/home_guitar_logo"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/thirdSubText">
+
+        </ImageView>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

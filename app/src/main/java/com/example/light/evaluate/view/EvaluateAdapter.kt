@@ -1,22 +1,29 @@
 package com.example.light.evaluate.view
 
 import android.annotation.SuppressLint
+import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.light.R
 import com.example.light.evaluate.model.EvaluateSongModel
+import com.unity3d.player.UnityPlayerActivity
 
-class EvaluateAdapter(heroList: List<EvaluateSongModel>) :
+class EvaluateAdapter(heroList: List<EvaluateSongModel>, context: Context) :
     RecyclerView.Adapter<EvaluateAdapter.HeroViewHolder>() {
     private val songList: List<EvaluateSongModel>
     private var currentPosition: Int = 0
+    private var context: Context
 
     init {
         this.songList = heroList
+        this.context = context
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HeroViewHolder {
@@ -29,14 +36,16 @@ class EvaluateAdapter(heroList: List<EvaluateSongModel>) :
     override fun onBindViewHolder(holder: HeroViewHolder, @SuppressLint("RecyclerView") position: Int) {
         val hero: EvaluateSongModel = songList[position]
 
-        holder.songTitleTxt.setText(hero.song_name)
-        holder.songTxt.setText(hero.song_name)
-        holder.artistTxt.setText(hero.artist)
-        holder.chordSampleTxt.setText(hero.chord_sample)
-        holder.tempoTxt.setText(hero.tempo.toString())
-        holder.keyTxt.setText(hero.key)
-        holder.levelTxt.setText(hero.level)
-
+        holder.songTitleTxt.text = hero.song_name
+        holder.songTxt.text = "Song: " + hero.song_name
+        holder.artistTxt.text = "Artist: " + hero.artist
+        holder.chordSampleTxt.text = "Chords: " + hero.chord_sample
+        holder.tempoTxt.text = "Tempo: " + hero.tempo.toString()
+        holder.keyTxt.text = "Key: " + hero.key
+        holder.levelTxt.text = "Level: " + hero.level
+        holder.playBtn.setOnClickListener {
+            gotoRhythm(hero.song_name)
+        }
         if (position != currentPosition) {
             holder.linearLayout.visibility = View.GONE
         }
@@ -61,6 +70,7 @@ class EvaluateAdapter(heroList: List<EvaluateSongModel>) :
         var tempoTxt: TextView
         var keyTxt: TextView
         var levelTxt: TextView
+        var playBtn: Button
         init {
             songTitleTxt = itemView.findViewById(R.id.songTitleText)
             linearLayout = itemView.findViewById(R.id.songLinearlayout)
@@ -70,6 +80,12 @@ class EvaluateAdapter(heroList: List<EvaluateSongModel>) :
             tempoTxt = itemView.findViewById(R.id.tempoText)
             keyTxt = itemView.findViewById(R.id.keyText)
             levelTxt = itemView.findViewById(R.id.levelText)
+            playBtn = itemView.findViewById(R.id.playButton)
         }
+    }
+    private fun gotoRhythm(choice: String) {
+        val intent = Intent(context, UnityPlayerActivity::class.java)
+        intent.putExtra("name", choice)
+        context.startActivity(intent)
     }
 }

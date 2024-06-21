@@ -36,4 +36,25 @@
     <string name="page_name5">Profile</string>
     <string name="page_name6">Setting</string>
 
+    <string name="home_page_first_container_title">Continue your lesson</string>
+    <string name="home_page_first_container_subtitle">There is no progress yet. Start your journey to see it here.</string>
+    <string name="home_page_first_container_button">Start your Lesson</string>
+
+    <string name="home_page_second_container_title">Recent song</string>
+    <string name="home_page_second_container_subtitle">There is no history yet. Start your practice to see your history and score here.</string>
+    <string name="home_page_second_container_button">Start Evaluate</string>
+
+    <string name="home_page_third_container_title">Let\'s Begin</string>
+    <string name="home_page_third_container_subtitle">Start your journey by taking Lesson or \nEvaluate your playing skills. </string>
+
+    <string name="next_button">Next \t ></string>
+    <string name="back_button">Back</string>
+    <string name="play_button">Play</string>
+
+    <string name="choose_song_text">Choose a song</string>
+
+    <string name="setting_text">Setting</string>
+    <string name="edit_profile_text">Edit Profile</string>
+    <string name="logout_text">Log out</string>
+
 </resources>

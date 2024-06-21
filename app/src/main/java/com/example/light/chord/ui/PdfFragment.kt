@@ -17,15 +17,17 @@ class PdfFragment : Fragment() {
 
     private lateinit var pdfView: PDFViewer
     private lateinit var nextTxt: TextView
+    private lateinit var backTxt: TextView
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view: View = inflater.inflate(R.layout.fragment_practice, container, false)
+        val view: View = inflater.inflate(R.layout.fragment_pdf, container, false)
 
         pdfView = view.findViewById(R.id.pdfView)
         nextTxt = view.findViewById(R.id.nextText)
+        backTxt = view.findViewById(R.id.backText)
 
         var actionbar = (requireActivity() as AppCompatActivity).supportActionBar
         actionbar?.hide()
@@ -54,6 +56,8 @@ class PdfFragment : Fragment() {
                     } else {
                         pageNum++
                     }
+                }
+                backTxt.setOnClickListener {
                 }
             } else {
             }
