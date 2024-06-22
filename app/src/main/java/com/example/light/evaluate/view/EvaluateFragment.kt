@@ -1,5 +1,6 @@
 package com.example.light.evaluate.view
 
+import android.content.ContentValues.TAG
 import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
@@ -14,7 +15,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.chaquo.python.Python
 import com.example.light.R
+import com.example.light.UserManager
 import com.example.light.evaluate.model.EvaluateModel
+import com.example.light.evaluate.model.EvaluateResultModel
 import com.example.light.evaluate.model.EvaluateSongModel
 import com.example.light.evaluate.viewmodel.EvaluateViewModel
 import com.example.light.utilities.SpaceItemDecoration
@@ -23,12 +26,15 @@ import com.google.firebase.storage.StorageReference
 import java.io.File
 
 class EvaluateFragment : Fragment() {
-
+    val TAG = "EvaluateFragment"
     private var mStorageRef: StorageReference? = null
     private lateinit var viewModel: EvaluateViewModel
     private lateinit var recyclerView: RecyclerView
+    private lateinit var hisRecyclerView: RecyclerView
     private lateinit var adapter: EvaluateAdapter
+    private lateinit var hisAdapter: HistoryAdapter
     private lateinit var songList: List<EvaluateSongModel>
+    private lateinit var hisList: List<EvaluateResultModel>
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -36,8 +42,10 @@ class EvaluateFragment : Fragment() {
     ): View {
         val view: View = inflater.inflate(R.layout.fragment_evaluate, container, false)
         recyclerView = view.findViewById(R.id.recyclerview)
+        hisRecyclerView = view.findViewById(R.id.second_recyclerview)
         mStorageRef = FirebaseStorage.getInstance().reference
         songList = ArrayList()
+        hisList = ArrayList()
         viewModel = ViewModelProvider(this)[EvaluateViewModel::class.java]
 
         return view
@@ -50,14 +58,36 @@ class EvaluateFragment : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(view.context)
         songList = viewModel.getSongChoice()
         adapter = EvaluateAdapter(songList, view.context)
+
         recyclerView.adapter = adapter
         recyclerView.addItemDecoration(SpaceItemDecoration(16))
-//        openBtn.setOnClickListener {
-//        }
-//
-//        predictBtn.setOnClickListener {
-//        }
+//        observeResult()
+//        hisRecyclerView.adapter = hisAdapter
+//        viewModel.data
+        viewModel.data.observe(
+            viewLifecycleOwner,
+            Observer { user ->
+                Log.d(TAG,user.toString())
+//                val newLayoutId = when(user[0].rid.toString()) {
+//                    0 -> return@Observer
+//                    2 -> R.layout.fragment_home_2
+//                    else -> {return@Observer}
+//                }
+//                replaceLayout(newLayoutId, container)
+            }
+        )
+//        hisList = viewModel.fetchDataFromApi().value!!
+//        Log.d(TAG,hisList.toString())
     }
+//    private fun observeResult(){
+//        viewModel.data.observe(
+//            viewLifecycleOwner,
+//            Observer {data ->
+//                Log.d("EvaluateFragment",data[0].rid.toString())
+//            }
+//        )
+//
+//    }
     private fun submitAudio() {
         val py = Python.getInstance()
         val module = py.getModule("Tuner")
@@ -67,20 +97,15 @@ class EvaluateFragment : Fragment() {
         var filename = "/Android/data/com.example.light/files"
         val file = File(externalStorageDirectory, filename)
         file.walk().forEach {
-//            '/data/data/com.example.light/files/chaquopy/AssetFinder/app/Recording_0.wav'
+
             if (it.extension == "wav") {
+
                 it.copyTo(File("/data/data/com.example.light/files/chaquopy/AssetFinder/app/" + it.name), true)
-//                        uploadFile(it)`
-//                        Log.d("From python",it.name).
-// save audio file
-// copy to asset path
-// read by python
+
                 val pcp = pcpFunc?.call(it.name.toString())
-//                Log.d("From python", pcp.toString())
+
                 val evaluateModel = EvaluateModel(
-                    "123",
-                    listOf(pcp!!.toDouble()),
-                    22050
+                    listOf(pcp!!.toDouble())
                 )
                 viewModel.sendData(evaluateModel)?.observe(
                     viewLifecycleOwner,

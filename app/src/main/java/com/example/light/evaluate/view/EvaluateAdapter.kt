@@ -12,6 +12,7 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.light.R
+import com.example.light.UserManager.setRid
 import com.example.light.evaluate.model.EvaluateSongModel
 import com.unity3d.player.UnityPlayerActivity
 
@@ -44,7 +45,8 @@ class EvaluateAdapter(heroList: List<EvaluateSongModel>, context: Context) :
         holder.keyTxt.text = "Key: " + hero.key
         holder.levelTxt.text = "Level: " + hero.level
         holder.playBtn.setOnClickListener {
-            gotoRhythm(hero.song_name)
+            val rid = setRid()
+            gotoRhythm(hero.song_name,rid)
         }
         if (position != currentPosition) {
             holder.linearLayout.visibility = View.GONE
@@ -83,9 +85,10 @@ class EvaluateAdapter(heroList: List<EvaluateSongModel>, context: Context) :
             playBtn = itemView.findViewById(R.id.playButton)
         }
     }
-    private fun gotoRhythm(choice: String) {
+    private fun gotoRhythm(choice: String,rid:String) {
         val intent = Intent(context, UnityPlayerActivity::class.java)
         intent.putExtra("name", choice)
+        intent.putExtra("rid", rid)
         context.startActivity(intent)
     }
 }

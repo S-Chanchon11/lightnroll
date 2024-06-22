@@ -13,6 +13,7 @@ class EvaluateRepository {
 
     val responseData = MutableLiveData<EvaluateModel>()
     val responseData2 = MutableLiveData<EvaluateResultModel>()
+    var responseData3 = MutableLiveData<List<EvaluateResultModel>>()
     fun getServicesApiCall(): MutableLiveData<EvaluateModel> {
         val call: Call<EvaluateModel> = MainClient.evaluateApiInterface.getData()
 
@@ -57,6 +58,30 @@ class EvaluateRepository {
         })
 
         return responseData2
+    }
+    fun getAPIResults(uid:String): MutableLiveData<List<EvaluateResultModel>> {
+        val call: Call<List<EvaluateResultModel>> = MainClient.evaluateApiInterface.getResult(uid)
+
+        call.enqueue(object : Callback<List<EvaluateResultModel>> {
+
+            override fun onResponse(
+                call: Call<List<EvaluateResultModel>>,
+                response: retrofit2.Response<List<EvaluateResultModel>>
+            ) {
+                if (response.isSuccessful) {
+                    responseData3.value = response.body()
+                    Log.d("api",responseData3.value.toString())
+                } else {
+                    Log.d("api","error")
+                }
+            }
+
+            override fun onFailure(call: Call<List<EvaluateResultModel>>, t: Throwable) {
+                Log.v("DEBUG : ", t.message.toString())
+            }
+        })
+
+        return responseData3
     }
     fun getSongData(): List<EvaluateSongModel> {
         val lst: List<EvaluateSongModel>
