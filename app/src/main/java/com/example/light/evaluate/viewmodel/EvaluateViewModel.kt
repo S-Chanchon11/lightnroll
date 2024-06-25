@@ -58,20 +58,18 @@ class EvaluateViewModel : ViewModel() {
         return _data
     }
     fun updateResultByRID(body: EvaluateUpdateModel): LiveData<EvaluateResultModel>? {
-        Log.d(TAG,body.toString())
+        Log.d(TAG, body.toString())
         updateEvaluateData = evaluateRepository.updateResult(body)
         return updateEvaluateData
     }
 }
 
-
-
-//import android.media.MediaPlayer
-//import android.media.MediaRecorder
-//import java.io.*
+// import android.media.MediaPlayer
+// import android.media.MediaRecorder
+// import java.io.*
 //
-//// Function to combine audio files
-//fun combineAudioFiles(outputFilePath: String, vararg inputFilePaths: String) {
+// // Function to combine audio files
+// fun combineAudioFiles(outputFilePath: String, vararg inputFilePaths: String) {
 //    val outputStream = FileOutputStream(outputFilePath)
 //    try {
 //        for (inputFilePath in inputFilePaths) {
@@ -89,11 +87,11 @@ class EvaluateViewModel : ViewModel() {
 //    } finally {
 //        outputStream.close()
 //    }
-//}
+// }
 //
-//// Example usage:
-//val outputFilePath = "/path/to/output/file.wav"
-//val inputFilePath1 = "/path/to/input/file1.wav"
-//val inputFilePath2 = "/path/to/input/file2.wav"
+// // Example usage:
+// val outputFilePath = "/path/to/output/file.wav"
+// val inputFilePath1 = "/path/to/input/file1.wav"
+// val inputFilePath2 = "/path/to/input/file2.wav"
 //
-//combineAudioFiles(outputFilePath, inputFilePath1, inputFilePath2)
+// combineAudioFiles(outputFilePath, inputFilePath1, inputFilePath2)

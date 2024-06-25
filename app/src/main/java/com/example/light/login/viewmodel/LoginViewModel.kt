@@ -65,6 +65,7 @@ class LoginViewModel : ViewModel() {
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     _user.value = auth.currentUser
+                    UserManager.setUserLevel(2)
                 } else {
                     _user.value = null
                 }
@@ -90,7 +91,7 @@ class LoginViewModel : ViewModel() {
         user?.let {
             val uid = it.uid
             UserManager.setUid(uid)
-
+//
             db.collection("users").document(uid).get()
                 .addOnSuccessListener { document ->
                     if (document != null && document.exists()) {
@@ -99,17 +100,14 @@ class LoginViewModel : ViewModel() {
 //                        Log.d("Fetching User data", _userData.value.toString())
                     } else {
                         _userData.value = null
-
                     }
                 }
                 .addOnFailureListener {
-
-
                     _userData.value = null
                 }
         }
     }
-    private fun observeData(userId: String): LiveData<ProfileModel>? {
+    fun observeData(userId: String): LiveData<ProfileModel>? {
         _profileData = profileRepository.getServicesApiCall(userId)
         return _profileData
     }

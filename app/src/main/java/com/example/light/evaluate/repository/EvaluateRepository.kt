@@ -14,7 +14,7 @@ import retrofit2.Call
 import retrofit2.Callback
 
 class EvaluateRepository {
-    val TAG= "EvaluateRepository"
+    val TAG = "EvaluateRepository"
     val responseData = MutableLiveData<EvaluateModel>()
     val responseData2 = MutableLiveData<PredictionModel>()
     var responseData3 = MutableLiveData<List<EvaluateResultModel>>()
@@ -102,7 +102,7 @@ class EvaluateRepository {
                 if (response.isSuccessful) {
                     responseData4.value = response.body()
 //                    Log.d("getAPIByRID",responseData3.value.toString())
-                    Log.d("getAPIByRID",response.body().toString())
+                    Log.d("getAPIByRID", response.body().toString())
                 } else {
                     Log.d("getAPIByRID", "error")
                 }
@@ -126,7 +126,7 @@ class EvaluateRepository {
             ) {
                 if (response.isSuccessful) {
                     responseData5.value = response.body()
-                    Log.d(TAG,response.body().toString())
+                    Log.d(TAG, response.body().toString())
                 } else {
                     Log.d("api", "error")
                 }

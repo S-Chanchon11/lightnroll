@@ -1,7 +1,6 @@
 package com.example.light
 
 import android.annotation.SuppressLint
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
@@ -14,7 +13,6 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.light.evaluate.view.EvaluateFragment
 import com.example.light.home.HomeFragment
 import com.example.light.lesson.LessonFragment
-import com.example.light.login.ui.LoginActivity
 import com.example.light.login.viewmodel.LoginViewModel
 import com.example.light.profile.ProfileFragment
 import com.example.light.setting.SettingFragment
@@ -47,7 +45,7 @@ class MainActivity : AppCompatActivity() {
         bottomNavigationView = findViewById(R.id.bottomNavigationView)
 
         replaceFragment(homeFragment, "home")
-
+        Log.d("main", UserManager.getUserLevel().toString())
         bottomNavigationView.setOnItemSelectedListener {
             when (it.itemId) {
                 R.id.home -> {
@@ -61,14 +59,13 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 R.id.evaluate -> {
-                    toolBar.title = "Evaluate"
-                    toolBar.visibility = View.VISIBLE
-                    if(UserManager.getUserLevel()==0){
-                        Toast.makeText(this,"Please Login first",Toast.LENGTH_SHORT).show()
-                        startActivity(Intent(this, LoginActivity::class.java))
-                        finish()
+                    if (UserManager.getUserLevel() == 0) {
+                        Toast.makeText(this, "Please Login first", Toast.LENGTH_SHORT).show()
+                    } else {
+                        toolBar.title = "Evaluate"
+                        toolBar.visibility = View.VISIBLE
+                        replaceFragment(evaluateFragment, "")
                     }
-                    replaceFragment(evaluateFragment, "")
                 }
 
                 R.id.tuning -> replaceFragment(tunerFragment, "")

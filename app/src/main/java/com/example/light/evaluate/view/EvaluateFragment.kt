@@ -25,7 +25,6 @@ import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import java.io.File
 
-
 class EvaluateFragment : Fragment() {
     val TAG = "EvaluateFragment"
     private var mStorageRef: StorageReference? = null
@@ -54,7 +53,7 @@ class EvaluateFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Log.d(TAG,"onViewCreated")
+        Log.d(TAG, "onViewCreated")
         recyclerView.setHasFixedSize(true)
         recyclerView.layoutManager = LinearLayoutManager(view.context)
         hisRecyclerView.layoutManager = LinearLayoutManager(view.context)
@@ -73,12 +72,12 @@ class EvaluateFragment : Fragment() {
                 hisAdapter.updateData(user)
             }
         )
-        Log.d(TAG,UserManager.getRid().toString())
+        Log.d(TAG, UserManager.getRid().toString())
         viewModel.getResultByRID(UserManager.getRid().toString()).observe(
             viewLifecycleOwner,
-            Observer { user->
+            Observer { user ->
                 submitAudio(user.song_name)
-                Log.d(TAG,"getResultByRID")
+                Log.d(TAG, "getResultByRID")
             }
         )
     }
@@ -98,9 +97,8 @@ class EvaluateFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-
     }
-    private fun submitAudio(songname:String) {
+    private fun submitAudio(songname: String) {
         val py = Python.getInstance()
         val module = py.getModule("Tuner")
         val pcpFunc = module[ "extract" ]
@@ -127,8 +125,7 @@ class EvaluateFragment : Fragment() {
                 fullList.add(floatList)
             }
         }
-        Log.d(TAG,fullList.toString())
-
+        Log.d(TAG, fullList.toString())
 
         viewModel.sendData(
             EvaluateModel(fullList)
@@ -148,11 +145,11 @@ class EvaluateFragment : Fragment() {
         )
     }
     private fun updateData(data: EvaluateUpdateModel) {
-        Log.d(TAG,data.toString())
+        Log.d(TAG, data.toString())
         viewModel.updateResultByRID(data)?.observe(
             viewLifecycleOwner,
             Observer {
-                Log.d(TAG,it.toString())
+                Log.d(TAG, it.toString())
             }
         )
     }

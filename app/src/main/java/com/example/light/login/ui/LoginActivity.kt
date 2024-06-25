@@ -24,8 +24,7 @@ class LoginActivity : AppCompatActivity() {
             WindowManager.LayoutParams.FLAG_FULLSCREEN,
             WindowManager.LayoutParams.FLAG_FULLSCREEN
         )
-//        auth = Firebase.auth
-//        Firebase.auth.useEmulator("10.0.2.2", 9099)
+
         setContentView(R.layout.activity_login)
 
         Log.d("Login Activity", "onCreate")
@@ -35,7 +34,6 @@ class LoginActivity : AppCompatActivity() {
     }
     override fun onStart() {
         super.onStart()
-        // Check if user is signed in (non-null) and update UI accordingly.
         val currentUser = auth.currentUser
         if (currentUser != null) {
             val intent = Intent(this, MainActivity::class.java)
@@ -43,11 +41,6 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    private fun navigateToHome() {
-        val intent = Intent(this, MainActivity::class.java)
-        startActivity(intent)
-        finish()
-    }
     private fun replaceFragment(fragment: Fragment) {
         val fragmentManager = supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()

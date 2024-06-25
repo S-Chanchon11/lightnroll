@@ -1,5 +1,6 @@
 package com.example.light
 
+import com.example.light.profile.ProfileModel
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.auth
@@ -10,19 +11,24 @@ object UserManager {
     private var user_level: Int = 0
     private var rid: String? = ""
     private var isLogin: Boolean = false
+
 //    private var data_model =  ProfileModel()
-    fun setLoginStatus(isUserLogin:Boolean): Boolean {
+    fun setLoginStatus(isUserLogin: Boolean): Boolean {
         isLogin = isUserLogin
         return isLogin
     }
-    fun loginCheck():Boolean {
+    fun loginCheck(): Boolean {
         return isLogin
     }
-    fun setUserLevel(ulvl:Int): Int {
+    fun setUserInfo(info: ProfileModel) {
+        uid = info.uid
+        user_level = info.user_level
+    }
+    fun setUserLevel(ulvl: Int): Int {
         user_level = ulvl
         return user_level
     }
-    fun getUserLevel() : Int {
+    fun getUserLevel(): Int {
         return user_level
     }
 

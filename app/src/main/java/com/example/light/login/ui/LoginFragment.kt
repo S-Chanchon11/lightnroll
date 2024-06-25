@@ -46,20 +46,8 @@ class LoginFragment : Fragment() {
         val signupFragment = SignupFragment()
         viewModel = ViewModelProvider(this)[LoginViewModel::class.java]
         observeData()
-        Log.d(TAG, "onViewCreated")
-//        emailTxt.setOnClickListener {
-//            if(!emailTxt.text.isEmpty()){
-//                emailTxt.background = resources.getDrawable(R.drawable.input_box)
-//            }
-//        }
-//        passwordTxt.setOnClickListener {
-//            if(!passwordTxt.text.isEmpty())
-//                passwordTxt.background = resources.getDrawable(R.drawable.input_box)
-//        }
 
         signinBtn.setOnClickListener {
-//            Log.d("Login", emailTxt.text.toString())
-//            Log.d("Login", passwordTxt.text.toString())
             if (status == 1) {
                 emailTxt.background = resources.getDrawable(R.drawable.empty_input_box)
                 emailTxt.setPadding(42)
@@ -80,15 +68,22 @@ class LoginFragment : Fragment() {
             startActivity(intent)
         }
     }
+    private fun observeUserProfile() {
+        try {
+            viewModel.profiledata.observe(
+                viewLifecycleOwner,
+                Observer { user ->
+                    if (user != null) {
+                        UserManager.setUserInfo(user)
+                    } else {
+                    }
+                }
+            )
+        } catch (e: Exception) {
+            print(e)
+        }
+    }
 
-//    override fun onStart() {
-//        super.onStart()
-//        // Check if user is signed in (non-null) and update UI accordingly.
-//        val currentUser = auth.currentUser
-//        if (currentUser != null) {
-//            return
-//        }
-//    }
     private fun observeData() {
         try {
             viewModel.user.observe(
@@ -96,14 +91,14 @@ class LoginFragment : Fragment() {
                 Observer { user ->
                     if (user != null) {
                         status = 2
-                        UserManager.setLoginStatus(true)
 
+                        UserManager.setUserLevel(2)
                         val intent = Intent(activity, MainActivity::class.java)
                         startActivity(intent)
                     } else {
                         status = 1
                         Log.d("LoginVM", "not login")
-                        UserManager.setLoginStatus(false)
+                        UserManager.setUserLevel(0)
                     }
                 }
             )

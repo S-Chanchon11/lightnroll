@@ -27,11 +27,11 @@ class HomeFragment : Fragment() {
     private lateinit var viewModel: LoginViewModel
     private lateinit var profileViewModel: ProfileViewModel
     private lateinit var rootView: View
-    private lateinit var adapter:HistoryAdapter
+    private lateinit var adapter: HistoryAdapter
     private lateinit var hisList: List<EvaluateResultModel>
     private lateinit var recyclerView: RecyclerView
     private lateinit var evaluateViewModel: EvaluateViewModel
-    private lateinit var startLesson : Button
+    private lateinit var startLesson: Button
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val uid = UserManager.getUid()
@@ -69,7 +69,7 @@ class HomeFragment : Fragment() {
         var actionbar = (requireActivity() as AppCompatActivity).supportActionBar
         actionbar?.hide()
         val navBar = requireActivity().findViewById<BottomNavigationView>(R.id.bottomNavigationView)
-        if(view.id == R.layout.fragment_home_2){
+        if (view.id == R.layout.fragment_home_2) {
             startLesson = view.findViewById(R.id.startLessonButton)!!
             recyclerView = rootView.findViewById(R.id.recent_recyclerView)
             recyclerView.layoutManager = LinearLayoutManager(view.context)
@@ -83,7 +83,6 @@ class HomeFragment : Fragment() {
                 }
             )
             startLesson.setOnClickListener {
-
             }
         }
         navBar.visibility = View.VISIBLE
