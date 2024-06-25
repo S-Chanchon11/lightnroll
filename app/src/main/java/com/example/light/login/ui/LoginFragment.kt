@@ -15,6 +15,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.light.MainActivity
 import com.example.light.R
+import com.example.light.UserManager
 import com.example.light.login.viewmodel.LoginViewModel
 
 class LoginFragment : Fragment() {
@@ -95,10 +96,14 @@ class LoginFragment : Fragment() {
                 Observer { user ->
                     if (user != null) {
                         status = 2
+                        UserManager.setLoginStatus(true)
+
                         val intent = Intent(activity, MainActivity::class.java)
                         startActivity(intent)
                     } else {
                         status = 1
+                        Log.d("LoginVM", "not login")
+                        UserManager.setLoginStatus(false)
                     }
                 }
             )

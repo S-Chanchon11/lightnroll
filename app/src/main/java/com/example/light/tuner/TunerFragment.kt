@@ -52,7 +52,7 @@ class TunerFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view: View = inflater.inflate(R.layout.activity_gptactivity, container, false)
+        val view: View = inflater.inflate(R.layout.activity_tuner, container, false)
 
         pitchTextView = view.findViewById(R.id.pitchTextView)
         frequencyTextView = view.findViewById(R.id.frequencyTextView)

@@ -1,19 +1,19 @@
 package com.example.light.evaluate.view
 
 import android.util.Log
-import com.example.light.evaluate.model.EvaluateResultModel
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.light.R
-
+import com.example.light.evaluate.model.EvaluateResultModel
 
 class HistoryAdapter(taskList: List<EvaluateResultModel>) :
     RecyclerView.Adapter<HistoryAdapter.HeroViewHolder>() {
     private var task: List<EvaluateResultModel>
-
+    val TAG = "HistoryAdapter"
     init {
         this.task = taskList
     }
@@ -27,11 +27,9 @@ class HistoryAdapter(taskList: List<EvaluateResultModel>) :
     override fun onBindViewHolder(holder: HistoryAdapter.HeroViewHolder, position: Int) {
         val hero: EvaluateResultModel = task[position]
 
-        holder.rid.text = hero.rid
-        Log.d("work please",hero.rid)
+        holder.rid.text = hero.song_name
+        holder.scoreTxt.text = hero.score.toString()
     }
-
-
 
     override fun getItemCount(): Int {
         return task.size
@@ -39,14 +37,16 @@ class HistoryAdapter(taskList: List<EvaluateResultModel>) :
 
     inner class HeroViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var rid: TextView
+        var scoreTxt: TextView
 
         init {
             rid = itemView.findViewById(R.id.rid)
+            scoreTxt = itemView.findViewById(R.id.scoreTxt)
         }
     }
     fun updateData(newData: List<EvaluateResultModel>) {
         task = newData
+//        Log.d(TAG,task.toString())
         notifyDataSetChanged()
     }
-
 }

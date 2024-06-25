@@ -3,6 +3,7 @@ package com.example.light.evaluate.view
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,6 +13,7 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.light.R
+import com.example.light.UserManager.getUid
 import com.example.light.UserManager.setRid
 import com.example.light.evaluate.model.EvaluateSongModel
 import com.unity3d.player.UnityPlayerActivity
@@ -46,7 +48,13 @@ class EvaluateAdapter(heroList: List<EvaluateSongModel>, context: Context) :
         holder.levelTxt.text = "Level: " + hero.level
         holder.playBtn.setOnClickListener {
             val rid = setRid()
-            gotoRhythm(hero.song_name,rid)
+            val uid = getUid()
+            Log.d("EvaluateAdapter", rid)
+
+            if (uid != null) {
+                Log.d("EvaluateAdapter", uid)
+                gotoRhythm(hero.song_name, rid, uid)
+            }
         }
         if (position != currentPosition) {
             holder.linearLayout.visibility = View.GONE
@@ -85,10 +93,11 @@ class EvaluateAdapter(heroList: List<EvaluateSongModel>, context: Context) :
             playBtn = itemView.findViewById(R.id.playButton)
         }
     }
-    private fun gotoRhythm(choice: String,rid:String) {
+    private fun gotoRhythm(choice: String, rid: String, uid: String) {
         val intent = Intent(context, UnityPlayerActivity::class.java)
         intent.putExtra("name", choice)
         intent.putExtra("rid", rid)
+        intent.putExtra("uid", uid)
         context.startActivity(intent)
     }
 }

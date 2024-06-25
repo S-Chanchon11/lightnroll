@@ -5,7 +5,6 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import com.example.light.UserManager
 import com.example.light.profile.ProfileModel
 import com.example.light.profile.ProfileRepository
@@ -19,7 +18,6 @@ import com.google.firebase.storage.FirebaseStorage
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
-import kotlinx.coroutines.launch
 
 class LoginViewModel : ViewModel() {
     val TAG = "LoginViewModel"
@@ -43,8 +41,6 @@ class LoginViewModel : ViewModel() {
         auth = Firebase.auth
         _user.value = auth.currentUser
         fetchUserData()
-        observeData(auth.currentUser!!.uid)
-
     }
     fun signUp(email: String, password: String, userData: HashMap<String, String>) {
         auth.createUserWithEmailAndPassword(email, password)
@@ -55,9 +51,9 @@ class LoginViewModel : ViewModel() {
                     db.collection("users").document(_user.value!!.uid).set(userData)
                         .addOnSuccessListener {
                             Log.d(TAG, "DocumentSnapshot successfully written!")
+                            observeData(auth.currentUser!!.uid)
                         }
                         .addOnFailureListener {
-
                         }
                 } else {
                 }
@@ -75,6 +71,7 @@ class LoginViewModel : ViewModel() {
             }
     }
     fun signOut() {
+        UserManager.setLoginStatus(false)
         auth.signOut()
         _user.value = null
     }
@@ -93,16 +90,21 @@ class LoginViewModel : ViewModel() {
         user?.let {
             val uid = it.uid
             UserManager.setUid(uid)
+
             db.collection("users").document(uid).get()
                 .addOnSuccessListener { document ->
                     if (document != null && document.exists()) {
                         _userData.value = document.data
-                        Log.d("Fetching User data", _userData.value.toString())
+
+//                        Log.d("Fetching User data", _userData.value.toString())
                     } else {
                         _userData.value = null
+
                     }
                 }
                 .addOnFailureListener {
+
+
                     _userData.value = null
                 }
         }

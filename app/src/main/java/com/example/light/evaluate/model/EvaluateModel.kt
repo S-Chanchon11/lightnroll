@@ -1,17 +1,15 @@
 package com.example.light.evaluate.model
 
 data class EvaluateModel(
-//    val uid: String,
-    val pcp: List<Double>
-//    val sample_rate: Int
+    val pcp_list: List<List<Double?>>
 )
 
 data class EvaluateResultModel(
     val uid: String,
     val rid: String,
-    val score: Int,
+    val score: Double,
     val song_name: String,
-    val prediction_result: List<String>
+    val pred_result: List<String>
 )
 
 data class EvaluateSongModel(
@@ -21,4 +19,14 @@ data class EvaluateSongModel(
     val tempo: Int,
     val key: String,
     val level: String
+)
+
+data class EvaluateUpdateModel(
+    val rid: String,
+    val song_name: String,
+    val pred_result: List<String>
+)
+
+data class PredictionModel(
+    val pred_result: List<String>
 )

@@ -3,7 +3,7 @@ package com.example.light.profile
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.light.MainClient
+import com.example.light.NodeClient
 import com.example.light.UserManager
 import com.example.light.evaluate.model.EvaluateResultModel
 import retrofit2.Call
@@ -13,11 +13,11 @@ import retrofit2.Response
 class ProfileRepository {
     val responseData = MutableLiveData<ProfileModel>()
     val responseResultData = MutableLiveData<List<EvaluateResultModel>>()
-    val apiService = MainClient.profileApiInterface
+    val apiService = NodeClient.profileApiInterface
     val TAG = "ProfileRepository"
 
     fun getServicesApiCall(data: String): MutableLiveData<ProfileModel> {
-        val call: Call<ProfileModel> = MainClient.profileApiInterface.getProfile(data)
+        val call: Call<ProfileModel> = NodeClient.profileApiInterface.getProfile(data)
 
         call.enqueue(object : Callback<ProfileModel> {
 
@@ -28,6 +28,7 @@ class ProfileRepository {
                 if (response.isSuccessful) {
                     responseData.value = response.body()
                 } else {
+                    Log.d(TAG, "not found")
                 }
             }
 
@@ -60,7 +61,7 @@ class ProfileRepository {
     }
 
     fun getResult(data: String): MutableLiveData<List<EvaluateResultModel>> {
-        val call: Call<List<EvaluateResultModel>> = MainClient.profileApiInterface.getEvaluate(data)
+        val call: Call<List<EvaluateResultModel>> = NodeClient.profileApiInterface.getEvaluate(data)
 
         call.enqueue(object : Callback<List<EvaluateResultModel>> {
 

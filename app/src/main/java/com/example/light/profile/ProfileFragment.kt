@@ -14,7 +14,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.light.R
 import com.example.light.login.viewmodel.LoginViewModel
-import com.example.light.record.SettingFragment
+import com.example.light.setting.SettingFragment
 import com.google.firebase.storage.FirebaseStorage
 import java.io.File
 
@@ -52,8 +52,8 @@ class ProfileFragment : Fragment() {
                 }
             }
         )
-        fetchProfile("DSPlOrYFN6d2e00lOlERTh3riTj1")
-        fetchResult("DSPlOrYFN6d2e00lOlERTh3riTj1")
+//        fetchProfile("DSPlOrYFN6d2e00lOlERTh3riTj1")
+//        fetchResult("DSPlOrYFN6d2e00lOlERTh3riTj1")
         return view
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

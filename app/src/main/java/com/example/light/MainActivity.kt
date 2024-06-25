@@ -1,10 +1,12 @@
 package com.example.light
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
@@ -12,8 +14,10 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.light.evaluate.view.EvaluateFragment
 import com.example.light.home.HomeFragment
 import com.example.light.lesson.LessonFragment
+import com.example.light.login.ui.LoginActivity
 import com.example.light.login.viewmodel.LoginViewModel
 import com.example.light.profile.ProfileFragment
+import com.example.light.setting.SettingFragment
 import com.example.light.tuner.TunerFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
@@ -35,9 +39,10 @@ class MainActivity : AppCompatActivity() {
         val homeFragment = HomeFragment()
         val profileFragment = ProfileFragment()
         val tunerFragment = TunerFragment()
+        val settingFragment = SettingFragment()
         toolBar = findViewById(R.id.toolbar)
         setSupportActionBar(toolBar)
-        toolBar.setTitleMargin(550, 0, 0, 0)
+        toolBar.setTitleMargin(500, 0, 0, 0)
         toolBar.visibility = View.GONE
         bottomNavigationView = findViewById(R.id.bottomNavigationView)
 
@@ -58,13 +63,18 @@ class MainActivity : AppCompatActivity() {
                 R.id.evaluate -> {
                     toolBar.title = "Evaluate"
                     toolBar.visibility = View.VISIBLE
+                    if(UserManager.getUserLevel()==0){
+                        Toast.makeText(this,"Please Login first",Toast.LENGTH_SHORT).show()
+                        startActivity(Intent(this, LoginActivity::class.java))
+                        finish()
+                    }
                     replaceFragment(evaluateFragment, "")
                 }
 
                 R.id.tuning -> replaceFragment(tunerFragment, "")
                 R.id.profile -> {
                     toolBar.visibility = View.GONE
-                    replaceFragment(profileFragment, "")
+                    replaceFragment(settingFragment, "")
                 }
             }
             true
@@ -99,5 +109,4 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
-
 }
