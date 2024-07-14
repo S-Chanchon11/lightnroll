@@ -47,7 +47,7 @@
     <string name="home_page_third_container_title">Let\'s Begin</string>
     <string name="home_page_third_container_subtitle">Start your journey by taking Lesson or \nEvaluate your playing skills. </string>
 
-    <string name="next_button">Next \t ></string>
+    <string name="next_button">Next</string>
     <string name="back_button">Back</string>
     <string name="play_button">Play</string>
 
@@ -58,4 +58,8 @@
     <string name="edit_profile_text">Edit Profile</string>
     <string name="logout_text">Log out</string>
 
+    <string name="guitar_title">Guitar,\n6 Strings</string>
+
+    <string name="history_detected_chord">Detected Chord:</string>
+    <string name="history_chord">Chord:</string>
 </resources>

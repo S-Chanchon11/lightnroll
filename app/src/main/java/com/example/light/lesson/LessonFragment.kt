@@ -41,7 +41,7 @@ class LessonFragment : Fragment() {
         lessonList = viewModel.loadLessonData()
         adapter = LessonAdapter(lessonList, view.context)
         recyclerView.adapter = adapter
-        val recyclerFragment = ChordFragment()
+        val chordFragment = ChordFragment()
         var actionbar = (requireActivity() as AppCompatActivity).supportActionBar
         actionbar?.show()
         var choice: Int
@@ -50,22 +50,39 @@ class LessonFragment : Fragment() {
                 override fun onClick(position: Int, model: LessonModel) {
                     when (position) {
                         0 -> {
-                            actionbar?.title = "\tBasic Level"
+                            actionbar?.title = "\tBasic"
                             lessonList = viewModel.loadLessonData(position)
                         }
                         1 -> {
-                            actionbar?.title = "\tIntermediate Level"
+                            actionbar?.title = "\tIntermediate"
                             lessonList = viewModel.loadLessonData(position)
                         }
                         2 -> {
-                            actionbar?.title = "\tAdvanced Level"
+                            actionbar?.title = "\tAdvanced"
                             lessonList = viewModel.loadLessonData(position)
                         }
                         3 -> {
-                            replaceFragment(recyclerFragment)
+                            actionbar?.hide()
+                            replaceFragment(chordFragment)
                             setFragmentResult(
                                 "requestKey",
-                                bundleOf("bundleKey" to position.toString())
+                                bundleOf("bundleKey" to "Major")
+                            )
+                        }
+                        4 -> {
+                            actionbar?.hide()
+                            replaceFragment(chordFragment)
+                            setFragmentResult(
+                                "requestKey",
+                                bundleOf("bundleKey" to "Minor")
+                            )
+                        }
+                        5 -> {
+                            actionbar?.hide()
+                            replaceFragment(chordFragment)
+                            setFragmentResult(
+                                "requestKey",
+                                bundleOf("bundleKey" to "Major7")
                             )
                         }
                     }

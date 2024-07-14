@@ -14,24 +14,16 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.light.R
 import com.example.light.chord.model.RecyclerModel
 
-class ChordAdapter(chordList: List<RecyclerModel>, context: Context) :
+class ChordAdapter(chordList: List<RecyclerModel>, context: Context, variant:String?) :
     RecyclerView.Adapter<ChordAdapter.HeroViewHolder>() {
     private val heroList: List<RecyclerModel>
     private val context: Context
-    private var drawables: Array<Drawable>
-
+    private lateinit var drawables: Array<Drawable>
+    private var variant:String?
     init {
         this.heroList = chordList
         this.context = context
-        this.drawables = arrayOf(
-            getDrawable(R.drawable.f_maj),
-            getDrawable(R.drawable.f_maj),
-            getDrawable(R.drawable.f_maj),
-            getDrawable(R.drawable.f_maj),
-            getDrawable(R.drawable.g_maj),
-            getDrawable(R.drawable.a_maj),
-            getDrawable(R.drawable.b_maj)
-        )
+        this.variant = variant
     }
     fun getDrawable(id: Int): Drawable {
         return ResourcesCompat.getDrawable(context.resources, id, context.theme)!!
@@ -45,6 +37,41 @@ class ChordAdapter(chordList: List<RecyclerModel>, context: Context) :
     @SuppressLint("NotifyDataSetChanged")
     override fun onBindViewHolder(holder: HeroViewHolder, @SuppressLint("RecyclerView") position: Int) {
         val hero: RecyclerModel = heroList[position]
+        when(variant) {
+            "Major" -> {
+                this.drawables = arrayOf(
+                    getDrawable(R.drawable.c_maj),
+                    getDrawable(R.drawable.d_maj),
+                    getDrawable(R.drawable.e_maj),
+                    getDrawable(R.drawable.f_maj),
+                    getDrawable(R.drawable.g_maj),
+                    getDrawable(R.drawable.a_maj),
+                    getDrawable(R.drawable.b_maj)
+                )
+            }
+            "Minor" -> {
+                this.drawables = arrayOf(
+                    getDrawable(R.drawable.c_minor),
+                    getDrawable(R.drawable.d_minor),
+                    getDrawable(R.drawable.e_minor),
+                    getDrawable(R.drawable.f_minor),
+                    getDrawable(R.drawable.g_minor),
+                    getDrawable(R.drawable.a_minor),
+                    getDrawable(R.drawable.b_minor)
+                )
+            }
+            "Major7" -> {
+                this.drawables = arrayOf(
+                    getDrawable(R.drawable.cmaj7),
+                    getDrawable(R.drawable.dmaj7),
+                    getDrawable(R.drawable.emaj7),
+                    getDrawable(R.drawable.fmaj7),
+                    getDrawable(R.drawable.gmaj7),
+                    getDrawable(R.drawable.amaj7),
+                    getDrawable(R.drawable.bmaj7)
+                )
+            }
+        }
 
         holder.textViewName.setText(hero.chord)
         holder.imageChord.setImageDrawable(drawables[position])

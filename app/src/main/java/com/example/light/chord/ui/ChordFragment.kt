@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.addCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResultListener
 import androidx.lifecycle.ViewModelProvider
@@ -14,6 +15,7 @@ import com.example.light.chord.model.RecyclerModel
 import com.example.light.chord.ui.adapter.ChordAdapter
 import com.example.light.chord.viewmodel.ChordViewModel
 import com.example.light.utilities.SpaceItemDecoration
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class ChordFragment : Fragment() {
 
@@ -39,11 +41,10 @@ class ChordFragment : Fragment() {
 
         recyclerView.setHasFixedSize(true)
         recyclerView.layoutManager = LinearLayoutManager(view.context)
-        heroList = viewModel.loadData() // chord data
-        adapter = ChordAdapter(heroList, view.context)
-        recyclerView.adapter = adapter
-        recyclerView.addItemDecoration(SpaceItemDecoration(24))
-        activity?.actionBar?.hide()
+        val navBar = requireActivity().findViewById<BottomNavigationView>(R.id.bottomNavigationView)
+        navBar.visibility = View.VISIBLE
+
+//        activity?.actionBar?.hide()
         if (activity?.actionBar?.isShowing == true) {
 //            Toast.makeText(context?.applicationContext, "showing actionbar", Toast.LENGTH_SHORT).show()
         } else {
@@ -51,7 +52,21 @@ class ChordFragment : Fragment() {
         }
         setFragmentResultListener("requestKey") { requestKey, bundle ->
             resultFromFragment = bundle.getString("bundleKey")
+            when(resultFromFragment){
+                "Major" -> heroList = viewModel.loadDataMajor()
+                "Minor" -> heroList = viewModel.loadDataMinor()
+                "Major7" -> heroList = viewModel.loadDataMajor7()
+            }
+            adapter = ChordAdapter(heroList, view.context,resultFromFragment)
+            recyclerView.adapter = adapter
+            recyclerView.addItemDecoration(SpaceItemDecoration(24))
 //            Toast.makeText(context?.applicationContext, resultFromFragment, Toast.LENGTH_SHORT).show()
         }
+
+        requireActivity().onBackPressedDispatcher.addCallback {
+            parentFragmentManager.popBackStack()
+        }
     }
+
+
 }

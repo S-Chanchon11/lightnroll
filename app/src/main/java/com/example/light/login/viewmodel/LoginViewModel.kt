@@ -40,6 +40,11 @@ class LoginViewModel : ViewModel() {
     init {
         auth = Firebase.auth
         _user.value = auth.currentUser
+        if (_user.value != null) {
+            UserManager.setUserLevel(2)
+        } else {
+            UserManager.setUserLevel(0)
+        }
         fetchUserData()
     }
     fun signUp(email: String, password: String, userData: HashMap<String, String>) {
@@ -65,7 +70,6 @@ class LoginViewModel : ViewModel() {
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     _user.value = auth.currentUser
-                    UserManager.setUserLevel(2)
                 } else {
                     _user.value = null
                 }

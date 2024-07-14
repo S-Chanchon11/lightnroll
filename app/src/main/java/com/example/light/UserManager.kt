@@ -39,6 +39,10 @@ object UserManager {
             .joinToString("")
         return rid as String
     }
+    fun clearRid(): String {
+        rid = ""
+        return rid as String
+    }
 
     fun getRid(): String? {
         return rid

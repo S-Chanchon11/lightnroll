@@ -48,13 +48,12 @@ class LoginFragment : Fragment() {
         observeData()
 
         signinBtn.setOnClickListener {
-            if (status == 1) {
+            if (emailTxt.text.toString().isEmpty() && passwordTxt.text.toString().isEmpty()) {
                 emailTxt.background = resources.getDrawable(R.drawable.empty_input_box)
                 emailTxt.setPadding(42)
                 passwordTxt.background = resources.getDrawable(R.drawable.empty_input_box)
                 passwordTxt.setPadding(42)
-            }
-            if (emailTxt.text.toString().isNotEmpty() && passwordTxt.text.toString().isNotEmpty()) {
+            } else if (emailTxt.text.toString().isNotEmpty() && passwordTxt.text.toString().isNotEmpty()) {
                 viewModel.signIn(emailTxt.text.toString(), passwordTxt.text.toString())
                 observeData()
             }

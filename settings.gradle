@@ -3,6 +3,7 @@ pluginManagement {
         google()
         mavenCentral()
         gradlePluginPortal()
+
     }
 }
 dependencyResolutionManagement {
@@ -12,10 +13,16 @@ dependencyResolutionManagement {
         mavenCentral()
         gradlePluginPortal()
         jcenter()
+        maven {
+            name = "TarsosDSP repository"
+            url = "https://mvn.0110.be/releases"
+        }
     }
 }
 rootProject.name = "Light"
 include ':app'
 
 include ':unityLibrary'
-project(':unityLibrary').projectDir=new File('/Users/snow/pitch_recognition_libs_osx_noplugin_0.9/unityLibrary')
+project(':unityLibrary').projectDir=new File('/Users/snow/unity-lightnroll/unityLibrary')
+include ':unityLibrary:FirebaseApp.androidlib'
+project(':unityLibrary:FirebaseApp.androidlib').projectDir=new File("./unityLibrary/FirebaseApp.androidlib")

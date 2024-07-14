@@ -7,6 +7,6 @@ import retrofit2.http.Body
 import retrofit2.http.POST
 
 interface PredictAPI {
-    @POST("evaluate")
+    @POST("preprocessing")
     fun sendData(@Body dataModal: EvaluateModel): Call<PredictionModel>
 }

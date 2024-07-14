@@ -1,6 +1,7 @@
 package com.example.light
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
@@ -13,11 +14,13 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.light.evaluate.view.EvaluateFragment
 import com.example.light.home.HomeFragment
 import com.example.light.lesson.LessonFragment
+import com.example.light.login.ui.LoginActivity
 import com.example.light.login.viewmodel.LoginViewModel
 import com.example.light.profile.ProfileFragment
 import com.example.light.setting.SettingFragment
 import com.example.light.tuner.TunerFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.unity3d.player.UnityPlayerActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -40,7 +43,7 @@ class MainActivity : AppCompatActivity() {
         val settingFragment = SettingFragment()
         toolBar = findViewById(R.id.toolbar)
         setSupportActionBar(toolBar)
-        toolBar.setTitleMargin(500, 0, 0, 0)
+//        toolBar.setTitleMargin(200, 0, 0, 0)
         toolBar.visibility = View.GONE
         bottomNavigationView = findViewById(R.id.bottomNavigationView)
 
@@ -60,7 +63,9 @@ class MainActivity : AppCompatActivity() {
 
                 R.id.evaluate -> {
                     if (UserManager.getUserLevel() == 0) {
-                        Toast.makeText(this, "Please Login first", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this,"Please Login",Toast.LENGTH_LONG).show()
+                        val intent = Intent(this, LoginActivity::class.java)
+                        startActivity(intent)
                     } else {
                         toolBar.title = "Evaluate"
                         toolBar.visibility = View.VISIBLE
@@ -68,7 +73,11 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
 
-                R.id.tuning -> replaceFragment(tunerFragment, "")
+                R.id.tuning -> {
+                    toolBar.title = "Tuner"
+                    toolBar.visibility = View.VISIBLE
+                    replaceFragment(tunerFragment, "")
+                }
                 R.id.profile -> {
                     toolBar.visibility = View.GONE
                     replaceFragment(settingFragment, "")

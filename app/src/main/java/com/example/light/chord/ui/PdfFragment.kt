@@ -58,7 +58,18 @@ class PdfFragment : Fragment() {
                     }
                 }
                 backTxt.setOnClickListener {
+                    pageNum--
+                    if (pageNum == -1) {
+                        activity?.run {
+                            supportFragmentManager.beginTransaction().replace(R.id.frame_layout, lessonFragment, tag)
+                                .addToBackStack(tag)
+                                .commit()
+                        }
+                    } else {
+                        pdfView.fromAsset(resultFromFragment).pages(pageNum).load()
+                    }
                 }
+
             } else {
             }
         }

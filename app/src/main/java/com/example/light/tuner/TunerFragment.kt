@@ -3,15 +3,21 @@ package com.example.light.tuner
 import android.Manifest
 import android.annotation.SuppressLint
 import android.content.pm.PackageManager
+import android.graphics.Color
 import android.media.AudioFormat
 import android.media.AudioRecord
 import android.media.MediaRecorder
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -36,17 +42,24 @@ class TunerFragment : Fragment() {
     private var recordingThread: Thread? = null
     private var isRecording = false
     private var movingAverageBuffer: MutableList<Double> = mutableListOf()
-    private val movingAverageWindowSize = 20
-    private lateinit var pitchTextView: TextView
+    private val movingAverageWindowSize = 30
     private lateinit var frequencyTextView: TextView
-    private lateinit var s1: TextView
-    private lateinit var s2: TextView
-    private lateinit var s3: TextView
-    private lateinit var s4: TextView
-    private lateinit var s5: TextView
-    private lateinit var s6: TextView
+    private lateinit var s1: Button
+    private lateinit var s2: Button
+    private lateinit var s3: Button
+    private lateinit var s4: Button
+    private lateinit var s5: Button
+    private lateinit var s6: Button
     private lateinit var lineIndicatorView: LineIndicatorView
-
+    private var selectedString: String? = null
+    private val stringFrequencies = mapOf(
+        "E" to 82.41f,
+        "A" to 110.0f,
+        "D" to 146.83f,
+        "G" to 196.0f,
+        "B" to 246.94f,
+        "HighE" to 329.63f
+    )
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -54,7 +67,7 @@ class TunerFragment : Fragment() {
     ): View? {
         val view: View = inflater.inflate(R.layout.activity_tuner, container, false)
 
-        pitchTextView = view.findViewById(R.id.pitchTextView)
+//        pitchTextView = view.findViewById(R.id.pitchTextView)
         frequencyTextView = view.findViewById(R.id.frequencyTextView)
         lineIndicatorView = view.findViewById(R.id.lineIndicatorView)
         s1 = view.findViewById(R.id.first_string)
@@ -63,6 +76,29 @@ class TunerFragment : Fragment() {
         s4 = view.findViewById(R.id.fourth_string)
         s5 = view.findViewById(R.id.fifth_string)
         s6 = view.findViewById(R.id.sixth_string)
+
+        s1.setOnClickListener {
+            it.setBackgroundColor(ContextCompat.getColor(requireActivity().baseContext, R.color.purpleN3))
+            selectString("s1")
+        }
+        s2.setOnClickListener {
+            it.setBackgroundColor(ContextCompat.getColor(requireActivity().baseContext, R.color.purpleN3))
+            selectString("s2") }
+        s3.setOnClickListener {
+            it.setBackgroundColor(ContextCompat.getColor(requireActivity().baseContext, R.color.purpleN3))
+            selectString("s3")
+        }
+        s4.setOnClickListener {
+            it.setBackgroundColor(ContextCompat.getColor(requireActivity().baseContext, R.color.purpleN3))
+            selectString("s4") }
+        s5.setOnClickListener {
+            it.setBackgroundColor(ContextCompat.getColor(requireActivity().baseContext, R.color.purpleN3))
+            selectString("s5")
+        }
+        s6.setOnClickListener {
+            it.setBackgroundColor(ContextCompat.getColor(requireActivity().baseContext, R.color.purpleN3))
+            selectString("s6")
+        }
 
         return view
     }
@@ -75,7 +111,7 @@ class TunerFragment : Fragment() {
             ActivityCompat.requestPermissions(requireActivity(), arrayOf(permission), REQUEST_RECORD_AUDIO_PERMISSION)
         } else {
             permissionToRecordAccepted = true
-            setupAudioRecorder()
+
         }
     }
 
@@ -84,6 +120,11 @@ class TunerFragment : Fragment() {
         audioRecord?.stop()
         Log.d(TAG, "onPause")
     }
+    private fun selectString(string: String) {
+        selectedString = string
+        setupAudioRecorder()
+    }
+
 
     override fun onDestroyView() {
         super.onDestroyView()
@@ -117,7 +158,7 @@ class TunerFragment : Fragment() {
                     val read = audioRecord?.read(buffer, 0, bufferSize)
 
                     if (read != null && read > 0) {
-                        processAudio(buffer)
+                        processAudio(buffer,selectedString!!)
                     }
                 }
                 audioRecord?.stop()
@@ -128,8 +169,9 @@ class TunerFragment : Fragment() {
     }
 
     @SuppressLint("ResourceAsColor")
-    private fun processAudio(buffer: ShortArray) {
+    private fun processAudio(buffer: ShortArray,string: String) {
         // Convert short array to double array for FFT
+
         val new_double = preEmphasis(buffer, 0.5)
 
         // note:ShortArray serve more efficient since it only hold small data ( in specific range)
@@ -159,7 +201,7 @@ class TunerFragment : Fragment() {
 
         if (maxIndex == -1) {
             requireActivity().runOnUiThread {
-                pitchTextView.text = "No pitch detected"
+//                pitchTextView.text = "No pitch detected"
                 frequencyTextView.text = "Frequency: - Hz"
             }
             return
@@ -169,7 +211,7 @@ class TunerFragment : Fragment() {
 
 //        val frequency = maxIndex * sampleRate / paddedBuffer.size
 //        val frequency = maxIndex * sampleRate / new_padded.size
-        val frequency = interpolateFrequency(magnitudes, maxIndex, sampleRate, paddedBuffer.size)
+        var frequency = interpolateFrequency(magnitudes, maxIndex, sampleRate, paddedBuffer.size)
 
 //        // Apply moving average smoothing
         val smoothedFrequency = applyMovingAverage(frequency)
@@ -178,31 +220,101 @@ class TunerFragment : Fragment() {
         val note = frequencyToNote(smoothedFrequency)
 
         // Update UI on the main thread
+        var divider:Int
         requireActivity().runOnUiThread {
-            pitchTextView.text = "Detected Pitch: $note"
+            if(string=="s6" || string=="s5"){
+                divider=2
+                frequency/=divider
+            }
             frequencyTextView.text = "Frequency: " + BigDecimal(frequency).setScale(2, RoundingMode.HALF_EVEN)
             updateIndicator(frequency.toDouble().toFloat())
-            when (note) {
-                "E2" -> s6.setBackgroundColor(R.color.yellowN1)
-                "A" -> s5.setBackgroundColor(R.color.yellowN1)
-                "D" -> s4.setBackgroundColor(R.color.yellowN1)
-                "G" -> s3.setBackgroundColor(R.color.yellowN1)
-                "B" -> s2.setBackgroundColor(R.color.yellowN1)
-                "E6" -> s1.setBackgroundColor(R.color.yellowN1)
-            }
+            Handler(Looper.getMainLooper()).postDelayed({
+                when (string) {
+                    "s6" -> {
+                        s6.setBackgroundColor(ContextCompat.getColor(requireActivity().baseContext, R.color.greenL3))
+                    }
+                    "s5" -> {
+                        s5.setBackgroundColor(ContextCompat.getColor(requireActivity().baseContext, R.color.greenL3))
+                    }
+                    "s4" -> {
+                        s4.setBackgroundColor(ContextCompat.getColor(requireActivity().baseContext, R.color.greenL3))
+                    }
+                    "s3" -> {
+                        s3.setBackgroundColor(ContextCompat.getColor(requireActivity().baseContext, R.color.greenL3))
+                    }
+                    "s2" -> {
+                        s2.setBackgroundColor(ContextCompat.getColor(requireActivity().baseContext, R.color.greenL3))
+                    }
+                    "s1" -> {
+                        s1.setBackgroundColor(ContextCompat.getColor(requireActivity().baseContext, R.color.greenL3))
+                    }
+                }
+            }, 5000)
+//            pitchTextView.text = "Detected Pitch: $note"
+//            val targetFrequency = stringFrequencies[string] ?: return@runOnUiThread
+//            val tolerance = 5.0f // Adjust the tolerance as needed
+//
+//            val difference = frequency - targetFrequency
+//
+//
+//
+//            when {
+//                difference > tolerance -> {
+//                    // Indicate that the pitch is too high
+//                    updateStringStatus(string )
+//                }
+//                difference < -tolerance -> {
+//                    // Indicate that the pitch
+//                    updateStringStatus(string )
+//                }
+//                else -> {
+//                    // Indicate that the pitch
+////                    Toast.makeText(context,"OKAY",Toast.LENGTH_SHORT).show()
+//                    updateStringStatus(string)
+//                }
+//            }
+
+//            (82.41, 110.0, 146.83, 196.0, 246.94, 329.63)
+
+
         }
     }
+    private fun updateStringStatus(note: String) {
+//        val button = when (string) {
+//            "E" -> s6
+//            "A" -> s5
+//            "D" -> s4
+//            "G" -> s3
+//            "B" -> s2
+//            "HighE" -> s1
+//            else -> return
+//        }
+        Log.d("Tuner","update")
+//        button.setBackgroundColor(ContextCompat.getColor(requireActivity().baseContext, R.color.greenL3))
 
-    private fun findClosestNoteFrequency(pitch: Float): Float {
-        val closestNote = notes.minByOrNull { abs(it.frequency - pitch) }
-        return closestNote?.frequency ?: pitch
     }
+
+//    private fun findClosestNoteFrequency(pitch: Float): Float {
+//        val closestNote = notes.minByOrNull { abs(it.frequency - pitch) }
+//        return closestNote?.frequency ?: pitch
+//    }
 
     private fun updateIndicator(pitch: Float) {
         val targetFrequency = findClosestNoteFrequency(pitch)
         val deviation = pitch - targetFrequency
         val position = (deviation / targetFrequency) / 2 + 0.5f
-        lineIndicatorView.updatePosition(position.coerceIn(0.0f, 1.0f))
+//        lineIndicatorView.updatePosition(position.coerceIn(0.0f, 1.0f))
+
+        // Ensure the position is within the indicator bounds [0.0, 1.0]
+        val clampedPosition = position.coerceIn(0.0f, 1.0f)
+
+        // Update the line indicator view with the clamped position
+        lineIndicatorView.updatePosition(clampedPosition)
+    }
+    private fun findClosestNoteFrequency(pitch: Float): Float {
+        // Assuming a map of note frequencies; replace with actual implementation
+        val noteFrequencies = listOf(82.41f, 110.0f, 146.83f, 196.0f, 246.94f, 329.63f)
+        return noteFrequencies.minByOrNull { kotlin.math.abs(it - pitch) } ?: pitch
     }
 
     private fun padToPowerOfTwo(buffer: DoubleArray): DoubleArray {

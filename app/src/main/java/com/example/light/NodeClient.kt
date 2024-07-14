@@ -9,7 +9,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 object NodeClient {
 
 // physical device
-    const val NodeServer = "http://192.168.1.38:8888/"
+    const val NodeServer = "http://172.20.10.3:8888/"
 //    var gson = GsonBuilder()
 //        .setLenient()
 //        .create()

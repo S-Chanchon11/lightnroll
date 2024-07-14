@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.light.UserManager
 import com.example.light.evaluate.model.EvaluateModel
 import com.example.light.evaluate.model.EvaluateResultModel
@@ -11,6 +12,7 @@ import com.example.light.evaluate.model.EvaluateSongModel
 import com.example.light.evaluate.model.EvaluateUpdateModel
 import com.example.light.evaluate.model.PredictionModel
 import com.example.light.evaluate.repository.EvaluateRepository
+import kotlinx.coroutines.launch
 
 class EvaluateViewModel : ViewModel() {
     val TAG = "EvaluateViewModel"
@@ -54,7 +56,10 @@ class EvaluateViewModel : ViewModel() {
     fun fetchDataFromApi(): LiveData<List<EvaluateResultModel>> {
 //        viewModelScope.launch {
         val uid = UserManager.getUid()
-        _data = uid?.let { evaluateRepository.getAPIResults(it) }!!
+        viewModelScope.launch {
+            _data = uid?.let { evaluateRepository.getAPIResults(it) }!!
+        }
+
         return _data
     }
     fun updateResultByRID(body: EvaluateUpdateModel): LiveData<EvaluateResultModel>? {

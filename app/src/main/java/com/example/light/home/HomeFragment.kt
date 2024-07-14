@@ -32,6 +32,7 @@ class HomeFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var evaluateViewModel: EvaluateViewModel
     private lateinit var startLesson: Button
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val uid = UserManager.getUid()
@@ -42,24 +43,15 @@ class HomeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        rootView = inflater.inflate(R.layout.fragment_home_0, container, false)
+        if (UserManager.getUserLevel() == 2) {
+            rootView = inflater.inflate(R.layout.fragment_home_2, container, false)
+        } else {
+            rootView = inflater.inflate(R.layout.fragment_home_0, container, false)
+        }
+
         hisList = ArrayList()
         viewModel = ViewModelProvider(this)[LoginViewModel::class.java]
         profileViewModel = ViewModelProvider(this)[ProfileViewModel::class.java]
-
-        viewModel.profiledata.observe(
-            viewLifecycleOwner,
-            Observer { user ->
-//                Log.d(TAG,user.toString())
-
-                val newLayoutId = when (user.user_level) {
-                    0 -> return@Observer
-                    2 -> R.layout.fragment_home_2
-                    else -> { return@Observer }
-                }
-                replaceLayout(newLayoutId, container)
-            }
-        )
 
         return rootView
     }
@@ -69,23 +61,27 @@ class HomeFragment : Fragment() {
         var actionbar = (requireActivity() as AppCompatActivity).supportActionBar
         actionbar?.hide()
         val navBar = requireActivity().findViewById<BottomNavigationView>(R.id.bottomNavigationView)
-        if (view.id == R.layout.fragment_home_2) {
-            startLesson = view.findViewById(R.id.startLessonButton)!!
+        navBar.visibility = View.VISIBLE
+        if (UserManager.getUserLevel() == 2) {
+            evaluateViewModel = ViewModelProvider(this)[EvaluateViewModel::class.java]
             recyclerView = rootView.findViewById(R.id.recent_recyclerView)
             recyclerView.layoutManager = LinearLayoutManager(view.context)
-
-            adapter = HistoryAdapter(hisList)
+            adapter = HistoryAdapter(hisList, view.context)
             recyclerView.adapter = adapter
-            evaluateViewModel.data.observe(
-                viewLifecycleOwner,
-                Observer { user ->
-                    adapter.updateData(user)
-                }
-            )
+            refreshData()
+        } else {
+            startLesson = view.findViewById(R.id.startLessonButton)!!
             startLesson.setOnClickListener {
             }
         }
-        navBar.visibility = View.VISIBLE
+    }
+    private fun refreshData() {
+        evaluateViewModel.data.observe(
+            viewLifecycleOwner,
+            Observer { user ->
+                adapter.updateData(user)
+            }
+        )
     }
     private fun replaceLayout(layoutId: Int, container: ViewGroup?) {
         val inflater = LayoutInflater.from(context)

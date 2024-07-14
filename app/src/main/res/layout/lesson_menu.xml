@@ -50,14 +50,14 @@
         <TextView
             android:id="@+id/lesson_h2"
             android:layout_width="160dp"
-            android:layout_height="60dp"
+            android:layout_height="0dp"
             android:layout_below="@+id/lesson_h1"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
             android:layout_marginStart="24dp"
             android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="49dp"
+            android:layout_marginEnd="24dp"
+
             android:layout_toEndOf="@+id/lesson_icon"
             android:fontFamily="@font/poppins"
             android:text="lesson desc"

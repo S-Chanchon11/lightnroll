@@ -16,6 +16,7 @@ import com.google.firebase.auth.auth
 class LoginActivity : AppCompatActivity() {
 //    private lateinit var auth: FirebaseAuth
     private lateinit var auth: FirebaseAuth
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 //        Firebase.configureFirebaseServices()
@@ -34,6 +35,7 @@ class LoginActivity : AppCompatActivity() {
     }
     override fun onStart() {
         super.onStart()
+
         val currentUser = auth.currentUser
         if (currentUser != null) {
             val intent = Intent(this, MainActivity::class.java)
@@ -46,5 +48,10 @@ class LoginActivity : AppCompatActivity() {
         val fragmentTransaction = fragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.login_frame_layout, fragment)
         fragmentTransaction.commit()
+    }
+
+    override fun onResume() {
+        super.onResume()
+
     }
 }

@@ -15,13 +15,11 @@ class LessonAdapter(
     lessonList: List<LessonModel>,
     context: Context
 ) :
-//                    private val onItemClickedCallback: (LessonModel) -> Unit) :
         RecyclerView.Adapter<LessonAdapter.MyViewHolder>() {
         private var lessonList: List<LessonModel>
         private val items = mutableListOf<Any>()
         private val context: Context
 
-//        private var drawables: Array<Drawable>
         private var onClickListener: OnClickListener? = null
 
         class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -62,8 +60,8 @@ class LessonAdapter(
             val lessonDesc = holder.descTxt
 
             lessonIcon.setImageResource(lesson.image)
-            lessonTitle.setText(lesson.title)
-            lessonDesc.setText(lesson.description)
+            lessonTitle.text = lesson.title
+            lessonDesc.text = lesson.description
 
             holder.itemView.setOnClickListener {
                 if (onClickListener != null) {

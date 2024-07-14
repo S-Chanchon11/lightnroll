@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:cardCornerRadius="8dp"
@@ -8,7 +9,9 @@
     app:cardMaxElevation="4dp"
     app:cardPreventCornerOverlap="true"
     app:cardUseCompatPadding="true"
-    android:background="@color/white">
+    android:background="@color/white"
+    android:id="@+id/cardHistory">
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -17,32 +20,44 @@
         <TextView
             android:id="@+id/rid"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="rid"
-            android:textSize="20dp"
+            android:layout_height="0dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginEnd="10dp"
             android:fontFamily="@font/poppins_medium"
+            android:text="rid"
+            android:textSize="18dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/scoreTxt"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginLeft="20dp">
-        </TextView>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/scoreTxt"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="56dp"
+            android:fontFamily="@font/poppins_medium"
             android:text="score"
             android:textSize="16dp"
-            android:fontFamily="@font/poppins_medium"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/showDetailIcon"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent">
+            app:layout_constraintVertical_bias="0.0">
+
         </TextView>
 
+        <ImageView
+            android:id="@+id/showDetailIcon"
+            android:layout_width="26dp"
+            android:layout_height="25dp"
+            android:layout_marginEnd="44dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0"
+            app:srcCompat="@android:drawable/ic_menu_search" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
 
 
 </androidx.cardview.widget.CardView>

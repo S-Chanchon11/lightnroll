@@ -5,6 +5,7 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.example.light.CloudFuncClient
 import com.example.light.NodeClient
+import com.example.light.UserManager
 import com.example.light.evaluate.model.EvaluateModel
 import com.example.light.evaluate.model.EvaluateResultModel
 import com.example.light.evaluate.model.EvaluateSongModel
@@ -127,6 +128,7 @@ class EvaluateRepository {
                 if (response.isSuccessful) {
                     responseData5.value = response.body()
                     Log.d(TAG, response.body().toString())
+                    UserManager.setRid()
                 } else {
                     Log.d("api", "error")
                 }

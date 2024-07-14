@@ -252,10 +252,11 @@
 
         <TextView
             android:id="@+id/signin_button"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
             android:layout_marginStart="8dp"
-            android:layout_marginEnd="16dp"
+            android:layout_marginEnd="95dp"
             android:layout_toEndOf="@+id/no_account_text"
             android:fontFamily="@font/poppins"
             android:text="sign in"
@@ -266,7 +267,8 @@
             android:id="@+id/no_account_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="80dp"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="63dp"
             android:fontFamily="@font/poppins_medium"
             android:text="Already have an account"
             android:textAlignment="center"
